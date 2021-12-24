@@ -50,7 +50,8 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
 
     private fun initAll() {
         zfile_qw_toolBar.apply {
-            if (getZFileConfig().showBackIcon) setNavigationIcon(R.drawable.zfile_back) else navigationIcon = null
+            if (getZFileConfig().showBackIcon) setNavigationIcon(R.drawable.zfile_back) else navigationIcon =
+                null
             inflateMenu(R.menu.zfile_qw_menu)
             setOnMenuItemClickListener { menu -> menuItemClick(menu) }
             setNavigationOnClickListener { onBackPressed() }
@@ -97,7 +98,10 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
                     setBarTitle(if (getZFileConfig().filePath!! == ZFileConfiguration.QQ) "QQ文件" else "微信文件")
                 } else {
                     setResult(ZFILE_RESULT_CODE, Intent().apply {
-                        putParcelableArrayListExtra(ZFILE_SELECT_DATA_KEY, selectArray.toFileList() as java.util.ArrayList<out Parcelable>)
+                        putParcelableArrayListExtra(
+                            ZFILE_SELECT_DATA_KEY,
+                            selectArray.toFileList() as java.util.ArrayList<out Parcelable>
+                        )
                     })
                     finish()
                 }
@@ -113,7 +117,9 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
     }
 
     override fun onPageScrollStateChanged(state: Int) = Unit
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) =
+        Unit
+
     override fun onPageSelected(position: Int) {
         getVPFragment(position)?.setManager(isManage)
     }
@@ -128,7 +134,7 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
 
     private fun callPermission() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) checkHasPermission() else initAll()
+            checkHasPermission()
         } else {
             val builder = AlertDialog.Builder(this)
                 .setTitle(R.string.zfile_11_title)
@@ -150,15 +156,24 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
     }
 
     private fun checkHasPermission() {
-        val hasPermission = ZFilePermissionUtil.hasPermission(this, ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE)
+        val hasPermission =
+            ZFilePermissionUtil.hasPermission(this, ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE)
         if (hasPermission) {
-            ZFilePermissionUtil.requestPermission(this, ZFilePermissionUtil.WRITE_EXTERNAL_CODE, ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE)
+            ZFilePermissionUtil.requestPermission(
+                this,
+                ZFilePermissionUtil.WRITE_EXTERNAL_CODE,
+                ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE
+            )
         } else {
             initAll()
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ZFilePermissionUtil.WRITE_EXTERNAL_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) initAll()
@@ -215,12 +230,12 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
 
         override fun getItemPosition(any: Any) = PagerAdapter.POSITION_NONE
 
-        override fun getPageTitle(position: Int): String? {
+        override fun getPageTitle(position: Int): String {
             val list = getZFileHelp().getQWFileLoadListener()?.getTitles() ?: titles
             if (list.size != QW_SIZE) {
                 throw ZFileException("ZQWFileLoadListener.getTitles() size must be $QW_SIZE")
             } else {
-               return list[position]
+                return list[position]
             }
         }
     }

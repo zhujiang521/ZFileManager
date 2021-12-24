@@ -44,7 +44,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
     override fun getContentView() = R.layout.dialog_zfile_select_folder
 
     override fun createDialog(savedInstanceState: Bundle?) =
-        Dialog(context!!, R.style.Zfile_Select_Folder_Dialog).apply {
+        Dialog(requireContext(), R.style.Zfile_Select_Folder_Dialog).apply {
             window?.setGravity(Gravity.BOTTOM)
         }
 
@@ -67,7 +67,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
     }
 
     private fun initRecyclerView() {
-        folderAdapter = object : ZFileAdapter<ZFileBean>(context!!, R.layout.item_zfile_list_folder) {
+        folderAdapter = object : ZFileAdapter<ZFileBean>(requireContext(), R.layout.item_zfile_list_folder) {
             override fun bindView(holder: ZFileViewHolder, item: ZFileBean, position: Int) {
                 holder.apply {
                     setText(R.id.item_zfile_list_folderNameTxt, item.fileName)
@@ -84,7 +84,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
         }
         val lp = zfile_select_folder_recyclerView.layoutParams as LinearLayout.LayoutParams
         lp.apply {
-            bottomMargin = context!!.getStatusBarHeight()
+            bottomMargin = requireContext().getStatusBarHeight()
         }
         zfile_select_folder_recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -106,7 +106,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
         } else {
             zfile_select_folder_title.text = String.format("%s到%s", tipStr, filePath.toFile().name)
         }
-        ZFileUtil.getList(context!!) {
+        ZFileUtil.getList(requireContext()) {
             if (isNullOrEmpty()) {
                 folderAdapter?.clear()
             } else {
@@ -135,7 +135,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
     }
 
     override fun onStart() {
-        val display = context!!.getZDisplay()
+        val display = requireContext().getZDisplay()
         dialog?.window?.setLayout(display[0], display[1])
         super.onStart()
     }

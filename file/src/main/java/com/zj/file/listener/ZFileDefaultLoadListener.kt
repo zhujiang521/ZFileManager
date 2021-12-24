@@ -14,9 +14,9 @@ internal class ZFileDefaultLoadListener : ZFileLoadListener {
      * @return MutableList<ZFileBean>?  list
      */
     override fun getFileList(context: Context?, filePath: String?) =
-        getDefaultFileList(context, filePath)
+        getDefaultFileList(filePath)
 
-    private fun getDefaultFileList(context: Context?, filePath: String?): MutableList<ZFileBean> {
+    private fun getDefaultFileList(filePath: String?): MutableList<ZFileBean> {
         val path = if (filePath.isNullOrEmpty()) SD_ROOT else filePath
         val config = getZFileConfig()
         val list = arrayListOf<ZFileBean>()
@@ -30,27 +30,27 @@ internal class ZFileDefaultLoadListener : ZFileLoadListener {
         listFiles?.forEach {
             if (config.showHiddenFile) { // 是否显示隐藏文件
                 val bean = ZFileBean(
-                        it.name,
-                        it.isFile,
-                        it.path,
-                        ZFileOtherUtil.getFormatFileDate(it.lastModified()) ?: "未知时间",
-                        it.lastModified().toString(),
-                        ZFileOtherUtil.getFileSize(it.length()),
-                        it.length(),
-                        it.parent
+                    it.name,
+                    it.isFile,
+                    it.path,
+                    ZFileOtherUtil.getFormatFileDate(it.lastModified()),
+                    it.lastModified().toString(),
+                    ZFileOtherUtil.getFileSize(it.length()),
+                    it.length(),
+                    it.parent
                 )
                 list.add(bean)
             } else {
                 if (!it.isHidden) {
                     val bean = ZFileBean(
-                            it.name,
-                            it.isFile,
-                            it.path,
-                            ZFileOtherUtil.getFormatFileDate(it.lastModified()) ?: "未知时间",
-                            it.lastModified().toString(),
-                            ZFileOtherUtil.getFileSize(it.length()),
-                            it.length(),
-                            it.parent
+                        it.name,
+                        it.isFile,
+                        it.path,
+                        ZFileOtherUtil.getFormatFileDate(it.lastModified()),
+                        it.lastModified().toString(),
+                        ZFileOtherUtil.getFileSize(it.length()),
+                        it.length(),
+                        it.parent
                     )
                     list.add(bean)
                 }
@@ -60,13 +60,13 @@ internal class ZFileDefaultLoadListener : ZFileLoadListener {
         // 排序相关
         if (config.sortord == ZFileConfiguration.ASC) {
             when (config.sortordBy) {
-                ZFileConfiguration.BY_NAME -> list.sortBy { it.fileName.toLowerCase(Locale.CHINA) }
+                ZFileConfiguration.BY_NAME -> list.sortBy { it.fileName.lowercase(Locale.CHINA) }
                 ZFileConfiguration.BY_DATE -> list.sortBy { it.originalDate }
                 ZFileConfiguration.BY_SIZE -> list.sortBy { it.originaSize }
             }
         } else {
             when (config.sortordBy) {
-                ZFileConfiguration.BY_NAME -> list.sortByDescending { it.fileName.toLowerCase(Locale.CHINA) }
+                ZFileConfiguration.BY_NAME -> list.sortByDescending { it.fileName.lowercase(Locale.CHINA) }
                 ZFileConfiguration.BY_DATE -> list.sortByDescending { it.originalDate }
                 ZFileConfiguration.BY_SIZE -> list.sortByDescending { it.originaSize }
             }

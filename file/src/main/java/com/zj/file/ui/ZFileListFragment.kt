@@ -8,10 +8,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Parcelable
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -42,12 +40,11 @@ import java.io.File
  * 3. Activity onBackPressed 方法 需要 调用 [onBackPressed]
  * 4. Activity onResume 方法 需要调用 [showPermissionDialog]
  */
-class ZFileListFragment : Fragment() {
+class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
 
     private lateinit var mActivity: FragmentActivity
 
     private var isFirstLoad = true
-    private var rootView: View? = null
 
     private var toManagerPermissionPage = false
 
@@ -120,17 +117,6 @@ class ZFileListFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.activity_zfile_list, container, false)
-        }
-        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -504,7 +490,7 @@ class ZFileListFragment : Fragment() {
 
     private fun callPermission() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) checkHasPermission() else initRV()
+            checkHasPermission()
         } else {
             zfile_list_errorLayout.visibility = View.VISIBLE
             val builder = AlertDialog.Builder(mActivity)
@@ -531,20 +517,16 @@ class ZFileListFragment : Fragment() {
     }
 
     private fun checkHasPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val hasPermission = ZFilePermissionUtil.hasPermission(
-                mActivity,
+        val hasPermission = ZFilePermissionUtil.hasPermission(
+            mActivity,
+            ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE
+        )
+        if (hasPermission) {
+            ZFilePermissionUtil.requestPermission(
+                this,
+                ZFilePermissionUtil.WRITE_EXTERNAL_CODE,
                 ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE
             )
-            if (hasPermission) {
-                ZFilePermissionUtil.requestPermission(
-                    this,
-                    ZFilePermissionUtil.WRITE_EXTERNAL_CODE,
-                    ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE
-                )
-            } else {
-                initRV()
-            }
         } else {
             initRV()
         }
@@ -584,6 +566,7 @@ class ZFileListFragment : Fragment() {
     }
 
     private fun setHiddenState() {
+        ZFileLog.e("ZHUJIANG", "init: bbbbbb")
         zfile_list_toolBar.post {
             val menu = zfile_list_toolBar.menu
             val showMenuItem = menu.findItem(R.id.menu_zfile_show)

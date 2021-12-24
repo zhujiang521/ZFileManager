@@ -12,7 +12,7 @@ import com.zj.file.content.SD_ROOT
 import com.zj.file.dsl.result
 import com.zj.file.listener.*
 import com.zj.file.listener.ZFileDefaultLoadListener
-import com.zj.file.ui.ZFileListActivity2
+import com.zj.file.ui.ZFileListActivity
 import com.zj.file.ui.ZFileProxyFragment
 import com.zj.file.ui.ZFileQWActivity
 
@@ -109,7 +109,7 @@ class ZFileManageHelp {
     fun getSelectData(requestCode: Int, resultCode: Int, data: Intent?): MutableList<ZFileBean>? {
         var list: MutableList<ZFileBean>? = arrayListOf()
         if (requestCode == ZFILE_REQUEST_CODE && resultCode == ZFILE_RESULT_CODE) {
-            list = data?.getParcelableArrayListExtra<ZFileBean>(ZFILE_SELECT_DATA_KEY)
+            list = data?.getParcelableArrayListExtra(ZFILE_SELECT_DATA_KEY)
         }
         return list
     }
@@ -155,7 +155,7 @@ class ZFileManageHelp {
             is Fragment -> {
                 if (fragmentOrActivity.isRemoving || fragmentOrActivity.isDetached) return
                 addFragment(
-                    fragmentOrActivity.childFragmentManager, fragmentOrActivity.context!!,
+                    fragmentOrActivity.childFragmentManager, fragmentOrActivity.requireContext(),
                     ZFileQWActivity::class.java, ZFileConfiguration.QQ, resultListener
                 )
             }
@@ -175,7 +175,7 @@ class ZFileManageHelp {
             is Fragment -> {
                 if (fragmentOrActivity.isRemoving || fragmentOrActivity.isDetached) return
                 addFragment(
-                    fragmentOrActivity.childFragmentManager, fragmentOrActivity.context!!,
+                    fragmentOrActivity.childFragmentManager, fragmentOrActivity.requireContext(),
                     ZFileQWActivity::class.java, ZFileConfiguration.WECHAT, resultListener
                 )
             }
@@ -197,14 +197,14 @@ class ZFileManageHelp {
                 if (fragmentOrActivity.isDestroyed || fragmentOrActivity.isFinishing) return
                 addFragment(
                     fragmentOrActivity.supportFragmentManager, fragmentOrActivity,
-                    ZFileListActivity2::class.java, path, resultListener
+                    ZFileListActivity::class.java, path, resultListener
                 )
             }
             is Fragment -> {
                 if (fragmentOrActivity.isRemoving || fragmentOrActivity.isDetached) return
                 addFragment(
-                    fragmentOrActivity.childFragmentManager, fragmentOrActivity.context!!,
-                    ZFileListActivity2::class.java, path, resultListener
+                    fragmentOrActivity.childFragmentManager, fragmentOrActivity.requireContext(),
+                    ZFileListActivity::class.java, path, resultListener
                 )
             }
             else -> throw ZFileException(ERROR_MSG)

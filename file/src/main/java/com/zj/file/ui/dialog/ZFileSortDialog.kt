@@ -29,7 +29,7 @@ internal class ZFileSortDialog : ZFileManageDialog(), RadioGroup.OnCheckedChange
 
     override fun getContentView() = R.layout.dialog_zfile_sort
 
-    override fun createDialog(savedInstanceState: Bundle?) = Dialog(context!!, R.style.ZFile_Common_Dialog).apply {
+    override fun createDialog(savedInstanceState: Bundle?) = Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
         window?.setGravity(Gravity.CENTER)
     }
 

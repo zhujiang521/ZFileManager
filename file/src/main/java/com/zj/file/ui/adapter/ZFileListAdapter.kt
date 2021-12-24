@@ -1,18 +1,12 @@
 package com.zj.file.ui.adapter
 
 import android.content.Context
-import android.view.View
 import android.widget.TextView
 import androidx.collection.ArrayMap
 import com.zj.file.R
 import com.zj.file.common.ZFileAdapter
 import com.zj.file.common.ZFileViewHolder
 import com.zj.file.content.*
-import com.zj.file.content.FILE
-import com.zj.file.content.FOLDER
-import com.zj.file.content.folderRes
-import com.zj.file.content.lineColor
-import com.zj.file.content.throwError
 
 internal class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(context) {
 
@@ -80,10 +74,6 @@ internal class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(cont
             }
             field = value
         }
-
-    /* item Click */
-    @Deprecated("不再使用")
-    var itemClickByAnim: ((v: View, position: Int, item: ZFileBean) -> Unit)? = null
 
     /* selected or un-selected change */
     var changeListener: ((isManage: Boolean, size: Int) -> Unit)? = null

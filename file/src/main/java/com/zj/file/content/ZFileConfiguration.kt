@@ -73,7 +73,6 @@ class ZFileConfiguration : Serializable {
         /** 标题居中 */
         const val TITLE_CENTER = 1
         /** 标题居右 */
-        @Deprecated("在我国肯定没人有这种BT需求，有的话我zhiboduodiao")
         const val TITLE_RIGHT = 2
     }
 

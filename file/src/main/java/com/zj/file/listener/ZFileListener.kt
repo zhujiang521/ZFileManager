@@ -16,7 +16,6 @@ import com.zj.file.common.ZFileCommonDialog
 import com.zj.file.common.ZFileType
 import com.zj.file.content.*
 import com.zj.file.type.*
-import com.zj.file.ui.ZFileListActivity
 import com.zj.file.ui.ZFileListFragment
 import com.zj.file.ui.ZFilePicActivity
 import com.zj.file.ui.ZFileVideoPlayActivity
@@ -237,19 +236,12 @@ open class ZFileOpenListener {
             dialog.selectFolder = {
                 getZFileHelp().getFileOperateListener().zipFile(filePath, this, activity) {
                     ZFileLog.i(if (this) "解压成功" else "解压失败")
-                    when (activity) {
-                        is ZFileListActivity -> {
-                            activity.observer(this)
-                        }
-                        else -> {
-                            val fragment = activity.supportFragmentManager.findFragmentByTag(
-                                getZFileConfig().fragmentTag)
-                            if (fragment is ZFileListFragment) {
-                                fragment.observer(this)
-                            } else {
-                                ZFileLog.e("文件解压成功，但是无法立刻刷新界面！")
-                            }
-                        }
+                    val fragment = activity.supportFragmentManager.findFragmentByTag(
+                        getZFileConfig().fragmentTag)
+                    if (fragment is ZFileListFragment) {
+                        fragment.observer(this)
+                    } else {
+                        ZFileLog.e("文件解压成功，但是无法立刻刷新界面！")
                     }
                 }
             }

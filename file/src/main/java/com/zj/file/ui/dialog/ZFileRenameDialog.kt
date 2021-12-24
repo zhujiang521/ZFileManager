@@ -98,7 +98,10 @@ internal class ZFileRenameDialog : ZFileManageDialog(), Runnable {
         val m = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         val isOpen = m.isActive
         if (isOpen) {
-            m.hideSoftInputFromWindow((context as Activity).currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            m.hideSoftInputFromWindow(
+                (context as Activity).currentFocus?.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
     }
 }

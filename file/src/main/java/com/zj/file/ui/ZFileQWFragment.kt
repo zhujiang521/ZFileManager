@@ -12,7 +12,7 @@ import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
 import kotlinx.android.synthetic.main.fragment_zfile_qw.*
 
-internal class ZFileQWFragment : ZFileFragment() {
+internal class ZFileQWFragment : ZFileFragment(R.layout.fragment_zfile_qw) {
 
     private var qwFileType = ZFileConfiguration.QQ
     // 文件类型
@@ -31,8 +31,6 @@ internal class ZFileQWFragment : ZFileFragment() {
             }
         }
     }
-
-    override fun getContentView() = R.layout.fragment_zfile_qw
 
     override fun initAll() {
         qwFileType = arguments?.getString(QW_FILE_TYPE_KEY) ?: ZFileConfiguration.QQ

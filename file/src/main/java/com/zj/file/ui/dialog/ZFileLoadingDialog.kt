@@ -14,8 +14,8 @@ import com.zj.file.content.getColorById
 import com.zj.file.content.getStringById
 
 internal class ZFileLoadingDialog(
-        context: Context,
-        private var title: String? = context getStringById R.string.zfile_loading
+    context: Context,
+    private var title: String? = context getStringById R.string.zfile_loading
 ) : AlertDialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +27,8 @@ internal class ZFileLoadingDialog(
     private fun getContentView(wh: Int) = LinearLayout(context).apply {
         window?.setLayout(wh, wh)
         layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
         )
         orientation = LinearLayout.VERTICAL
         gravity = Gravity.CENTER
@@ -42,14 +42,15 @@ internal class ZFileLoadingDialog(
         val padding = context dip2px 14f
         val titleTxt = TextView(context).run {
             layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
             )
             gravity = Gravity.CENTER
             setPadding(0, padding, 0, 0)
             textSize = 13f
             maxLines = 1
             setTextColor(context getColorById R.color.zfile_black)
-            text = if (title.isNullOrEmpty()) context getStringById R.string.zfile_loading else title
+            text =
+                if (title.isNullOrEmpty()) context getStringById R.string.zfile_loading else title
             this
         }
         addView(titleTxt)

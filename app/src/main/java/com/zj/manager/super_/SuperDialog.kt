@@ -37,7 +37,7 @@ class SuperDialog : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?) =
-        Dialog(context!!, com.zj.file.R.style.Zfile_Select_Folder_Dialog).apply {
+        Dialog(requireContext(), com.zj.file.R.style.Zfile_Select_Folder_Dialog).apply {
             window?.setGravity(Gravity.BOTTOM)
         }
 
@@ -58,7 +58,7 @@ class SuperDialog : DialogFragment() {
     }
 
     override fun onStart() {
-        val display = context!!.getTDisplay()
+        val display = requireContext().getTDisplay()
         dialog?.window?.setLayout(display[0], display[1])
         super.onStart()
     }
