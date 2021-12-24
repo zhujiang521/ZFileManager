@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="ZFileManager\n 左滑右滑试试"
+    android:gravity="center"
+    android:textSize="18sp"
+    android:textColor="@color/zfile_white"
+    android:background="@color/zfile_base_color"
+    android:orientation="vertical" />

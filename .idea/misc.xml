@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.327445652173913" />
+        <entry key="app/src/main/res/layout/activity_sun.xml" value="0.2572463768115942" />
+        <entry key="file/src/main/res/drawable/zfile_play.xml" value="0.4222222222222222" />
+        <entry key="file/src/main/res/drawable/zfile_quan2.xml" value="0.4222222222222222" />
+        <entry key="file/src/main/res/drawable/zfile_quan3.xml" value="0.4222222222222222" />
+        <entry key="file/src/main/res/drawable/zfile_ripple_music_bg.xml" value="0.4222222222222222" />
+        <entry key="file/src/main/res/layout/activity_zfile_list.xml" value="0.327445652173913" />
+        <entry key="file/src/main/res/layout/activity_zfile_list2.xml" value="0.327445652173913" />
+        <entry key="file/src/main/res/layout/fragment_zfile_qw.xml" value="0.327445652173913" />
+        <entry key="file/src/main/res/layout/item_zfile_list_file.xml" value="0.327445652173913" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
