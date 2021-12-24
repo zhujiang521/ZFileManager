@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 禁止重寫 -->
+    <string name="zfile_sharedElement_pic">跳轉圖片</string>
+    <!-- 禁止重寫 -->
+    <string name="zfile_sharedElement_video">跳轉視頻</string>
+
+    <!--   下面重寫即可自定義   -->
+    <string name="zfile_title">文件管理</string>
+    <string name="zfile_menu_down">完成</string>
+    <string name="zfile_root_path">根目錄</string>
+    <string name="zfile_path">指定目錄</string>
+    <string name="zfile_menu_order">排序方式</string>
+    <string name="zifle_menu_hidden">不顯示隱藏文件</string>
+    <string name="zfile_menu_show">顯示隱藏文件</string>
+    <string name="zfile_sort_title">排序方式</string>
+    <string name="zfile_sort_default">&#160;默認（無順序）</string>
+    <string name="zfile_sort_by_name">&#160;名稱</string>
+    <string name="zfile_sort_by_time">&#160;時間</string>
+    <string name="zfile_sort_by_size">&#160;大小</string>
+    <string name="zfile_sort_ss">順序</string>
+    <string name="zfile_sort_sx">&#160;升序</string>
+    <string name="zfile_sort_jx">&#160;降序</string>
+    <string name="zfile_down">確定</string>
+    <string name="zfile_cancel">取消</string>
+    <string name="zfile_info_title">文件詳情</string>
+    <string name="zfile_info_name">文件名稱：</string>
+    <string name="zfile_info_type">文件類型：</string>
+    <string name="zfile_info_size">文件大小：</string>
+    <string name="zfile_info_time">修改時間：</string>
+    <string name="zfile_info_path">文件路徑：</string>
+    <string name="zfile_info_more">顯示更多</string>
+    <string name="zfile_info_duration">媒體時長：</string>
+    <string name="zfile_info_loadding">獲取中</string>
+    <string name="zfile_info_wh">寬高比率：</string>
+    <string name="zfile_info_other">其他信息：</string>
+    <string name="zfile_select_forder">請選擇文件夾</string>
+    <string name="zfile_info_rename">請輸入文件名稱</string>
+    <string name="zifle_rename_title">文件重命名</string>
+    <string name="zfile_pic">圖片</string>
+    <string name="zfile_video">視頻</string>
+    <string name="zfile_txt">文檔</string>
+    <string name="zfile_other">其他</string>
+    <string name="zfile_loading">請稍後</string>
+    <string name="zfile_qw_loading" tools:ignore="TypographyEllipsis">文件獲取中...</string>
+    <string name="zfile_duplicate">副本_</string>
+    <string name="zfile_permission_bad">權限申請失敗</string>
+    <string name="zfile_11_title">溫馨提示</string>
+    <string name="zfile_11_content">訪問文件需要您同意「允許訪問所有文件權限」才能正常使用！</string>
+    <string name="zfile_11_bad">同意「允許訪問所有文件權限」才能正常使用！</string>
+    <string name="zfile_permission_bad2">您已拒絕權限的申請，該功能暫時無法使用，請您同意權限後繼續！</string>
+    <string name="zfile_permission_bad3">重新獲取</string>
+
+</resources>
