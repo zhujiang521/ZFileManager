@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_dsl.xml" value="0.2838541666666667" />
+        <entry key="app/src/main/res/layout/activity_fragment_sample2.xml" value="0.2838541666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.327445652173913" />
         <entry key="app/src/main/res/layout/activity_sun.xml" value="0.2572463768115942" />
+        <entry key="app/src/main/res/layout/activity_super.xml" value="0.2838541666666667" />
         <entry key="file/src/main/res/drawable/zfile_play.xml" value="0.4222222222222222" />
         <entry key="file/src/main/res/drawable/zfile_quan2.xml" value="0.4222222222222222" />
         <entry key="file/src/main/res/drawable/zfile_quan3.xml" value="0.4222222222222222" />
@@ -12,6 +15,7 @@
         <entry key="file/src/main/res/layout/activity_zfile_list.xml" value="0.327445652173913" />
         <entry key="file/src/main/res/layout/activity_zfile_list2.xml" value="0.327445652173913" />
         <entry key="file/src/main/res/layout/activity_zfile_pic.xml" value="0.3229166666666667" />
+        <entry key="file/src/main/res/layout/dialog_zfile_select_folder.xml" value="0.3183876811594203" />
         <entry key="file/src/main/res/layout/fragment_zfile_qw.xml" value="0.327445652173913" />
         <entry key="file/src/main/res/layout/item_zfile_list_file.xml" value="0.327445652173913" />
         <entry key="file/src/main/res/menu/zfile_list_menu.xml" value="0.4244791666666667" />
