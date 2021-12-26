@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/zfile_white">
+    android:background="@color/zfile_file_back">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:maxLength="20"
-            android:textColor="@color/zfile_black"
+            android:textColor="@color/zfile_file_title"
             android:textSize="14sp"
             tools:text="文件夹名称" />
 

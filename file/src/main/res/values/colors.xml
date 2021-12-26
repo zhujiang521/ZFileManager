@@ -12,4 +12,12 @@
     <color name="zfile_bgcolor">#f2f2f2</color>
     <color name="zfile_no_permissions_color1">@color/zfile_gray</color>
     <color name="zfile_no_permissions_color2">@color/zfile_green</color>
+
+    <color name="zfile_title_text">#ffffff</color>
+
+    <color name="zfile_file_back">#ffffff</color>
+    <color name="zfile_file_title">#000000</color>
+    <color name="colorBackground">#f7f7f7</color>
+    <color name="zfile_path_back">#E1E1E1</color>
+
 </resources>

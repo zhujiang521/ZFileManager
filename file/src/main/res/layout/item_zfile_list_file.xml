@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/zfile_white">
+    android:background="@color/zfile_file_back">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
             android:id="@+id/item_zfile_list_file_pic"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            tools:src="@drawable/ic_zfile_other"
-            android:transitionName="jump_File"/>
+            android:transitionName="jump_File"
+            tools:src="@drawable/ic_zfile_other" />
 
         <FrameLayout
             android:id="@+id/item_zfile_list_file_boxLayout"
@@ -37,16 +37,16 @@
                 android:id="@+id/item_zfile_list_file_box1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/item_zfile_list_file_box2"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:visibility="gone"
-                android:background="@drawable/zfile_checkbox_seletor" />
+                android:background="@drawable/zfile_checkbox_seletor"
+                android:visibility="gone" />
 
         </FrameLayout>
 
@@ -54,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/item_zfile_list_file_pic"
             android:layout_toStartOf="@+id/item_zfile_list_file_boxLayout"
+            android:layout_toEndOf="@+id/item_zfile_list_file_pic"
             android:gravity="center|start"
             android:orientation="vertical">
 
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/zfile_black"
+                android:textColor="@color/zfile_file_title"
                 android:textSize="14sp"
                 tools:text="文件名称" />
 
@@ -104,7 +104,8 @@
         android:layout_height="0.5dp"
         android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/zfile_default_divider_padding"
-        android:layout_marginEnd="@dimen/zfile_default_divider_padding"/>
+        android:layout_marginEnd="@dimen/zfile_default_divider_padding"
+        tools:background="@color/zfile_line_color" />
 
 
 </FrameLayout>

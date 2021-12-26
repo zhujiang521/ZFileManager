@@ -9,6 +9,7 @@
         <item name="android:windowBackground">@color/zfile_bgcolor</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
     </style>
 
     <style name="ZFile_Common_Dialog">
@@ -33,8 +34,8 @@
     </style>
 
     <style name="ZFile_ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="actionMenuTextColor">@color/zfile_white</item>
-        <item name="android:textColorPrimary">@color/zfile_white</item>
+        <item name="actionMenuTextColor">@color/zfile_title_text</item>
+        <item name="android:textColorPrimary">@color/zfile_title_text</item>
     </style>
 
     <style name="ZFile_ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">
@@ -46,7 +47,7 @@
     </style>
 
     <style name="ZFile_ToolbarTitleTextStyle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">@color/zfile_white</item>
+        <item name="android:textColor">@color/zfile_title_text</item>
         <item name="android:textSize">18sp</item>
     </style>
 

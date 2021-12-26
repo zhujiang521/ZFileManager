@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 可重写该属性达到主题颜色自定义 -->
+    <color name="zfile_title_text">#fafafa</color>
+
+    <color name="zfile_base_color">#000000</color>
+    
+    <color name="zfile_line_color">#3f3f46</color>
+    <color name="zfile_bbbbb9">#939392</color>
+
+    <color name="zfile_file_back">#000000</color>
+    <color name="zfile_file_title">#e0e0f0</color>
+    <color name="colorBackground">#000000</color>
+    <color name="zfile_path_back">#9E9E9E</color>
+
+</resources>

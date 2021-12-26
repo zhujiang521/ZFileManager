@@ -358,7 +358,7 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
     }
 
     private val TAG by lazy {
-        ZFileSelectFolderDialog::class.java.simpleName
+        ZFileListFragment::class.java.simpleName
     }
 
     private fun jumpByWhich(item: ZFileBean, which: Int, index: Int) {
