@@ -12,10 +12,15 @@ android {
         targetSdkVersion 31 // 28
         versionCode 1
         versionName "1.0"
+        // 去除多语言
+        resConfigs "zh", "zh-rCN", "zh-rHK", "zh-rTW"
     }
     buildTypes {
         release {
+            // 开启混淆
             minifyEnabled true
+            // 去除无用资源 与lint不同
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
