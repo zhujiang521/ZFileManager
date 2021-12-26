@@ -3,6 +3,7 @@ package com.zj.file.ui.dialog
 import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import android.view.Gravity
 import android.view.View
@@ -20,7 +21,7 @@ import com.zj.file.util.ZFileOtherUtil
 import kotlinx.android.synthetic.main.dialog_zfile_info.*
 import java.lang.ref.WeakReference
 
-internal class ZFileInfoDialog : ZFileManageDialog(), Runnable {
+internal class ZFileInfoDialog : ZFileManageDialog(R.layout.dialog_zfile_info), Runnable {
 
     companion object {
         fun newInstance(bean: ZFileBean) = ZFileInfoDialog().apply {
@@ -32,8 +33,6 @@ internal class ZFileInfoDialog : ZFileManageDialog(), Runnable {
     private lateinit var thread: Thread
     private var filePath = ""
     private lateinit var fileType: ZFileType
-
-    override fun getContentView() = R.layout.dialog_zfile_info
 
     override fun createDialog(savedInstanceState: Bundle?) = Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
         window?.setGravity(Gravity.CENTER)
@@ -105,24 +104,23 @@ internal class ZFileInfoDialog : ZFileManageDialog(), Runnable {
         })
     }
 
-    class InfoHandler(dialog: ZFileInfoDialog) : Handler() {
+    class InfoHandler(dialog: ZFileInfoDialog) : Handler(Looper.getMainLooper()) {
         private val week: WeakReference<ZFileInfoDialog> by lazy {
             WeakReference<ZFileInfoDialog>(dialog)
         }
 
         override fun handleMessage(msg: Message) {
-            if (msg.what == 0) {
-                val bean = msg.obj as ZFileInfoBean
-                week.get()?.apply {
-                    when (fileType) {
-                        is AudioType -> {
-                            zfile_dialog_info_fileDuration.text = bean.duration
-                        }
-                        is VideoType -> {
-                            zfile_dialog_info_fileDuration.text = bean.duration
-                            zfile_dialog_info_fileFBL.text =
-                                String.format("%s * %s", bean.width, bean.height)
-                        }
+            if (msg.what != 0) return
+            val bean = msg.obj as ZFileInfoBean
+            week.get()?.apply {
+                when (fileType) {
+                    is AudioType -> {
+                        zfile_dialog_info_fileDuration.text = bean.duration
+                    }
+                    is VideoType -> {
+                        zfile_dialog_info_fileDuration.text = bean.duration
+                        zfile_dialog_info_fileFBL.text =
+                            String.format("%s * %s", bean.width, bean.height)
                     }
                 }
             }

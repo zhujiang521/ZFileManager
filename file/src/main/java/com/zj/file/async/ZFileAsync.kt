@@ -26,7 +26,7 @@ open class ZFileAsync(
     private var handler: ZFileAsyncHandler? = null
 
     private val softReference by lazy {
-        SoftReference<Context>(context)
+        SoftReference(context)
     }
 
     /**

@@ -13,7 +13,7 @@ import com.zj.file.util.ZFileOtherUtil
 import kotlinx.android.synthetic.main.dialog_zfile_audio_play.*
 import java.lang.ref.WeakReference
 
-internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChangeListener, Runnable {
+internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_audio_play), SeekBar.OnSeekBarChangeListener, Runnable {
 
     companion object {
         fun getInstance(filePath: String) = ZFileAudioPlayDialog().apply {
@@ -33,8 +33,6 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChan
     private var beginTime: Long = 0
     private var falgTime: Long = 0
     private var pauseTime: Long = 0
-
-    override fun getContentView() = R.layout.dialog_zfile_audio_play
 
     override fun createDialog(savedInstanceState: Bundle?) = Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
         window?.setGravity(Gravity.CENTER)

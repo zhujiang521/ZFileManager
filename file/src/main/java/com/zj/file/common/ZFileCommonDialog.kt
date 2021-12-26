@@ -16,14 +16,14 @@ internal class ZFileCommonDialog(context: Context, private var isUserDefaultTitl
                     setMessage(str[0])
                     setPositiveButton(str[1]) { dialog, _ ->
                         dialog.dismiss()
-                        listener1.invoke()
+                        listener1()
                     }
                 } else {
                     setTitle(str[0])
                     setMessage(str[1])
                     setPositiveButton(str[2]) { dialog, _ ->
                         dialog.dismiss()
-                        listener1.invoke()
+                        listener1()
                     }
                 }
                 setCancelable(false)

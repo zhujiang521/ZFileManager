@@ -6,15 +6,12 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
+import com.zj.file.R
 
-internal abstract class ZFileManageDialog : DialogFragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val layoutID = getContentView()
-        if (layoutID <= 0) throw NullPointerException("DialogFragment ContentView is not null")
-        return inflater.inflate(getContentView(), container, false)
-    }
+internal abstract class ZFileManageDialog(@LayoutRes contentLayoutId: Int) :
+    DialogFragment(contentLayoutId) {
 
     override fun onCreateDialog(savedInstanceState: Bundle?) = createDialog(savedInstanceState)
 
@@ -27,7 +24,6 @@ internal abstract class ZFileManageDialog : DialogFragment() {
         }
     }
 
-    abstract fun getContentView(): Int
     abstract fun createDialog(savedInstanceState: Bundle?): Dialog
     abstract fun init(savedInstanceState: Bundle?)
 

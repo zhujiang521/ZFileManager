@@ -98,7 +98,7 @@ internal object ZFileQWUtil {
         filePathArray.forEach {
             val file = it.toFile()
             if (file.exists()) {
-                val listFiles = file.listFiles(ZFileQWFilter(filterArray, type == ZFILE_QW_OTHER))
+                val listFiles = file.listFiles(ZFileQWFilter(filterArray))
                 if (listFiles != null && listFiles.isNotEmpty()) {
                     listArrayList.addAll(listFiles)
                 }

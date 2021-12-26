@@ -10,7 +10,7 @@ import com.zj.file.common.ZFileManageDialog
 import com.zj.file.content.setNeedWH
 import kotlinx.android.synthetic.main.dialog_zfile_sort.*
 
-internal class ZFileSortDialog : ZFileManageDialog(), RadioGroup.OnCheckedChangeListener {
+internal class ZFileSortDialog : ZFileManageDialog(R.layout.dialog_zfile_sort), RadioGroup.OnCheckedChangeListener {
 
     companion object {
         fun newInstance(sortSelectId: Int, sequenceSelectId: Int) = ZFileSortDialog().apply {
@@ -26,8 +26,6 @@ internal class ZFileSortDialog : ZFileManageDialog(), RadioGroup.OnCheckedChange
     private var sequenceSelectId = 0
 
     var checkedChangedListener: ((Int, Int) -> Unit)? = null
-
-    override fun getContentView() = R.layout.dialog_zfile_sort
 
     override fun createDialog(savedInstanceState: Bundle?) = Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
         window?.setGravity(Gravity.CENTER)

@@ -566,7 +566,6 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
     }
 
     private fun setHiddenState() {
-        ZFileLog.e("ZHUJIANG", "init: bbbbbb")
         zfile_list_toolBar.post {
             val menu = zfile_list_toolBar.menu
             val showMenuItem = menu.findItem(R.id.menu_zfile_show)

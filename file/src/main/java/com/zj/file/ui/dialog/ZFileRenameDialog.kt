@@ -17,7 +17,7 @@ import com.zj.file.content.toast
 import com.zj.file.util.ZFileLog
 import kotlinx.android.synthetic.main.dialog_zfile_rename.*
 
-internal class ZFileRenameDialog : ZFileManageDialog(), Runnable {
+internal class ZFileRenameDialog : ZFileManageDialog(R.layout.dialog_zfile_rename), Runnable {
 
     var reanameDown: (String.() -> Unit)? = null
     private var handler: Handler? = null
@@ -33,8 +33,6 @@ internal class ZFileRenameDialog : ZFileManageDialog(), Runnable {
         }
 
     }
-
-    override fun getContentView() = R.layout.dialog_zfile_rename
 
     override fun createDialog(savedInstanceState: Bundle?) =
         Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {

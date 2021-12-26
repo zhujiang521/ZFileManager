@@ -16,7 +16,7 @@ import com.zj.file.content.lineColor
 import com.zj.file.util.ZFileUtil
 import kotlinx.android.synthetic.main.dialog_zfile_select_folder.*
 
-internal class ZFileSelectFolderDialog : ZFileManageDialog() {
+internal class ZFileSelectFolderDialog : ZFileManageDialog(R.layout.dialog_zfile_select_folder) {
 
     companion object {
         fun newInstance(type: String) = ZFileSelectFolderDialog().apply {
@@ -40,8 +40,6 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
 
     /** 返回当前的路径 */
     private fun getThisFilePath() = if (backList.isEmpty()) null else backList[backList.size - 1]
-
-    override fun getContentView() = R.layout.dialog_zfile_select_folder
 
     override fun createDialog(savedInstanceState: Bundle?) =
         Dialog(requireContext(), R.style.Zfile_Select_Folder_Dialog).apply {
