@@ -11,6 +11,8 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.collection.ArrayMap
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.zj.file.R
@@ -126,6 +128,23 @@ internal fun Activity.setStatusBarTransparent() {
     decorView.systemUiVisibility = option
     window.statusBarColor = Color.TRANSPARENT
 }
+
+/**
+ * 隐藏ime
+ */
+fun Activity.hideIme(view: View) {
+    val controller = ViewCompat.getWindowInsetsController(view)
+    controller?.hide(WindowInsetsCompat.Type.ime())
+}
+
+/**
+ * 显示ime
+ */
+fun Activity.showIme(view: View) {
+    val controller = ViewCompat.getWindowInsetsController(view)
+    controller?.show(WindowInsetsCompat.Type.ime())
+}
+
 internal fun ZFileManageDialog.setNeedWH() {
     val display = context?.getZDisplay()
     val width = if (display?.isEmpty() == true) ViewGroup.LayoutParams.MATCH_PARENT else (display!![0] * 0.88f).toInt()

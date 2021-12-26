@@ -20,4 +20,14 @@
     <color name="colorBackground">#f7f7f7</color>
     <color name="zfile_path_back">#E1E1E1</color>
 
+    <color name="title_icon_normal">#333333</color>
+    <color name="title_icon_pressed">#999999</color>
+
+    <color name="item_no_selected_bg">#ededed</color>
+    <color name="item_no_selected_bg_stroke">#ededed</color>
+
+    <color name="title_tv_cancel_text_color">#666666</color>
+    <color name="title_tv_cancel_text_color_pressed">#66191919</color>
+    <color name="title_tv_cancel_text_color_enabled">#191919</color>
+
 </resources>

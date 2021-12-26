@@ -158,6 +158,11 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
 
     private fun menuItemClick(menu: MenuItem?): Boolean {
         when (menu?.itemId) {
+            R.id.menu_zfile_search -> {
+                val search = Intent(context, SearchActivity::class.java)
+                startActivity(search)
+                activity?.overridePendingTransition(R.anim.search_push_in, R.anim.fake_anim)
+            }
             R.id.menu_zfile_down -> {
                 val list = fileListAdapter?.selectData
                 if (list.isNullOrEmpty()) {

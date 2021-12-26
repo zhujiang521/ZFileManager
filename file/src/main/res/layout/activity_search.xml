@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/search_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorBackground"
+        android:paddingHorizontal="24dp">
+
+        <EditText
+            android:id="@+id/search_edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/search_cancel"
+            android:background="@drawable/search_edit_bg"
+            android:gravity="start|center_vertical"
+            android:hint="@string/zfile_menu_search"
+            android:imeOptions="actionSearch"
+            android:maxLength="20"
+            android:paddingStart="38dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="36dp"
+            android:paddingBottom="6dp"
+            android:singleLine="true"
+            android:textColor="@color/zfile_file_title"
+            android:textColorHint="#999999"
+            android:textCursorDrawable="@drawable/drawable_notes_cursor"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/icon_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/search_edit_view"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="9dp"
+            android:src="@drawable/icon_edit_text_search" />
+
+        <ImageView
+            android:id="@+id/search_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/search_edit_view"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/btn_search_clear"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/search_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:paddingStart="14dp"
+            android:paddingEnd="0dp"
+            android:text="@string/zfile_cancel"
+            android:textColor="@color/btn_search_activity_cancel"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="24dp"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:id="@+id/search_list_emptyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackground"
+            android:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="weather_no_data.json"
+                app:lottie_loop="true" />
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:overScrollMode="never"
+            android:scrollbars="vertical"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

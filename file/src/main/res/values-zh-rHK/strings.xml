@@ -9,6 +9,7 @@
     <!--   下面重寫即可自定義   -->
     <string name="zfile_title">文件管理</string>
     <string name="zfile_menu_down">完成</string>
+    <string name="zfile_menu_search">搜索</string>
     <string name="zfile_root_path">根目錄</string>
     <string name="zfile_path">指定目錄</string>
     <string name="zfile_menu_order">排序方式</string>
