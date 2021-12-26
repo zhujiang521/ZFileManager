@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.zj.file.async.ZFileStipulateAsync
+import com.zj.file.content.*
+import com.zj.file.dsl.result
 import com.zj.manager.R
 import com.zj.manager.content.Content
 import com.zj.manager.content.Content.FILTER
@@ -13,10 +16,6 @@ import com.zj.manager.content.Content.QQ_MAP
 import com.zj.manager.content.Content.TITLES
 import com.zj.manager.diy.MyQWFileListener
 import com.zj.manager.diy.SunActivity
-import com.zj.file.async.ZFileStipulateAsync
-import com.zj.file.content.*
-import com.zj.file.content.*
-import com.zj.file.dsl.result
 import kotlinx.android.synthetic.main.activity_super.*
 
 class SuperActivity : AppCompatActivity() {
@@ -126,9 +125,9 @@ class SuperActivity : AppCompatActivity() {
             if (isNullOrEmpty()) {
                 Toast.makeText(this@SuperActivity, "暂无数据", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this@SuperActivity, "共找到${this?.size}条数据", Toast.LENGTH_SHORT).show()
-                Log.i("ZFileManager", "共找到${this?.size}条数据")
-                if (this!!.size > 100) {
+                Toast.makeText(this@SuperActivity, "共找到${size}条数据", Toast.LENGTH_SHORT).show()
+                Log.i("ZFileManager", "共找到${this.size}条数据")
+                if (this.size > 100) {
                     Log.e("ZFileManager", "这里考虑到传值大小限制，截取前100条数据")
                     SuperDialog.newInstance(changeList(this))
                             .show(supportFragmentManager, "SuperDialog")

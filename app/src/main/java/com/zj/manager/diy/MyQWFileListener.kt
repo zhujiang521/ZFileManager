@@ -16,7 +16,7 @@ class MyQWFileListener : ZQWFileLoadListener() {
      * 获取标题
      * @return Array<String>
      */
-    override fun getTitles(): Array<String>? {
+    override fun getTitles(): Array<String> {
         return arrayOf("图片", "媒体", "文档", "这是我自定义的title")
     }
 
@@ -131,7 +131,7 @@ class MyQWFileListener : ZQWFileLoadListener() {
         }
 
         private fun String.accept(type: String) =
-                this.endsWith(type.toLowerCase(Locale.CHINA)) || this.endsWith(type.toUpperCase(Locale.CHINA))
+                this.endsWith(type.lowercase(Locale.CHINA)) || this.endsWith(type.uppercase(Locale.CHINA))
     }
 }
 
