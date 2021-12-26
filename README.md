@@ -11,15 +11,6 @@
 ### 5. 支持QQ、微信文件选择（支持自定义获取）
 ### 6. 高度可定制化，支持Android 10++、AndroidX、DSL，兼容Java
 
-
-### 部分截图
-<div align="center">
-<img src = "app/src/main/assets/s0.jpg" width=180 >
-<img src = "app/src/main/assets/s1.jpg" width=180 >
-<img src = "app/src/main/assets/s2.jpg" width=180 >
-<img src = "app/src/main/assets/s3.jpg" width=180 >
-</div>
-
 ## 基本使用 （[Java使用](https://github.com/zippo88888888/ZFileManager/blob/master/app/src/main/java/com/zp/zfile_manager/JavaSampleActivity.java)）
 
 > ##### 温馨提示： targetSdkVersion >= 29 清单文件中加上 android:requestLegacyExternalStorage="true"
@@ -30,22 +21,6 @@
 #### Step 0. 添加依赖
 
 #### [最新版本](https://github.com/zippo88888888/ZFileManager/wiki/%E7%89%88%E6%9C%AC)
-
-```groovy
-
-    // Android 10++ 以上  暂时只提供 aar， maven 上传太难搞了，但后续肯定会提供的，先aar使用
-
-    // Android 10 及以下版本使用
-    implementation 'com.github.zp:z_file:1.2.6' 
-
-    如果报错加上
-    
-    // Kotlin Parcelable 支持
-    androidExtensions {
-        experimental = true
-    }
-
-```
 
 #### Step 1. 实现ZFileImageListener，并在调用前或Application中初始化 
 ```Kotlin
