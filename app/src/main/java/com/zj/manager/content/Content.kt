@@ -7,7 +7,7 @@ object Content {
 
     const val APK = "apk"
 
-    const val AUTHORITY = "com.zp.zfile_manager.ZFileManagerProvider"
+    const val AUTHORITY = "com.zj.manager.ZFileManagerProvider"
 
     val CONFIG: ZFileConfiguration
         get() = ZFileConfiguration().apply {

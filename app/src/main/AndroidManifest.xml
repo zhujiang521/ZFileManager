@@ -15,7 +15,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.ZFileManagerProvider"
+            android:authorities="com.zj.manager.ZFileManagerProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

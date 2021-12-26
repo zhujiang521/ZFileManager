@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.view.View
 import androidx.core.content.FileProvider
 import com.zj.file.content.getZFileConfig
@@ -56,19 +57,15 @@ internal object ZFileOpenUtil {
                 addCategory("android.intent.category.DEFAULT")
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    val contentUri = FileProvider.getUriForFile(
-                        context,
-                        getZFileConfig().authority, File(filePath)
-                    )
-                    setDataAndType(contentUri, type)
-                } else {
-                    val uri = Uri.fromFile(File(filePath))
-                    setDataAndType(uri, type)
-                }
+                val contentUri = FileProvider.getUriForFile(
+                    context,
+                    getZFileConfig().authority, File(filePath)
+                )
+                setDataAndType(contentUri, type)
             })
         } catch (e: Exception) {
             e.printStackTrace()
+            Log.e("ZHUJIANG123", "open: ${e.message}")
             ZFileLog.e("ZFileConfiguration.authority 未设置？？？")
             context.toast("文件类型可能不匹配或找不到打开该文件类型的程序，打开失败")
         }
