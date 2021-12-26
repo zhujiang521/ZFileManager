@@ -218,7 +218,7 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
     private fun initRV() {
         hasPermission = true
         zfile_list_errorLayout.visibility = View.GONE
-        zfile_list_refreshLayout.property() {
+        zfile_list_refreshLayout.property {
             getData(nowPath)
         }
         initPathRecyclerView()
