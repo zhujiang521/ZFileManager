@@ -1,3 +1,3 @@
 <resources>
-    <string name="app_name">ZFileManager</string>
+    <string name="app_name" translatable="false">文件管理</string>
 </resources>
