@@ -7,17 +7,19 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import com.zj.file.R
 import com.zj.file.common.ZFileActivity
-import com.zj.file.content.hideIme
-import com.zj.file.content.setStatusBarTransparent
-import com.zj.file.content.showIme
-import com.zj.file.content.toast
+import com.zj.file.content.*
+import com.zj.file.ui.adapter.ZFileListAdapter
+import com.zj.file.util.ZFileUtil
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.activity_zfile_list.*
 
 internal class SearchActivity : ZFileActivity(), View.OnClickListener {
 
     companion object {
         private const val MAX_SEARCH_KEY_LENGTH = 20
     }
+
+    private var fileListAdapter: ZFileListAdapter? = null
 
     override fun getContentView() = R.layout.activity_search
 
@@ -37,8 +39,17 @@ internal class SearchActivity : ZFileActivity(), View.OnClickListener {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val text = search_edit_view.text
                 if (text.isNotEmpty()) {
-                    search_list_emptyLayout.visibility = View.VISIBLE
-                    toast("搜索:$text")
+                    ZFileUtil.getList(this) {
+                        val list = this?.filter { it.fileName.contains(text) }?.filter { it.isFile }
+                        if (list.isNullOrEmpty()) {
+                            search_list.visibility = View.INVISIBLE
+                            search_list_emptyLayout.visibility = View.VISIBLE
+                        } else {
+                            search_list.visibility = View.VISIBLE
+                            search_list_emptyLayout.visibility = View.INVISIBLE
+                            fileListAdapter?.setDatas(list.toMutableList())
+                        }
+                    }
                 } else {
                     search_list_emptyLayout.visibility = View.INVISIBLE
                     toast("搜索关键字不能为空")
@@ -46,6 +57,17 @@ internal class SearchActivity : ZFileActivity(), View.OnClickListener {
             }
             true
         }
+        initListRecyclerView()
+    }
+
+    private fun initListRecyclerView() {
+        fileListAdapter = ZFileListAdapter(this).run {
+            itemClick = { v, _, item ->
+                ZFileUtil.openFile(item.filePath, v)
+            }
+            this
+        }
+        search_list.adapter = fileListAdapter
     }
 
     override fun onResume() {

@@ -71,7 +71,6 @@
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="24dp"
         android:visibility="visible">
 
         <FrameLayout
@@ -79,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorBackground"
+            android:paddingHorizontal="24dp"
             android:visibility="gone">
 
             <com.airbnb.lottie.LottieAnimationView
@@ -97,8 +97,10 @@
             android:layout_height="match_parent"
             android:cacheColorHint="#00000000"
             android:overScrollMode="never"
+            android:paddingHorizontal="14dp"
             android:scrollbars="vertical"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </RelativeLayout>
 
 </LinearLayout>
