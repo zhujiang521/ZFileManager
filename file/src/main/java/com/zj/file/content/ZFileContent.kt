@@ -132,16 +132,18 @@ internal fun Activity.setStatusBarTransparent() {
 /**
  * 隐藏ime
  */
-fun Activity.hideIme(view: View) {
-    val controller = ViewCompat.getWindowInsetsController(view)
+fun View.hideIme() {
+    clearFocus()
+    val controller = ViewCompat.getWindowInsetsController(this)
     controller?.hide(WindowInsetsCompat.Type.ime())
 }
 
 /**
  * 显示ime
  */
-fun Activity.showIme(view: View) {
-    val controller = ViewCompat.getWindowInsetsController(view)
+fun View.showIme() {
+    requestFocus()
+    val controller = ViewCompat.getWindowInsetsController(this)
     controller?.show(WindowInsetsCompat.Type.ime())
 }
 

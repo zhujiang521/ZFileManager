@@ -72,13 +72,12 @@ internal class SearchActivity : ZFileActivity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        search_edit_view.requestFocus()
-        showIme(search_edit_view)
+        search_edit_view.showIme()
     }
 
     override fun onPause() {
         super.onPause()
-        hideIme(search_edit_view)
+        search_edit_view.hideIme()
     }
 
     override fun onBackPressed() {
