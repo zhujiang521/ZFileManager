@@ -147,6 +147,24 @@ fun View.showIme() {
     controller?.show(WindowInsetsCompat.Type.ime())
 }
 
+/**
+ * 状态栏反色
+ */
+fun Activity.setAndroidNativeLightStatusBar() {
+    val controller = ViewCompat.getWindowInsetsController(window.decorView)
+    controller?.isAppearanceLightStatusBars = !isDarkMode()
+}
+
+/**
+ * 获取当前是否为深色模式
+ * 深色模式的值为:0x21
+ * 浅色模式的值为:0x11
+ * @return true 为是深色模式   false为不是深色模式
+ */
+fun Context.isDarkMode(): Boolean {
+    return resources.configuration.uiMode == 0x21
+}
+
 internal fun ZFileManageDialog.setNeedWH() {
     val display = context?.getZDisplay()
     val width = if (display?.isEmpty() == true) ViewGroup.LayoutParams.MATCH_PARENT else (display!![0] * 0.88f).toInt()

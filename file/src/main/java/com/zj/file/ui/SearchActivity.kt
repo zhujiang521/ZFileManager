@@ -25,6 +25,8 @@ internal class SearchActivity : ZFileActivity(), View.OnClickListener {
 
     override fun init(savedInstanceState: Bundle?) {
         setStatusBarTransparent()
+        // 状态栏反色
+        setAndroidNativeLightStatusBar()
         search_clear.setOnClickListener(this)
         search_cancel.setOnClickListener(this)
         search_edit_view.addTextChangedListener { text ->
