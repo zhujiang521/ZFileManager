@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 可重写该属性达到主题颜色自定义 -->
-    <color name="zfile_title_text">#fafafa</color>
+    <color name="zfile_title_text">#e0e0f0</color>
 
     <color name="zfile_base_color">#000000</color>
 
