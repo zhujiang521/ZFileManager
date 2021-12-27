@@ -3,12 +3,14 @@ package com.zj.file.ui
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import com.zj.file.R
 import com.zj.file.common.ZFileActivity
 import com.zj.file.content.hideIme
 import com.zj.file.content.setStatusBarTransparent
 import com.zj.file.content.showIme
+import com.zj.file.content.toast
 import kotlinx.android.synthetic.main.activity_search.*
 
 internal class SearchActivity : ZFileActivity(), View.OnClickListener {
@@ -30,6 +32,19 @@ internal class SearchActivity : ZFileActivity(), View.OnClickListener {
             } else if (text.length < MAX_SEARCH_KEY_LENGTH) {
                 search_clear.visibility = View.VISIBLE
             }
+        }
+        search_edit_view.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val text = search_edit_view.text
+                if (text.isNotEmpty()) {
+                    search_list_emptyLayout.visibility = View.VISIBLE
+                    toast("搜索:$text")
+                } else {
+                    search_list_emptyLayout.visibility = View.INVISIBLE
+                    toast("搜索关键字不能为空")
+                }
+            }
+            true
         }
     }
 

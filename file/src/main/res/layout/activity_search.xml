@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="24dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <FrameLayout
             android:id="@+id/search_list_emptyLayout"
