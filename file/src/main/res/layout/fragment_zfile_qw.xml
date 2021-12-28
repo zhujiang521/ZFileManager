@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/zfile_bgcolor"
+    android:background="@color/colorBackground"
     tools:context="com.zj.file.ui.ZFileQWFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -38,7 +38,7 @@
         android:id="@+id/zfile_qw_emptyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/zfile_white"
+        android:background="@color/colorBackground"
         android:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView

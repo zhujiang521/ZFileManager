@@ -3,13 +3,11 @@ package com.zj.file.ui
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
-import android.os.Bundle
-import android.os.Environment
-import android.os.Parcelable
+import android.os.*
 import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.collection.ArrayMap
 import androidx.fragment.app.Fragment
@@ -20,8 +18,7 @@ import androidx.viewpager.widget.ViewPager
 import com.zj.file.R
 import com.zj.file.common.ZFileActivity
 import com.zj.file.content.*
-import com.zj.file.content.QW_SIZE
-import com.zj.file.content.ZFileQWBean
+import com.zj.file.ui.viewmodel.ZFileQWViewModel
 import com.zj.file.util.ZFilePermissionUtil
 import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
@@ -30,13 +27,13 @@ import kotlinx.android.synthetic.main.activity_zfile_qw.*
 
 internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener {
 
+    private val mViewModel by viewModels<ZFileQWViewModel>()
+
     private var toManagerPermissionPage = false
 
     private val selectArray by lazy {
         ArrayMap<String, ZFileBean>()
     }
-
-    private var type = ZFileConfiguration.QQ
 
     private lateinit var vpAdapter: ZFileQWAdapter
     private var isManage = false
@@ -44,9 +41,11 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
     override fun getContentView() = R.layout.activity_zfile_qw
 
     override fun init(savedInstanceState: Bundle?) {
-        type = getZFileConfig().filePath!!
+        if (mViewModel.type == null) {
+            mViewModel.type = getZFileConfig().filePath ?: ZFileConfiguration.QQ
+        }
         setBarTitle(
-            if (type == ZFileConfiguration.QQ) getString(R.string.zfile_qq_title)
+            if (mViewModel.type == ZFileConfiguration.QQ) getString(R.string.zfile_qq_title)
             else getString(R.string.zfile_we_chart_title)
         )
         callPermission()
@@ -62,7 +61,12 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
         }
         zfile_qw_viewPager.addOnPageChangeListener(this)
         zfile_qw_tabLayout.setupWithViewPager(zfile_qw_viewPager)
-        vpAdapter = ZFileQWAdapter(type, isManage, this, supportFragmentManager)
+        vpAdapter = ZFileQWAdapter(
+            mViewModel.type ?: ZFileConfiguration.QQ,
+            isManage,
+            this,
+            supportFragmentManager
+        )
         zfile_qw_viewPager.adapter = vpAdapter
     }
 

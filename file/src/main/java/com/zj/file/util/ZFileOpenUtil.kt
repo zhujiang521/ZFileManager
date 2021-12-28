@@ -2,7 +2,6 @@ package com.zj.file.util
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import androidx.core.content.FileProvider
 import com.zj.file.content.getZFileConfig
@@ -62,7 +61,6 @@ internal object ZFileOpenUtil {
             })
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.e("ZHUJIANG123", "open: ${e.message}")
             ZFileLog.e("ZFileConfiguration.authority 未设置？？？")
             context.showToast("文件类型可能不匹配或找不到打开该文件类型的程序，打开失败")
         }
