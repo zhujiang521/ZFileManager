@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name" translatable="false">文件管理</string>
+    <string name="app_name">File management</string>
+    <string name="file_placeholder">Placeholder *</string>
+    <string name="file_phone_storage">Phone storage</string>
+    <string name="file_extension">* A small extension based on this library</string>
+    <string name="file_picture">Picture *</string>
+    <string name="file_video">Video *</string>
+    <string name="file_audio">Audio *</string>
+    <string name="file_text">Documentation *</string>
+    <string name="file_wps">WPS *</string>
+    <string name="file_apk">APK *</string>
+    <string name="file_fragment">Fragment</string>
+    <string name="file_java">Java</string>
+    <string name="file_dsl">DSL</string>
+    <string name="file_qq">QQ</string>
+    <string name="file_we_chat">WeChat</string>
+
 </resources>

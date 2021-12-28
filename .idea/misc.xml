@@ -6,6 +6,7 @@
         <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/expanded_menu_layout.xml" value="0.20643363728470113" />
         <entry key="app/src/main/res/drawable/btn_back_normal.xml" value="0.29074074074074074" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.4111111111111111" />
+        <entry key="app/src/main/res/layout-land/activity_super.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_dsl.xml" value="0.2838541666666667" />
         <entry key="app/src/main/res/layout/activity_fragment_sample2.xml" value="0.2838541666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.327445652173913" />

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">文件管理</string>
+    <string name="file_placeholder">占位格 *</string>
+    <string name="file_phone_storage">手机存储</string>
+    <string name="file_extension">* 基于本库的一个小扩展</string>
+    <string name="file_picture">图片 *</string>
+    <string name="file_video">视频 *</string>
+    <string name="file_audio">音频 *</string>
+    <string name="file_text">文档 *</string>
+    <string name="file_wps">WPS *</string>
+    <string name="file_apk">APK *</string>
+    <string name="file_fragment">Fragment</string>
+    <string name="file_java">Java</string>
+    <string name="file_dsl">DSL</string>
+    <string name="file_qq">QQ</string>
+    <string name="file_we_chat">微信</string>
+</resources>
