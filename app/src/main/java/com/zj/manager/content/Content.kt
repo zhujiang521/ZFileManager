@@ -15,14 +15,6 @@ object Content {
         }
 
 
-
-
-
-    val TITLES: Array<String>
-        get() {
-            return arrayOf("Image", "Video", "WD", "Other")
-        }
-
     // 简单模拟 QQ的过滤规则
     val FILTER: ArrayMap<Int, Array<String>>
         get() {

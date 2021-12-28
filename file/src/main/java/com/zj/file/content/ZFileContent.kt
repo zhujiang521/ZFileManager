@@ -93,10 +93,14 @@ internal const val QQ_PIC_MOVIE = "/storage/emulated/0/Pictures/QQ/" // 保存�
 // 保存的文档（未保存到手机的图片和视频也在这个位置）
 internal const val QQ_DOWLOAD1 = "/storage/emulated/0/Android/data/com.tencent.mobileqq/Tencent/QQfile_recv/"
 internal const val QQ_DOWLOAD2 = "/storage/emulated/0/Android/data/com.tencent.mobileqq/Tencent/QQ_business/"
+internal const val QQ_DOWLOAD3 = "/storage/emulated/0/Download/QQ/" // QQ其他文件保存位置
 
 internal const val WECHAT_FILE_PATH = "/storage/emulated/0/tencent/MicroMsg/"
 internal const val WECHAT_PHOTO_VIDEO = "WeiXin/" // 图片、视频保存位置
+internal const val WECHAT_NEW_PHOTO_VIDEO = "/storage/emulated/0/Pictures/WeiXin/" // 新的图片、视频保存位置
+
 internal const val WECHAT_DOWLOAD = "Download/" // 其他文件保存位置
+internal const val WECHAT_NEW_DOWLOAD = "/storage/emulated/0/Download/WeiXin/" // 其他文件保存位置
 
 internal const val LOG_TAG = "ZFileManager"
 internal const val ERROR_MSG = "fragmentOrActivity is not Activity or Fragment"

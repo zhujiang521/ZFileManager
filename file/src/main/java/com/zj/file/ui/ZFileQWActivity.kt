@@ -45,7 +45,10 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
 
     override fun init(savedInstanceState: Bundle?) {
         type = getZFileConfig().filePath!!
-        setBarTitle(if (type == ZFileConfiguration.QQ) "QQ文件" else "微信文件")
+        setBarTitle(
+            if (type == ZFileConfiguration.QQ) getString(R.string.zfile_qq_title)
+            else getString(R.string.zfile_we_chart_title)
+        )
         callPermission()
     }
 

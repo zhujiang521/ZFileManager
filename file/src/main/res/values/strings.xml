@@ -51,4 +51,7 @@
     <string name="zfile_permission_bad2">You have rejected the permission request. This function is temporarily unavailable. Please continue after agreeing to the permission!</string>
     <string name="zfile_permission_bad3">Reacquire</string>
 
+    <string name="zfile_qq_title">QQ File</string>
+    <string name="zfile_we_chart_title">WeChart File</string>
+
 </resources>

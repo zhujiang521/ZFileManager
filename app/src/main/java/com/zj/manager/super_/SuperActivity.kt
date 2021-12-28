@@ -16,7 +16,6 @@ import com.zj.manager.R
 import com.zj.manager.content.Content
 import com.zj.manager.content.Content.FILTER
 import com.zj.manager.content.Content.QQ_MAP
-import com.zj.manager.content.Content.TITLES
 import com.zj.manager.diy.SunActivity
 import com.zj.manager.dsl.DslActivity
 import com.zj.manager.fm.FragmentSampleActivity2
@@ -117,7 +116,6 @@ class SuperActivity : AppCompatActivity() {
             authority = Content.AUTHORITY
             if (path == ZFileConfiguration.QQ) { // 打开QQ， 模拟自定义获取
                 qwData = ZFileQWData().apply {
-                    titles = TITLES
                     filterArrayMap = FILTER
                     qqFilePathArrayMap = QQ_MAP
                 }

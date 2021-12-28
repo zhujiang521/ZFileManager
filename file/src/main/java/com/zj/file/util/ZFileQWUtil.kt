@@ -64,8 +64,8 @@ internal object ZFileQWUtil {
             val map = ArrayMap<Int, MutableList<String>>()
             map[ZFILE_QW_PIC] = arrayListOf(QQ_PIC, QQ_PIC_MOVIE)
             map[ZFILE_QW_MEDIA] = arrayListOf(QQ_PIC_MOVIE)
-            map[ZFILE_QW_DOCUMENT] = arrayListOf(QQ_DOWLOAD1, QQ_DOWLOAD2)
-            map[ZFILE_QW_OTHER] = arrayListOf(QQ_DOWLOAD1, QQ_DOWLOAD2)
+            map[ZFILE_QW_DOCUMENT] = arrayListOf(QQ_DOWLOAD1, QQ_DOWLOAD2, QQ_DOWLOAD3)
+            map[ZFILE_QW_OTHER] = arrayListOf(QQ_DOWLOAD1, QQ_DOWLOAD2, QQ_DOWLOAD3)
             return map
         }
         return qqMap
@@ -78,10 +78,13 @@ internal object ZFileQWUtil {
         val wechatMap = getZFileConfig().qwData.wechatFilePathArrayMap
         if (wechatMap.isNullOrEmpty()) {
             val map = ArrayMap<Int, MutableList<String>>()
-            map[ZFILE_QW_PIC] = arrayListOf(WECHAT_FILE_PATH + WECHAT_PHOTO_VIDEO)
-            map[ZFILE_QW_MEDIA] = arrayListOf(WECHAT_FILE_PATH + WECHAT_PHOTO_VIDEO)
-            map[ZFILE_QW_DOCUMENT] = arrayListOf(WECHAT_FILE_PATH + WECHAT_DOWLOAD)
-            map[ZFILE_QW_OTHER] = arrayListOf(WECHAT_FILE_PATH + WECHAT_DOWLOAD)
+            map[ZFILE_QW_PIC] =
+                arrayListOf(WECHAT_FILE_PATH + WECHAT_PHOTO_VIDEO, WECHAT_NEW_PHOTO_VIDEO)
+            map[ZFILE_QW_MEDIA] =
+                arrayListOf(WECHAT_FILE_PATH + WECHAT_PHOTO_VIDEO, WECHAT_NEW_PHOTO_VIDEO)
+            map[ZFILE_QW_DOCUMENT] =
+                arrayListOf(WECHAT_FILE_PATH + WECHAT_DOWLOAD, WECHAT_NEW_DOWLOAD)
+            map[ZFILE_QW_OTHER] = arrayListOf(WECHAT_FILE_PATH + WECHAT_DOWLOAD, WECHAT_NEW_DOWLOAD)
             return map
         }
         return wechatMap

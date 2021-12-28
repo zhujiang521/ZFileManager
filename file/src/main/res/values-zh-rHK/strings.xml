@@ -53,4 +53,7 @@
     <string name="zfile_permission_bad2">您已拒絕權限的申請，該功能暫時無法使用，請您同意權限後繼續！</string>
     <string name="zfile_permission_bad3">重新獲取</string>
 
+    <string name="zfile_qq_title">QQ文件</string>
+    <string name="zfile_we_chart_title">微信文件</string>
+
 </resources>
