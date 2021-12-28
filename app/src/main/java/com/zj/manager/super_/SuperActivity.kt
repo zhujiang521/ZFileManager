@@ -32,7 +32,7 @@ class SuperActivity : AppCompatActivity() {
         setAndroidNativeLightStatusBar()
         setContentView(R.layout.activity_super)
         dialog = ProgressDialog(this).run {
-            setMessage("获取中，请稍后...")
+            setMessage(getString(R.string.zfile_qw_loading))
             setCancelable(false)
             this
         }
