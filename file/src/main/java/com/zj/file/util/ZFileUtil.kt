@@ -74,7 +74,7 @@ internal object ZFileUtil {
             }
             activity.runOnUiThread {
                 dialog.dismiss()
-                activity.toast(if (isSuccess) "重命名成功" else "重命名失败")
+                activity.showToast(if (isSuccess) "重命名成功" else "重命名失败")
                 block.invoke(isSuccess, newName)
             }
         }
@@ -143,7 +143,7 @@ internal object ZFileUtil {
             }
             activity.runOnUiThread {
                 dialog.dismiss()
-                activity.toast(if (isSuccess) "${msg}成功" else "${msg}失败或已存在相同文件")
+                activity.showToast(if (isSuccess) "${msg}成功" else "${msg}失败或已存在相同文件")
                 block.invoke(isSuccess)
             }
         }
@@ -236,7 +236,8 @@ internal object ZFileUtil {
                         while (true) {
                             if (file.exists()) {
                                 ZFileLog.i("文件已存在 ---> 重命名为副本")
-                                file = File(outPutDir + File.separator + "${duplicateStr}${file.name}")
+                                file =
+                                    File(outPutDir + File.separator + "${duplicateStr}${file.name}")
                             } else {
                                 break
                             }

@@ -4,13 +4,13 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.zj.file.async.ZFileStipulateAsync
 import com.zj.file.content.*
 import com.zj.file.dsl.config
 import com.zj.file.dsl.result
 import com.zj.file.dsl.zfile
+import com.zj.file.util.showToast
 import com.zj.manager.JavaSampleActivity
 import com.zj.manager.R
 import com.zj.manager.content.Content
@@ -37,56 +37,55 @@ class SuperActivity : AppCompatActivity() {
             this
         }
 
-        super_picTxt.setOnClickListener {
+        super_picTxt.onSafeClick {
             showDialog(arrayOf(PNG, JPEG, JPG, GIF))
         }
 
-        super_videoTxt.setOnClickListener {
+        super_videoTxt.onSafeClick {
             showDialog(arrayOf(MP4, _3GP))
         }
 
-        super_audioTxt.setOnClickListener {
+        super_audioTxt.onSafeClick {
             showDialog(arrayOf(MP3, AAC, WAV, M4A))
         }
 
-        super_fileTxt.setOnClickListener {
+        super_fileTxt.onSafeClick {
             showDialog(arrayOf(TXT, JSON, XML))
         }
 
-        super_wpsTxt.setOnClickListener {
+        super_wpsTxt.onSafeClick {
             showDialog(arrayOf(DOC, DOCX, XLS, XLSX, PPT, PPTX, PDF))
         }
 
-        super_apkTxt.setOnClickListener {
+        super_apkTxt.onSafeClick {
             showDialog(arrayOf("apk"))
         }
 
-        super_fragment.setOnClickListener {
-            FragmentSampleActivity2.jump(this, 2)
+        super_fragment.onSafeClick {
+            FragmentSampleActivity2.jump(this@SuperActivity, 2)
         }
 
-        super_java.setOnClickListener {
-            startActivity(Intent(this, JavaSampleActivity::class.java))
+        super_java.onSafeClick {
+            startActivity(Intent(this@SuperActivity, JavaSampleActivity::class.java))
         }
 
-        super_dsl.setOnClickListener {
-            startActivity(Intent(this, DslActivity::class.java))
+        super_dsl.onSafeClick {
+            startActivity(Intent(this@SuperActivity, DslActivity::class.java))
         }
 
-        super_qqTxt.setOnClickListener {
+        super_qqTxt.onSafeClick {
             toQW(ZFileConfiguration.QQ)
         }
 
-        super_wechatTxt.setOnClickListener {
+        super_wechatTxt.onSafeClick {
             toQW(ZFileConfiguration.WECHAT)
         }
 
-        super_otherTxt.setOnClickListener {
-            Toast.makeText(this, "我只是一个占位格，好看的", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, SunActivity::class.java))
+        super_otherTxt.onSafeClick {
+            startActivity(Intent(this@SuperActivity, SunActivity::class.java))
         }
 
-        super_innerTxt.setOnClickListener {
+        super_innerTxt.onSafeClick {
             zfile {
                 config {
                     getZFileConfig().apply {
@@ -103,8 +102,10 @@ class SuperActivity : AppCompatActivity() {
     }
 
     private fun toQW(path: String) {
-        Log.e("ZFileManager", "请注意：QQ、微信目前只能获取用户手动保存到手机里面的文件，" +
-                "且保存文件到手机的目录用户没有修改")
+        Log.e(
+            "ZFileManager", "请注意：QQ、微信目前只能获取用户手动保存到手机里面的文件，" +
+                    "且保存文件到手机的目录用户没有修改"
+        )
         Log.i("ZFileManager", "参考自腾讯自己的\"腾讯文件\"App，能力有限，部分文件无法获取")
         jump(path)
     }
@@ -133,17 +134,17 @@ class SuperActivity : AppCompatActivity() {
         ZFileStipulateAsync(this) {
             dialog?.dismiss()
             if (isNullOrEmpty()) {
-                Toast.makeText(this@SuperActivity, "暂无数据", Toast.LENGTH_SHORT).show()
+                showToast("暂无数据")
             } else {
-                Toast.makeText(this@SuperActivity, "共找到${size}条数据", Toast.LENGTH_SHORT).show()
+                showToast("共找到${size}条数据")
                 Log.i("ZFileManager", "共找到${this.size}条数据")
                 if (this.size > 100) {
                     Log.e("ZFileManager", "这里考虑到传值大小限制，截取前100条数据")
                     SuperDialog.newInstance(changeList(this))
-                            .show(supportFragmentManager, "SuperDialog")
+                        .show(supportFragmentManager, "SuperDialog")
                 } else {
                     SuperDialog.newInstance(this as ArrayList<ZFileBean>)
-                            .show(supportFragmentManager, "SuperDialog")
+                        .show(supportFragmentManager, "SuperDialog")
                 }
             }
         }.start(filterArray)

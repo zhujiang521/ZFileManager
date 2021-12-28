@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.zj.manager.R
 import com.zj.file.content.ZFileBean
+import com.zj.file.util.showToast
+import com.zj.manager.R
 
 class SuperAdapter(private var datas: MutableList<ZFileBean>) : RecyclerView.Adapter<SuperAdapter.SuperViewHolder>() {
 
@@ -24,7 +24,7 @@ class SuperAdapter(private var datas: MutableList<ZFileBean>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: SuperViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
             val name = getItem(position).fileName
-            Toast.makeText(it.context, name, Toast.LENGTH_SHORT).show()
+            it.showToast(name)
             Log.i("ZFileManager", "已选中$name")
         }
         holder.setData(getItem(position))

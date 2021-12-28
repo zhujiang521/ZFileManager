@@ -8,14 +8,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.zj.manager.R
 import com.zj.file.content.ZFileBean
 import com.zj.file.content.getZFileConfig
 import com.zj.file.listener.ZFragmentListener
 import com.zj.file.ui.ZFileListFragment
+import com.zj.file.util.showToast
+import com.zj.manager.R
 
 class BlankFragment2 : Fragment() {
 
@@ -52,7 +52,7 @@ class BlankFragment2 : Fragment() {
          * 文件选择
          */
         override fun selectResult(selectList: MutableList<ZFileBean>?) {
-            Toast.makeText(requireContext(), "选中了${selectList?.size}个", Toast.LENGTH_SHORT).show()
+            context.showToast("选中了${selectList?.size}个")
             Log.i("ZFileManager", "选中的值 ===>>> ")
             selectList?.forEach {
                 Log.i("ZFileManager", it.toString())
@@ -72,7 +72,7 @@ class BlankFragment2 : Fragment() {
          * @param activity FragmentActivity
          */
         override fun onSDPermissionsFiled(activity: FragmentActivity) {
-            Toast.makeText(requireContext(), "OPS，没有SD卡权限", Toast.LENGTH_SHORT).show()
+            context.showToast("OPS，没有SD卡权限")
         }
 
         /**
@@ -80,7 +80,7 @@ class BlankFragment2 : Fragment() {
          * 请注意：Android 11 及以上版本 才有
          */
         override fun onExternalStorageManagerFiled(activity: FragmentActivity) {
-            Toast.makeText(requireContext(), "Environment.isExternalStorageManager = false", Toast.LENGTH_SHORT).show()
+            context.showToast("Environment.isExternalStorageManager = false")
         }
 
     }

@@ -14,5 +14,6 @@
     <string name="file_dsl">DSL</string>
     <string name="file_qq">QQ</string>
     <string name="file_we_chat">WeChat</string>
+    <string name="file_dialog_title">Specific operation</string>
 
 </resources>

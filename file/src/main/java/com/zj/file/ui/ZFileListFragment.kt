@@ -28,6 +28,7 @@ import com.zj.file.ui.dialog.ZFileSortDialog
 import com.zj.file.util.ZFileLog
 import com.zj.file.util.ZFilePermissionUtil
 import com.zj.file.util.ZFileUtil
+import com.zj.file.util.showToast
 import kotlinx.android.synthetic.main.activity_zfile_list.*
 import java.io.File
 
@@ -511,7 +512,7 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
                 .setNegativeButton(R.string.zfile_cancel) { d, _ ->
                     d.dismiss()
                     if (zFragmentListener == null) {
-                        mActivity.toast(mActivity getStringById R.string.zfile_11_bad)
+                        mActivity.showToast(mActivity getStringById R.string.zfile_11_bad)
                         mActivity.finish()
                     } else {
                         zFragmentListener?.onExternalStorageManagerFiled(mActivity)
@@ -548,7 +549,7 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
             else {
                 zfile_list_errorLayout.visibility = View.VISIBLE
                 if (zFragmentListener == null) {
-                    mActivity.toast(mActivity getStringById R.string.zfile_permission_bad)
+                    mActivity.showToast(mActivity getStringById R.string.zfile_permission_bad)
                     mActivity.finish()
                 } else {
                     zFragmentListener?.onSDPermissionsFiled(mActivity)

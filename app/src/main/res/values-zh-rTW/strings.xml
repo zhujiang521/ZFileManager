@@ -15,4 +15,5 @@
     <string name="file_dsl">DSL</string>
     <string name="file_qq">QQ</string>
     <string name="file_we_chat">微信</string>
+    <string name="file_dialog_title">具體操作</string>
 </resources>

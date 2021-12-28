@@ -23,7 +23,7 @@ import com.zj.file.ui.dialog.ZFileAudioPlayDialog
 import com.zj.file.ui.dialog.ZFileInfoDialog
 import com.zj.file.ui.dialog.ZFileRenameDialog
 import com.zj.file.ui.dialog.ZFileSelectFolderDialog
-import com.zj.file.util.ZFileHelp
+import com.zj.file.util.*
 import com.zj.file.util.ZFileLog
 import com.zj.file.util.ZFileOpenUtil
 import com.zj.file.util.ZFileUtil
@@ -95,7 +95,7 @@ abstract class ZFragmentListener {
      * @param activity [FragmentActivity]
      */
     open fun onSDPermissionsFiled(activity: FragmentActivity) {
-        activity.toast(activity getStringById R.string.zfile_permission_bad)
+        activity.showToast(activity getStringById R.string.zfile_permission_bad)
     }
 
     /**
@@ -103,7 +103,7 @@ abstract class ZFragmentListener {
      * 请注意：Android 11 及以上版本 才有
      */
     open fun onExternalStorageManagerFiled(activity: FragmentActivity) {
-        activity.toast(activity getStringById R.string.zfile_11_bad)
+        activity.showToast(activity getStringById R.string.zfile_11_bad)
     }
 }
 
@@ -279,7 +279,7 @@ open class ZFileOpenListener {
 
     open fun openOther(filePath: String, view: View) {
         ZFileLog.e("【${filePath.getFileType()}】不支持预览该文件 ---> $filePath")
-        view.toast("暂不支持预览该文件")
+        view.showToast("暂不支持预览该文件")
     }
 }
 

@@ -8,19 +8,19 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.PagerAdapter
-import com.zj.manager.R
 import com.zj.file.content.ZFileBean
 import com.zj.file.content.ZFileConfiguration.Companion.TITLE_CENTER
 import com.zj.file.content.getZFileConfig
 import com.zj.file.listener.ZFragmentListener
 import com.zj.file.ui.ZFileListFragment
+import com.zj.file.util.showToast
+import com.zj.manager.R
 import kotlinx.android.synthetic.main.activity_fragment_sample2.*
 
 class FragmentSampleActivity2 : AppCompatActivity() {
@@ -118,7 +118,7 @@ class FragmentSampleActivity2 : AppCompatActivity() {
          * 文件选择
          */
         override fun selectResult(selectList: MutableList<ZFileBean>?) {
-            Toast.makeText(this@FragmentSampleActivity2, "选中了${selectList?.size}个，具体信息查看log", Toast.LENGTH_SHORT).show()
+            showToast("选中了${selectList?.size}个，具体信息查看log")
             Log.i("ZFileManager", "选中的值 ===>>> ")
             selectList?.forEach {
                 Log.i("ZFileManager", it.toString())
@@ -138,7 +138,7 @@ class FragmentSampleActivity2 : AppCompatActivity() {
          * @param activity FragmentActivity
          */
         override fun onSDPermissionsFiled(activity: FragmentActivity) {
-            Toast.makeText(this@FragmentSampleActivity2, "OPS，没有SD卡权限", Toast.LENGTH_SHORT).show()
+            showToast("OPS，没有SD卡权限")
         }
 
         /**
@@ -146,7 +146,7 @@ class FragmentSampleActivity2 : AppCompatActivity() {
          * 请注意：Android 11 及以上版本 才有
          */
         override fun onExternalStorageManagerFiled(activity: FragmentActivity) {
-            Toast.makeText(this@FragmentSampleActivity2, "Environment.isExternalStorageManager = false", Toast.LENGTH_SHORT).show()
+            showToast("Environment.isExternalStorageManager = false")
         }
 
     }

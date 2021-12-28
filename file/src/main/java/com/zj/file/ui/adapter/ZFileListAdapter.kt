@@ -7,6 +7,7 @@ import com.zj.file.R
 import com.zj.file.common.ZFileAdapter
 import com.zj.file.common.ZFileViewHolder
 import com.zj.file.content.*
+import com.zj.file.util.showToast
 
 internal class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(context) {
 
@@ -162,7 +163,7 @@ internal class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(cont
         } else {
             val size = item.originaSize.toDouble() / 1048576 // byte -> MB
             if (size > config.maxSize.toDouble()) {
-                context.toast(config.maxSizeStr)
+                context.showToast(config.maxSizeStr)
                 notifyItemChanged(position)
             } else {
                 if (isQW) {
@@ -172,7 +173,7 @@ internal class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(cont
                     qwChangeListener?.invoke(isManage, item, true)
                 } else {
                     if (selectData.size >= config.maxLength) {
-                        context.toast(config.maxLengthStr)
+                        context.showToast(config.maxLengthStr)
                         notifyItemChanged(position)
                     } else {
                         selectData.add(item)

@@ -13,8 +13,8 @@ import com.zj.file.R
 import com.zj.file.common.ZFileManageDialog
 import com.zj.file.content.isNull
 import com.zj.file.content.setNeedWH
-import com.zj.file.content.toast
 import com.zj.file.util.ZFileLog
+import com.zj.file.util.showToast
 import kotlinx.android.synthetic.main.dialog_zfile_rename.*
 
 internal class ZFileRenameDialog : ZFileManageDialog(R.layout.dialog_zfile_rename), Runnable {
@@ -60,7 +60,7 @@ internal class ZFileRenameDialog : ZFileManageDialog(R.layout.dialog_zfile_renam
     private fun rename() {
         val newName = zfile_dialog_renameEdit.text.toString()
         if (newName.isNull()) {
-            context?.toast("请输入文件名")
+            context?.showToast("请输入文件名")
         } else {
             if (oldName == newName) {
                 ZFileLog.e("相同名字，不执行重命名操作")

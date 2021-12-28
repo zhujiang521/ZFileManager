@@ -25,6 +25,7 @@ import com.zj.file.content.ZFileQWBean
 import com.zj.file.util.ZFilePermissionUtil
 import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
+import com.zj.file.util.showToast
 import kotlinx.android.synthetic.main.activity_zfile_qw.*
 
 internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener {
@@ -67,7 +68,7 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
         if (bean.isSelected) {
             val size = selectArray.size
             if (size >= getZFileConfig().maxLength) {
-                toast(getZFileConfig().maxLengthStr)
+                showToast(getZFileConfig().maxLengthStr)
                 getVPFragment(zfile_qw_viewPager.currentItem)?.removeLastSelectData(bean.zFileBean)
             } else {
                 selectArray[item.filePath] = item
@@ -147,7 +148,7 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
                     d.dismiss()
                 }
                 .setNegativeButton(R.string.zfile_cancel) { d, _ ->
-                    toast(getStringById(R.string.zfile_11_bad))
+                    showToast(getStringById(R.string.zfile_11_bad))
                     d.dismiss()
                     finish()
                 }
@@ -178,7 +179,7 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
         if (requestCode == ZFilePermissionUtil.WRITE_EXTERNAL_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) initAll()
             else {
-                toast(getStringById(R.string.zfile_permission_bad))
+                showToast(getStringById(R.string.zfile_permission_bad))
                 finish()
             }
         }

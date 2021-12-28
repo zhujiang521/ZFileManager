@@ -32,7 +32,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="具体怎么操作你说了算"
+            android:text="@string/file_dialog_title"
             android:textColor="@color/zfile_title_text"
             android:textSize="15sp"
             app:layout_constraintLeft_toRightOf="@+id/super_cacelPic"

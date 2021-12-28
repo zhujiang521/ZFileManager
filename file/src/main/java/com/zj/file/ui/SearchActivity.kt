@@ -10,6 +10,7 @@ import com.zj.file.common.ZFileActivity
 import com.zj.file.content.*
 import com.zj.file.ui.adapter.ZFileListAdapter
 import com.zj.file.util.ZFileUtil
+import com.zj.file.util.showToast
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_zfile_list.*
 
@@ -54,7 +55,7 @@ internal class SearchActivity : ZFileActivity(), View.OnClickListener {
                     }
                 } else {
                     search_list_emptyLayout.visibility = View.INVISIBLE
-                    toast("搜索关键字不能为空")
+                    showToast("搜索关键字不能为空")
                 }
             }
             true

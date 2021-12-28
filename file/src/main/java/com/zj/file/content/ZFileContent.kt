@@ -182,13 +182,7 @@ internal fun SwipeRefreshLayout.property(
     setOnRefreshListener(block)
     return this
 }
-internal fun View.toast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
-    context.toast(msg, duration)
-}
-internal fun Context.toast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(applicationContext, msg, duration).show()
-}
-internal fun View.click(time: Long = 600L, block: View.() -> Unit) {
+fun View.onSafeClick(time: Long = 600L, block: View.() -> Unit) {
     triggerDelay = time
     setOnClickListener {
         if (clickEnable()) block(it) else ZFileLog.e("点击间隔少于${time}ms，本次点击不做任何处理")
