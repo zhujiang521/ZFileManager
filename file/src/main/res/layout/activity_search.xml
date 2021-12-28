@@ -97,7 +97,7 @@
             android:layout_height="match_parent"
             android:cacheColorHint="#00000000"
             android:overScrollMode="never"
-            android:paddingHorizontal="14dp"
+            android:paddingHorizontal="24dp"
             android:scrollbars="vertical"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
