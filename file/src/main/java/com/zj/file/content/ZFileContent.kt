@@ -122,7 +122,8 @@ internal infix fun FragmentActivity.checkFragmentByTag(tag: String) {
         supportFragmentManager.beginTransaction().remove(fragment).commit()
     }
 }
-internal fun Activity.setStatusBarTransparent() {
+
+fun Activity.setStatusBarTransparent() {
     val decorView = window.decorView
     val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     decorView.systemUiVisibility = option

@@ -23,15 +23,7 @@
                 android:resource="@xml/file_manage_paths" />
         </provider>
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
 
         <activity
             android:name=".fm.FragmentSampleActivity2"
@@ -41,7 +33,17 @@
             android:theme="@style/SunTheme" />
         <activity android:name=".dsl.DslFragmentActivity" />
         <activity android:name=".dsl.DslActivity" />
-        <activity android:name=".super_.SuperActivity" />
+        <activity
+            android:name=".super_.SuperActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".JavaSampleActivity" />
     </application>
 

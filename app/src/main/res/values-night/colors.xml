@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="button_normal_background_disabled_zui">#660b0c13</color>
+    <color name="button_normal_background_focus_not_pressed_zui">#ff273c5d</color>
+    <color name="button_normal_background_pressed_zui">#ff23242b</color>
+    <color name="button_normal_background_zui">#ff0b0c13</color>
+    <color name="button_normal_rect_stroke_disabled_zui">#c2262c5b</color>
+    <color name="button_normal_rect_stroke_pressed_zui">#99262c5b</color>
+    <color name="button_normal_rect_stroke_zui">#99262c5b</color>
+
+</resources>

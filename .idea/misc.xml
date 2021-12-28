@@ -4,12 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/expanded_menu_layout.xml" value="0.20643363728470113" />
+        <entry key="app/src/main/res/drawable/btn_back_normal.xml" value="0.29074074074074074" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.4111111111111111" />
         <entry key="app/src/main/res/layout/activity_dsl.xml" value="0.2838541666666667" />
         <entry key="app/src/main/res/layout/activity_fragment_sample2.xml" value="0.2838541666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.327445652173913" />
         <entry key="app/src/main/res/layout/activity_sun.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/activity_super.xml" value="0.2838541666666667" />
+        <entry key="app/src/main/res/layout/dialog_super.xml" value="0.30434782608695654" />
+        <entry key="app/src/main/res/layout/item_dialog_super.xml" value="0.30434782608695654" />
         <entry key="app/src/main/res/layout/layout_result_txt.xml" value="0.3138586956521739" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.4111111111111111" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4111111111111111" />
@@ -22,10 +25,13 @@
         <entry key="file/src/main/res/drawable/menu_search_pressed.xml" value="0.4111111111111111" />
         <entry key="file/src/main/res/drawable/search_edit_bg.xml" value="0.4111111111111111" />
         <entry key="file/src/main/res/drawable/zfile_back.xml" value="0.4111111111111111" />
+        <entry key="file/src/main/res/drawable/zfile_close.xml" value="0.29074074074074074" />
         <entry key="file/src/main/res/drawable/zfile_dialog_shape.xml" value="0.4111111111111111" />
+        <entry key="file/src/main/res/drawable/zfile_down.xml" value="0.29074074074074074" />
         <entry key="file/src/main/res/drawable/zfile_play.xml" value="0.4222222222222222" />
         <entry key="file/src/main/res/drawable/zfile_quan2.xml" value="0.4222222222222222" />
         <entry key="file/src/main/res/drawable/zfile_quan3.xml" value="0.4222222222222222" />
+        <entry key="file/src/main/res/drawable/zfile_ripple_bg.xml" value="0.29074074074074074" />
         <entry key="file/src/main/res/drawable/zfile_ripple_music_bg.xml" value="0.4222222222222222" />
         <entry key="file/src/main/res/drawable/zfile_search.xml" value="0.4111111111111111" />
         <entry key="file/src/main/res/layout/activity_search.xml" value="0.3138586956521739" />

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/zfile_bgcolor">
+        android:background="@color/zfile_base_color">
 
         <ImageView
             android:id="@+id/super_cacelPic"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="6dp"
-            android:background="@drawable/zfile_ripple_bg"
             android:padding="7dp"
             android:src="@drawable/zfile_close"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:text="具体怎么操作你说了算"
-            android:textColor="@color/zfile_black"
+            android:textColor="@color/zfile_title_text"
             android:textSize="15sp"
             app:layout_constraintLeft_toRightOf="@+id/super_cacelPic"
             app:layout_constraintRight_toLeftOf="@+id/super_downPic" />
@@ -43,7 +43,6 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="6dp"
-            android:background="@drawable/zfile_ripple_bg"
             android:padding="7dp"
             android:src="@drawable/zfile_down"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,6 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="30dp"
-        tools:listitem="@layout/item_dialog_super"/>
+        tools:listitem="@layout/item_dialog_super" />
 
 </LinearLayout>

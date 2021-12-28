@@ -2,7 +2,8 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/colorBackground"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:gravity="center"
             android:padding="20dp"
             android:text="文件管理"
-            android:textColor="#000000"
+            android:textColor="@color/zfile_file_title"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -24,15 +25,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="12sp"
-            android:textColor="#B6B6C4"
-            android:text="* 基于本库的一个小扩展"/>
+            android:text="* 基于本库的一个小扩展"
+            android:textColor="@color/title_tv_cancel_text_color"
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@drawable/zfile_dialog_shape"
+            android:background="@drawable/btn_back_normal"
             android:orientation="vertical">
 
             <LinearLayout
@@ -47,12 +48,13 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="图片 *" />
+                    android:text="图片 *"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="#f2f2f2" />
+                    android:background="@color/zfile_line_color" />
 
                 <TextView
                     android:id="@+id/super_videoTxt"
@@ -61,12 +63,13 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="视频 *" />
+                    android:text="视频 *"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="#f2f2f2" />
+                    android:background="@color/zfile_line_color" />
 
                 <TextView
                     android:id="@+id/super_audioTxt"
@@ -75,14 +78,15 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="音频 *" />
+                    android:text="音频 *"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#f2f2f2" />
+                android:background="@color/zfile_line_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,12 +100,13 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="文档 *" />
+                    android:text="文档 *"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="#f2f2f2" />
+                    android:background="@color/zfile_line_color" />
 
                 <TextView
                     android:id="@+id/super_wpsTxt"
@@ -110,12 +115,13 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="WPS *" />
+                    android:text="WPS *"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="#f2f2f2" />
+                    android:background="@color/zfile_line_color" />
 
                 <TextView
                     android:id="@+id/super_apkTxt"
@@ -124,14 +130,67 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="APK *" />
+                    android:text="APK *"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#f2f2f2" />
+                android:background="@color/zfile_line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/super_fragment"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:gravity="center"
+                    android:text="Fragment"
+                    android:textColor="@color/btn_search_activity_cancel" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/zfile_line_color" />
+
+                <TextView
+                    android:id="@+id/super_java"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:gravity="center"
+                    android:text="Java"
+                    android:textColor="@color/btn_search_activity_cancel" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/zfile_line_color" />
+
+                <TextView
+                    android:id="@+id/super_dsl"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?selectableItemBackground"
+                    android:gravity="center"
+                    android:text="DSL"
+                    android:textColor="@color/btn_search_activity_cancel" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/zfile_line_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,12 +204,13 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="QQ" />
+                    android:text="QQ"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="#f2f2f2" />
+                    android:background="@color/zfile_line_color" />
 
                 <TextView
                     android:id="@+id/super_wechatTxt"
@@ -159,12 +219,13 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="微信" />
+                    android:text="微信"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="#f2f2f2" />
+                    android:background="@color/zfile_line_color" />
 
                 <TextView
                     android:id="@+id/super_otherTxt"
@@ -173,56 +234,27 @@
                     android:layout_weight="1"
                     android:background="?selectableItemBackground"
                     android:gravity="center"
-                    android:text="占位格 *" />
+                    android:text="占位格 *"
+                    android:textColor="@color/btn_search_activity_cancel" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <RadioGroup
-            android:id="@+id/super_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/super_defaultRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:textSize="12sp"
-                android:text="QQ-WeChat默认"/>
-
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"/>
-
-            <RadioButton
-                android:id="@+id/super_diyRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="QQ-WeChat自定义获取文件"/>
-
-        </RadioGroup>
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:background="#ffffff">
+            android:layout_marginEnd="20dp">
 
             <TextView
                 android:id="@+id/super_innerTxt"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="简单模拟内部存储"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_back_normal"
                 android:gravity="center"
-                android:textColor="#000000"
-                android:background="?selectableItemBackground"/>
+                android:text="手机存储"
+                android:textColor="@color/zfile_file_title" />
 
         </FrameLayout>
 

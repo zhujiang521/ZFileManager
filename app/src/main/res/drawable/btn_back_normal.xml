@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:state_enabled="true">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/button_normal_background_pressed_zui"/>
+            <stroke
+                android:width="1dp"
+                android:color="@color/button_normal_rect_stroke_pressed_zui"/>
+            <corners android:radius="4dp" />
+            <padding android:left="0dp"
+                android:right="0dp" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@color/button_normal_background_disabled_zui" />
+            <corners android:radius="4dp" />
+            <padding android:left="0dp"
+                android:right="0dp" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/button_normal_rect_stroke_disabled_zui" />
+        </shape>
+    </item>
+    <item android:state_pressed="false" android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/button_normal_background_focus_not_pressed_zui" />
+            <corners android:radius="4dp" />
+            <padding android:left="0dp"
+                android:right="0dp" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/button_normal_rect_stroke_zui" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/button_normal_background_zui" />
+            <corners android:radius="4dp" />
+            <padding android:left="0dp"
+                android:right="0dp" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/button_normal_rect_stroke_zui" />
+        </shape>
+    </item>
+</selector>

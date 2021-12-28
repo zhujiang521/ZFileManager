@@ -8,14 +8,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.zj.file.async.ZFileStipulateAsync
 import com.zj.file.content.*
+import com.zj.file.dsl.config
 import com.zj.file.dsl.result
+import com.zj.file.dsl.zfile
+import com.zj.manager.JavaSampleActivity
 import com.zj.manager.R
 import com.zj.manager.content.Content
 import com.zj.manager.content.Content.FILTER
 import com.zj.manager.content.Content.QQ_MAP
 import com.zj.manager.content.Content.TITLES
-import com.zj.manager.diy.MyQWFileListener
 import com.zj.manager.diy.SunActivity
+import com.zj.manager.dsl.DslActivity
+import com.zj.manager.fm.FragmentSampleActivity2
 import kotlinx.android.synthetic.main.activity_super.*
 
 class SuperActivity : AppCompatActivity() {
@@ -24,6 +28,8 @@ class SuperActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStatusBarTransparent()
+        setAndroidNativeLightStatusBar()
         setContentView(R.layout.activity_super)
         dialog = ProgressDialog(this).run {
             setMessage("获取中，请稍后...")
@@ -55,6 +61,18 @@ class SuperActivity : AppCompatActivity() {
             showDialog(arrayOf("apk"))
         }
 
+        super_fragment.setOnClickListener {
+            FragmentSampleActivity2.jump(this, 2)
+        }
+
+        super_java.setOnClickListener {
+            startActivity(Intent(this, JavaSampleActivity::class.java))
+        }
+
+        super_dsl.setOnClickListener {
+            startActivity(Intent(this, DslActivity::class.java))
+        }
+
         super_qqTxt.setOnClickListener {
             toQW(ZFileConfiguration.QQ)
         }
@@ -68,26 +86,18 @@ class SuperActivity : AppCompatActivity() {
             startActivity(Intent(this, SunActivity::class.java))
         }
 
-        super_group.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.super_diyRadio -> {
-                    getZFileHelp().setQWFileLoadListener(MyQWFileListener())
-                }
-                else -> {
-                    getZFileHelp().setQWFileLoadListener(null)
-                }
-            }
-        }
-
         super_innerTxt.setOnClickListener {
-            getZFileHelp().setConfiguration(getZFileConfig().apply {
-                needLongClick = false
-                isOnlyFolder = true
-                sortordBy = ZFileConfiguration.BY_NAME
-                sortord = ZFileConfiguration.ASC
-                authority = Content.AUTHORITY
-            }).result(this) {
-                setResultData(this)
+            zfile {
+                config {
+                    getZFileConfig().apply {
+                        boxStyle = ZFileConfiguration.STYLE2
+                        maxLength = 6
+                        titleGravity = ZFileConfiguration.TITLE_CENTER
+                        maxLengthStr = "老铁最多6个文件"
+                        authority = Content.AUTHORITY
+                    }
+                }
+                result { setResultData(this) }
             }
         }
     }

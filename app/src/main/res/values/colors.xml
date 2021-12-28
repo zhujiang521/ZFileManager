@@ -4,4 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="button_normal_background_disabled_zui">#66ffffff</color>
+    <color name="button_normal_background_focus_not_pressed_zui">#ffcce1ff</color>
+    <color name="button_normal_background_pressed_zui">#ffe5e5e5</color>
+    <color name="button_normal_background_zui">#ffffffff</color>
+
+    <color name="button_normal_rect_stroke_disabled_zui">#66e0e0e0</color>
+    <color name="button_normal_rect_stroke_pressed_zui">#ffe0e0e0</color>
+    <color name="button_normal_rect_stroke_zui">#ffffffff</color>
+
 </resources>
