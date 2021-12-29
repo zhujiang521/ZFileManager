@@ -5,28 +5,28 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
-import com.zj.manager.R
-import com.zj.manager.content.Content
 import com.zj.file.content.ZFileBean
 import com.zj.file.dsl.config
 import com.zj.file.dsl.result
 import com.zj.file.dsl.zfile
-import kotlinx.android.synthetic.main.activity_dsl.*
-import kotlinx.android.synthetic.main.layout_result_txt.*
+import com.zj.manager.content.Content
+import com.zj.manager.databinding.ActivityDslBinding
 
 class DslActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityDslBinding
     private var anim: ObjectAnimator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dsl)
+        binding = ActivityDslBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         anim = getAnim()
         anim?.start()
-        dsl_startBtn.setOnClickListener {
+        binding.dslStartBtn.setOnClickListener {
             dsl()
         }
-        dsl_fragmentBtn.setOnClickListener {
+        binding.dslFragmentBtn.setOnClickListener {
             startActivity(Intent(this, DslFragmentActivity::class.java))
         }
     }
@@ -47,7 +47,7 @@ class DslActivity : AppCompatActivity() {
         selectList?.forEach {
             sb.append(it).append("\n\n")
         }
-        main_resultTxt.text = sb.toString()
+        binding.dslInclude.mainResultTxt.text = sb.toString()
     }
 
     override fun onDestroy() {
@@ -61,7 +61,7 @@ class DslActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun getAnim() = ObjectAnimator.ofFloat(dsl_dslTxt, "rotation", 0f, 360f).run {
+    private fun getAnim() = ObjectAnimator.ofFloat(binding.dslDslTxt, "rotation", 0f, 360f).run {
         duration = 5000L
         repeatCount = -1
         interpolator = LinearInterpolator()

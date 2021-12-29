@@ -8,9 +8,8 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.zj.manager.R
 import com.zj.file.content.ZFileBean
-import kotlinx.android.synthetic.main.dialog_super.*
+import com.zj.manager.databinding.DialogSuperBinding
 
 /**
  * 数据已经获取到了，具体怎么操作就交给你了！
@@ -26,6 +25,7 @@ class SuperDialog : DialogFragment() {
         }
     }
 
+    private var binding: DialogSuperBinding? = null
     private var superAdapter: SuperAdapter? = null
 
     override fun onCreateView(
@@ -33,7 +33,8 @@ class SuperDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_super, container, false)
+        binding = DialogSuperBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?) =
@@ -43,15 +44,15 @@ class SuperDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.i("ZFileManager", "数据已经获取到了，具体怎么操作就交给你了！")
-        super_downPic.setOnClickListener {
+        binding?.superDownPic?.setOnClickListener {
             dismiss()
         }
-        super_cacelPic.setOnClickListener {
+        binding?.superCacelPic?.setOnClickListener {
             dismiss()
         }
         val list = arguments?.getSerializable("list") as ArrayList<ZFileBean>
         superAdapter = SuperAdapter(list)
-        super_recyclerView.apply {
+        binding?.superRecyclerView?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = superAdapter
         }

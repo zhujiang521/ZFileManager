@@ -16,86 +16,93 @@ import com.zj.manager.R
 import com.zj.manager.content.Content
 import com.zj.manager.content.Content.FILTER
 import com.zj.manager.content.Content.QQ_MAP
+import com.zj.manager.databinding.ActivitySuperBinding
 import com.zj.manager.diy.SunActivity
 import com.zj.manager.dsl.DslActivity
 import com.zj.manager.fm.FragmentSampleActivity2
-import kotlinx.android.synthetic.main.activity_super.*
 
 class SuperActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivitySuperBinding
     private var dialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStatusBarTransparent()
         setAndroidNativeLightStatusBar()
-        setContentView(R.layout.activity_super)
+        binding = ActivitySuperBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         dialog = ProgressDialog(this).run {
             setMessage(getString(R.string.zfile_qw_loading))
             setCancelable(false)
             this
         }
+        initClick()
+    }
 
-        super_picTxt.onSafeClick {
-            showDialog(arrayOf(PNG, JPEG, JPG, GIF))
-        }
+    private fun initClick() {
+        binding.apply {
+            superPicTxt.onSafeClick {
+                showDialog(arrayOf(PNG, JPEG, JPG, GIF))
+            }
 
-        super_videoTxt.onSafeClick {
-            showDialog(arrayOf(MP4, _3GP))
-        }
+            superVideoTxt.onSafeClick {
+                showDialog(arrayOf(MP4, _3GP))
+            }
 
-        super_audioTxt.onSafeClick {
-            showDialog(arrayOf(MP3, AAC, WAV, M4A))
-        }
+            superAudioTxt.onSafeClick {
+                showDialog(arrayOf(MP3, AAC, WAV, M4A))
+            }
 
-        super_fileTxt.onSafeClick {
-            showDialog(arrayOf(TXT, JSON, XML))
-        }
+            superFileTxt.onSafeClick {
+                showDialog(arrayOf(TXT, JSON, XML))
+            }
 
-        super_wpsTxt.onSafeClick {
-            showDialog(arrayOf(DOC, DOCX, XLS, XLSX, PPT, PPTX, PDF))
-        }
+            superWpsTxt.onSafeClick {
+                showDialog(arrayOf(DOC, DOCX, XLS, XLSX, PPT, PPTX, PDF))
+            }
 
-        super_apkTxt.onSafeClick {
-            showDialog(arrayOf("apk"))
-        }
+            superApkTxt.onSafeClick {
+                showDialog(arrayOf("apk"))
+            }
 
-        super_fragment.onSafeClick {
-            FragmentSampleActivity2.jump(this@SuperActivity, 2)
-        }
+            superFragment.onSafeClick {
+                FragmentSampleActivity2.jump(this@SuperActivity, 2)
+            }
 
-        super_java.onSafeClick {
-            startActivity(Intent(this@SuperActivity, JavaSampleActivity::class.java))
-        }
+            superJava.onSafeClick {
+                startActivity(Intent(this@SuperActivity, JavaSampleActivity::class.java))
+            }
 
-        super_dsl.onSafeClick {
-            startActivity(Intent(this@SuperActivity, DslActivity::class.java))
-        }
+            superDsl.onSafeClick {
+                startActivity(Intent(this@SuperActivity, DslActivity::class.java))
+            }
 
-        super_qqTxt.onSafeClick {
-            toQW(ZFileConfiguration.QQ)
-        }
+            superQqTxt.onSafeClick {
+                toQW(ZFileConfiguration.QQ)
+            }
 
-        super_wechatTxt.onSafeClick {
-            toQW(ZFileConfiguration.WECHAT)
-        }
+            superWechatTxt.onSafeClick {
+                toQW(ZFileConfiguration.WECHAT)
+            }
 
-        super_otherTxt.onSafeClick {
-            startActivity(Intent(this@SuperActivity, SunActivity::class.java))
-        }
+            superOtherTxt.onSafeClick {
+                startActivity(Intent(this@SuperActivity, SunActivity::class.java))
+            }
 
-        super_innerTxt.onSafeClick {
-            zfile {
-                config {
-                    getZFileConfig().apply {
-                        boxStyle = ZFileConfiguration.STYLE2
-                        maxLength = 6
-                        titleGravity = ZFileConfiguration.TITLE_CENTER
-                        maxLengthStr = "老铁最多6个文件"
-                        authority = Content.AUTHORITY
+            superInnerTxt.onSafeClick {
+                zfile {
+                    config {
+                        getZFileConfig().apply {
+                            boxStyle = ZFileConfiguration.STYLE2
+                            maxLength = 6
+                            titleGravity = ZFileConfiguration.TITLE_CENTER
+                            maxLengthStr = "老铁最多6个文件"
+                            authority = Content.AUTHORITY
+                        }
                     }
+                    result { setResultData(this) }
                 }
-                result { setResultData(this) }
             }
         }
     }
@@ -166,7 +173,7 @@ class SuperActivity : AppCompatActivity() {
         list?.forEach {
             sb.append(it).append("\n\n")
         }
-        super_resultTxt.text = sb.toString()
+        binding.superResultTxt.text = sb.toString()
     }
 
     override fun onDestroy() {

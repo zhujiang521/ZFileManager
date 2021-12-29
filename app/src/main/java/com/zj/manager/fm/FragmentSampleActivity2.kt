@@ -21,7 +21,7 @@ import com.zj.file.listener.ZFragmentListener
 import com.zj.file.ui.ZFileListFragment
 import com.zj.file.util.showToast
 import com.zj.manager.R
-import kotlinx.android.synthetic.main.activity_fragment_sample2.*
+import com.zj.manager.databinding.ActivityFragmentSample2Binding
 
 class FragmentSampleActivity2 : AppCompatActivity() {
 
@@ -33,12 +33,14 @@ class FragmentSampleActivity2 : AppCompatActivity() {
         }
     }
 
+    private lateinit var binding: ActivityFragmentSample2Binding
     private var type = 1
     private var vpAdapter: VPAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fragment_sample2)
+        binding = ActivityFragmentSample2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         type = intent.getIntExtra("type", 1)
         when (type) {
@@ -49,8 +51,8 @@ class FragmentSampleActivity2 : AppCompatActivity() {
     }
 
     private fun init1() {
-        fs2.visibility = View.VISIBLE
-        fs2_vp.visibility = View.GONE
+        binding.fs2.visibility = View.VISIBLE
+        binding.fs2Vp.visibility = View.GONE
         val TAG = "ZFileListFragmentTag"
         getZFileConfig().fragmentTag = TAG
         supportFragmentManager
@@ -60,8 +62,8 @@ class FragmentSampleActivity2 : AppCompatActivity() {
     }
 
     private fun init2() {
-        fs2.visibility = View.GONE
-        fs2_vp.visibility = View.VISIBLE
+        binding.fs2.visibility = View.GONE
+        binding.fs2Vp.visibility = View.VISIBLE
         val list = arrayListOf<Fragment>()
         list.add(BlankFragment())
         list.add(getZFragment())
@@ -74,13 +76,13 @@ class FragmentSampleActivity2 : AppCompatActivity() {
             needLazy = true
         }
 
-        fs2_vp.offscreenPageLimit = list.size
-        fs2_vp.adapter = vpAdapter
+        binding.fs2Vp.offscreenPageLimit = list.size
+        binding.fs2Vp.adapter = vpAdapter
     }
 
     private fun init3() {
-        fs2.visibility = View.VISIBLE
-        fs2_vp.visibility = View.GONE
+        binding.fs2.visibility = View.VISIBLE
+        binding.fs2Vp.visibility = View.GONE
         val TAG = "BlankFragment2"
         val fragment = BlankFragment2()
         supportFragmentManager
@@ -159,7 +161,7 @@ class FragmentSampleActivity2 : AppCompatActivity() {
 
     private fun getFragmentTagByVP(vpAdapter: FragmentPagerAdapter?, position: Int = 1): String {
         val fragmentId = vpAdapter?.getItemId(position)
-        return "android:switcher:${fs2_vp.id}:$fragmentId"
+        return "android:switcher:${binding.fs2Vp.id}:$fragmentId"
     }
 
     private class VPAdapter(
