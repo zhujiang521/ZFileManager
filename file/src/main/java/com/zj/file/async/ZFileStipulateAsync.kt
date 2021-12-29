@@ -33,8 +33,9 @@ open class ZFileStipulateAsync(
         var cursor: Cursor? = null
         try {
             val fileUri = MediaStore.Files.getContentUri("external")
+            // 由于MediaStore.Files.FileColumns.DATA已经废弃，看着不爽，所以使用字符串代替
             val projection = arrayOf(
-                MediaStore.Files.FileColumns.DATA,
+                "_data",
                 MediaStore.Files.FileColumns.TITLE,
                 MediaStore.Files.FileColumns.SIZE,
                 MediaStore.Files.FileColumns.DATE_MODIFIED
@@ -42,9 +43,9 @@ open class ZFileStipulateAsync(
             val sb = StringBuilder()
             filterArray.forEach {
                 if (it == filterArray[filterArray.size - 1]) {
-                    sb.append(MediaStore.Files.FileColumns.DATA).append(" LIKE '%.$it'")
+                    sb.append("_data").append(" LIKE '%.$it'")
                 } else {
-                    sb.append(MediaStore.Files.FileColumns.DATA).append(" LIKE '%.$it' OR ")
+                    sb.append("_data").append(" LIKE '%.$it' OR ")
                 }
             }
             val selection = sb.toString()
@@ -53,7 +54,7 @@ open class ZFileStipulateAsync(
             cursor = resolver?.query(fileUri, projection, selection, null, sortOrder)
             if (cursor?.moveToLast() == true) {
                 do {
-                    val dataIndex = cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA)
+                    val dataIndex = cursor.getColumnIndex("_data")
                     val sizeIndex = cursor.getColumnIndex(MediaStore.Files.FileColumns.SIZE)
                     val modifiedIndex =
                         cursor.getColumnIndex(MediaStore.Files.FileColumns.DATE_MODIFIED)
