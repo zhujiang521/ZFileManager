@@ -42,7 +42,7 @@ internal class ZFileQWAsync(
     override fun doingWork(filterArray: Array<String>): MutableList<ZFileBean> {
         val loadListener = getZFileHelp().getQWFileLoadListener()
         return loadListener?.getQWFileDatas(type, filePathArray, filterArray)
-                ?: ZFileQWUtil.getQWFileData(type, filePathArray, filterArray)
+                ?: ZFileQWUtil.getQWFileData(filePathArray, filterArray)
     }
 
     /**

@@ -3,12 +3,12 @@ package com.zj.file.content
 import android.os.Parcelable
 import androidx.core.content.FileProvider
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import com.zj.file.ui.ZFileListFragment
-import com.zj.file.ui.ZFileVideoPlayer
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.zj.file.async.ZFileStipulateAsync
 import com.zj.file.listener.ZQWFileLoadListener
-import kotlinx.android.parcel.Parcelize
+import com.zj.file.ui.ZFileListFragment
+import com.zj.file.ui.ZFileVideoPlayer
+import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
 /**
@@ -145,7 +145,7 @@ class ZFileConfiguration : Serializable {
 
     /**
      * 默认只有文件才有长按事件
-     * 长按暂不支持对于文件夹的操作，如有需要，请实现 [ZFileOperateListener]
+     * 长按暂不支持对于文件夹的操作，如有需要，请实现 ZFileOperateListener
      */
     var isOnlyFileHasLongClick = true
 
@@ -170,7 +170,7 @@ class ZFileConfiguration : Serializable {
 
     /**
      * 打开文件需要 [FileProvider] 一般都是包名 + xxxFileProvider
-     * 如果项目中已经存在或其他原因无法修改，请自己实现 [ZFileOpenListener]
+     * 如果项目中已经存在或其他原因无法修改，请自己实现 ZFileOpenListener
      */
     var authority = ""
 
@@ -181,7 +181,7 @@ class ZFileConfiguration : Serializable {
 
     /**
      * 标题位置 see [TITLE_LEFT] [TITLE_CENTER]
-     * 设置标题 重写 [R.string.zfile_title] 即可自定义
+     * 设置标题 重写 R.string.zfile_title 即可自定义
      */
     var titleGravity = TITLE_LEFT
         set(value) {
@@ -206,7 +206,7 @@ class ZFileConfiguration : Serializable {
 
     /**
      * Fragment TAG，可以通过 [FragmentManager.findFragmentByTag] 获取 [ZFileListFragment]
-     * 嵌套在 VP + Fragment 使用，see [FragmentPagerAdapter.makeFragmentName]
+     * 嵌套在 VP + Fragment 使用，see [FragmentStateAdapter.getItemId]
      */
     var fragmentTag = ZFILE_FRAGMENT_TAG
 

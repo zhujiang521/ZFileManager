@@ -96,7 +96,7 @@ internal object ZFileQWUtil {
      * @param filePathArray     路径
      * @param filterArray       过滤规则
      */
-    fun getQWFileData(type: Int, filePathArray: MutableList<String>, filterArray: Array<String>): MutableList<ZFileBean> {
+    fun getQWFileData(filePathArray: MutableList<String>, filterArray: Array<String>): MutableList<ZFileBean> {
         val listArrayList = arrayListOf<File>()
         filePathArray.forEach {
             val file = it.toFile()
