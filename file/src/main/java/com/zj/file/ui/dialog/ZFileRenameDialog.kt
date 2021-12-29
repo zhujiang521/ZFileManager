@@ -7,18 +7,22 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.zj.file.R
 import com.zj.file.common.ZFileManageDialog
 import com.zj.file.content.isNull
 import com.zj.file.content.setNeedWH
+import com.zj.file.databinding.DialogZfileRenameBinding
 import com.zj.file.util.ZFileLog
 import com.zj.file.util.showToast
-import kotlinx.android.synthetic.main.dialog_zfile_rename.*
 
-internal class ZFileRenameDialog : ZFileManageDialog(R.layout.dialog_zfile_rename), Runnable {
+internal class ZFileRenameDialog : ZFileManageDialog(), Runnable {
 
+    private var binding: DialogZfileRenameBinding? = null
     var reanameDown: (String.() -> Unit)? = null
     private var handler: Handler? = null
     private var oldName = "请输入文件名称"
@@ -34,6 +38,11 @@ internal class ZFileRenameDialog : ZFileManageDialog(R.layout.dialog_zfile_renam
 
     }
 
+    override fun getCreateView(inflater: LayoutInflater, container: ViewGroup?): View? {
+        binding = DialogZfileRenameBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
+
     override fun createDialog(savedInstanceState: Bundle?) =
         Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
             window?.setGravity(Gravity.CENTER)
@@ -42,23 +51,23 @@ internal class ZFileRenameDialog : ZFileManageDialog(R.layout.dialog_zfile_renam
     override fun init(savedInstanceState: Bundle?) {
         oldName = arguments?.getString("oldName") ?: "请输入文件名称"
         handler = Handler(Looper.getMainLooper())
-        zfile_dialog_renameEdit.setOnEditorActionListener { _, actionId, _ ->
+        binding?.zfileDialogRenameEdit?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
                 rename()
             }
             true
         }
-        zfile_dialog_renameEdit.hint = oldName
-        zfile_dialog_rename_down.setOnClickListener {
+        binding?.zfileDialogRenameEdit?.hint = oldName
+        binding?.zfileDialogRenameDown?.setOnClickListener {
             rename()
         }
-        zfile_dialog_rename_cancel.setOnClickListener {
+        binding?.zfileDialogRenameCancel?.setOnClickListener {
             dismiss()
         }
     }
 
     private fun rename() {
-        val newName = zfile_dialog_renameEdit.text.toString()
+        val newName = binding?.zfileDialogRenameEdit?.text.toString()
         if (newName.isNull()) {
             context?.showToast("请输入文件名")
         } else {
@@ -79,9 +88,9 @@ internal class ZFileRenameDialog : ZFileManageDialog(R.layout.dialog_zfile_renam
     }
 
     override fun run() {
-        zfile_dialog_renameEdit.requestFocus()
+        binding?.zfileDialogRenameEdit?.requestFocus()
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.showSoftInput(zfile_dialog_renameEdit, InputMethodManager.SHOW_IMPLICIT)
+        imm?.showSoftInput(binding?.zfileDialogRenameEdit, InputMethodManager.SHOW_IMPLICIT)
     }
 
     override fun onDestroyView() {

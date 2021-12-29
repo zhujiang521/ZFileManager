@@ -3,6 +3,9 @@ package com.zj.file.ui.dialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zj.file.R
@@ -10,13 +13,10 @@ import com.zj.file.common.ZFileAdapter
 import com.zj.file.common.ZFileManageDialog
 import com.zj.file.common.ZFileViewHolder
 import com.zj.file.content.*
-import com.zj.file.content.SD_ROOT
-import com.zj.file.content.folderRes
-import com.zj.file.content.lineColor
+import com.zj.file.databinding.DialogZfileSelectFolderBinding
 import com.zj.file.util.ZFileUtil
-import kotlinx.android.synthetic.main.dialog_zfile_select_folder.*
 
-internal class ZFileSelectFolderDialog : ZFileManageDialog(R.layout.dialog_zfile_select_folder) {
+internal class ZFileSelectFolderDialog : ZFileManageDialog() {
 
     companion object {
         fun newInstance(type: String) = ZFileSelectFolderDialog().apply {
@@ -26,6 +26,8 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog(R.layout.dialog_zfile
             }
         }
     }
+
+    private var binding: DialogZfileSelectFolderBinding? = null
     private var tipStr = ""
     private var filePath: String? = ""
     private var isOnlyFolder = false
@@ -41,6 +43,11 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog(R.layout.dialog_zfile
     /** 返回当前的路径 */
     private fun getThisFilePath() = if (backList.isEmpty()) null else backList[backList.size - 1]
 
+    override fun getCreateView(inflater: LayoutInflater, container: ViewGroup?): View? {
+        binding = DialogZfileSelectFolderBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
+
     override fun createDialog(savedInstanceState: Bundle?) =
         Dialog(requireContext(), R.style.Zfile_Select_Folder_Dialog).apply {
             window?.setGravity(Gravity.BOTTOM)
@@ -52,15 +59,15 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog(R.layout.dialog_zfile
         filePath = getZFileConfig().filePath
         isOnlyFile = getZFileConfig().isOnlyFile
         isOnlyFolder = getZFileConfig().isOnlyFolder
-        zfile_select_folder_closePic.setOnClickListener {
+        binding?.zfileSelectFolderClosePic?.setOnClickListener {
             dismiss()
         }
-        zfile_select_folder_downPic.setOnClickListener {
+        binding?.zfileSelectFolderDownPic?.setOnClickListener {
             selectFolder?.invoke(if (getZFileConfig().filePath.isNullOrEmpty()) SD_ROOT else getZFileConfig().filePath!!)
             recoverData()
             dismiss()
         }
-        zfile_select_folder_title.text = String.format("%s到根目录", tipStr)
+        binding?.zfileSelectFolderTitle?.text = String.format("%s到根目录", tipStr)
         initRecyclerView()
     }
 
@@ -80,11 +87,11 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog(R.layout.dialog_zfile
             backList.add(item.filePath)
             getData()
         }
-        val lp = zfile_select_folder_recyclerView.layoutParams as LinearLayout.LayoutParams
+        val lp = binding?.zfileSelectFolderRecyclerView?.layoutParams as LinearLayout.LayoutParams
         lp.apply {
             bottomMargin = requireContext().getStatusBarHeight()
         }
-        zfile_select_folder_recyclerView.apply {
+        binding?.zfileSelectFolderRecyclerView?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = folderAdapter
             layoutParams = lp
@@ -100,9 +107,9 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog(R.layout.dialog_zfile
     private fun getData() {
         val filePath = getZFileConfig().filePath
         if (filePath.isNullOrEmpty() || filePath == SD_ROOT) {
-            zfile_select_folder_title.text = String.format("%s到根目录", tipStr)
+            binding?.zfileSelectFolderTitle?.text = String.format("%s到根目录", tipStr)
         } else {
-            zfile_select_folder_title.text = String.format("%s到%s", tipStr, filePath.toFile().name)
+            binding?.zfileSelectFolderTitle?.text = String.format("%s到%s", tipStr, filePath.toFile().name)
         }
         ZFileUtil.getList(requireContext()) {
             if (isNullOrEmpty()) {

@@ -10,10 +10,20 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import com.zj.file.R
 
-internal abstract class ZFileManageDialog(@LayoutRes contentLayoutId: Int) :
-    DialogFragment(contentLayoutId) {
+internal abstract class ZFileManageDialog :
+    DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?) = createDialog(savedInstanceState)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return getCreateView(inflater,container)
+    }
+
+    abstract fun getCreateView(inflater: LayoutInflater, container: ViewGroup?): View?
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         init(savedInstanceState)

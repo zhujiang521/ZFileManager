@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Parcelable
-import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -16,16 +15,17 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.zj.file.R
 import com.zj.file.common.ZFileActivity
 import com.zj.file.content.*
+import com.zj.file.databinding.ActivityZfileQwBinding
 import com.zj.file.ui.viewmodel.ZFileQWViewModel
 import com.zj.file.util.ZFilePermissionUtil
 import com.zj.file.util.ZFileUtil
 import com.zj.file.util.callStoragePermission
 import com.zj.file.util.showToast
-import kotlinx.android.synthetic.main.activity_zfile_qw.*
 import kotlin.collections.set
 
 internal class ZFileQWActivity : ZFileActivity() {
 
+    private lateinit var binding: ActivityZfileQwBinding
     private val mViewModel by viewModels<ZFileQWViewModel>()
 
     private var toManagerPermissionPage = false
@@ -38,7 +38,10 @@ internal class ZFileQWActivity : ZFileActivity() {
 
     private var isManage = false
 
-    override fun getContentView() = R.layout.activity_zfile_qw
+    override fun getContentView(): View {
+        binding = ActivityZfileQwBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun init(savedInstanceState: Bundle?) {
         if (mViewModel.type == null) {
@@ -52,7 +55,7 @@ internal class ZFileQWActivity : ZFileActivity() {
     }
 
     private fun initAll() {
-        zfile_qw_toolBar.apply {
+        binding.zfileQwToolBar.apply {
             if (getZFileConfig().showBackIcon) setNavigationIcon(R.drawable.zfile_back) else navigationIcon =
                 null
             inflateMenu(R.menu.zfile_qw_menu)
@@ -60,7 +63,7 @@ internal class ZFileQWActivity : ZFileActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        zfile_qw_viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.zfileQwViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 getVPFragment(position)?.setManager(isManage)
@@ -84,9 +87,9 @@ internal class ZFileQWActivity : ZFileActivity() {
             R.string.zfile_txt,
             R.string.zfile_other
         )
-        zfile_qw_viewPager.adapter = adapter
+        binding.zfileQwViewPager.adapter = adapter
         TabLayoutMediator(
-            zfile_qw_tabLayout, zfile_qw_viewPager, true, true
+            binding.zfileQwTabLayout, binding.zfileQwViewPager, true, true
         ) { tab, position ->
             tab.setText(textArray[position])
         }.attach()
@@ -98,7 +101,7 @@ internal class ZFileQWActivity : ZFileActivity() {
             val size = selectArray.size
             if (size >= getZFileConfig().maxLength) {
                 showToast(getZFileConfig().maxLengthStr)
-                getVPFragment(zfile_qw_viewPager.currentItem)?.removeLastSelectData(bean.zFileBean)
+                getVPFragment(binding.zfileQwViewPager.currentItem)?.removeLastSelectData(bean.zFileBean)
             } else {
                 selectArray[item.filePath] = item
             }
@@ -112,7 +115,7 @@ internal class ZFileQWActivity : ZFileActivity() {
         getMenu().isVisible = true
     }
 
-    private fun getMenu() = zfile_qw_toolBar.menu.findItem(R.id.menu_zfile_qw_down)
+    private fun getMenu() = binding.zfileQwToolBar.menu.findItem(R.id.menu_zfile_qw_down)
 
     private fun menuItemClick(menu: MenuItem?): Boolean {
         when (menu?.itemId) {
@@ -146,7 +149,7 @@ internal class ZFileQWActivity : ZFileActivity() {
 
     private fun getVPFragment(currentItem: Int): ZFileQWFragment? {
         val fragmentId = adapter.getItemId(currentItem)
-        val tag = "android:switcher:${zfile_qw_viewPager.id}:$fragmentId"
+        val tag = "android:switcher:${binding.zfileQwViewPager.id}:$fragmentId"
         return supportFragmentManager.findFragmentByTag(tag) as? ZFileQWFragment
     }
 
@@ -187,13 +190,13 @@ internal class ZFileQWActivity : ZFileActivity() {
     private fun setBarTitle(title: String) {
         when (getZFileConfig().titleGravity) {
             ZFileConfiguration.TITLE_LEFT -> {
-                zfile_qw_toolBar.title = title
-                zfile_qw_centerTitle.visibility = View.GONE
+                binding.zfileQwToolBar.title = title
+                binding.zfileQwCenterTitle.visibility = View.GONE
             }
             else -> {
-                zfile_qw_toolBar.title = ""
-                zfile_qw_centerTitle.visibility = View.VISIBLE
-                zfile_qw_centerTitle.text = title
+                binding.zfileQwToolBar.title = ""
+                binding.zfileQwCenterTitle.visibility = View.VISIBLE
+                binding.zfileQwCenterTitle.text = title
             }
         }
     }

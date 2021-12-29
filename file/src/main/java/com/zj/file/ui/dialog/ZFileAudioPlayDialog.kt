@@ -5,15 +5,18 @@ import android.content.DialogInterface
 import android.media.MediaPlayer
 import android.os.*
 import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.SeekBar
 import com.zj.file.R
 import com.zj.file.common.ZFileManageDialog
 import com.zj.file.content.setNeedWH
+import com.zj.file.databinding.DialogZfileAudioPlayBinding
 import com.zj.file.util.ZFileOtherUtil
-import kotlinx.android.synthetic.main.dialog_zfile_audio_play.*
 import java.lang.ref.WeakReference
 
-internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_audio_play), SeekBar.OnSeekBarChangeListener, Runnable {
+internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChangeListener, Runnable {
 
     companion object {
         fun getInstance(filePath: String) = ZFileAudioPlayDialog().apply {
@@ -21,6 +24,7 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
         }
     }
 
+    private var binding: DialogZfileAudioPlayBinding? = null
     private val UNIT = -1
     private val PLAY = 0
     private val PAUSE = 1
@@ -34,6 +38,11 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
     private var falgTime: Long = 0
     private var pauseTime: Long = 0
 
+    override fun getCreateView(inflater: LayoutInflater, container: ViewGroup?): View? {
+        binding = DialogZfileAudioPlayBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
+
     override fun createDialog(savedInstanceState: Bundle?) = Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
         window?.setGravity(Gravity.CENTER)
     }
@@ -41,22 +50,22 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
     override fun init(savedInstanceState: Bundle?) {
         audioHandler = AudioHandler(this)
         initPlayer()
-        dialog_zfile_audio_play.setOnClickListener {
+        binding?.dialogZfileAudioPlay?.setOnClickListener {
             when (playerState) {
                 PAUSE -> {
                     startPlay()
                     falgTime = SystemClock.elapsedRealtime()
-                    beginTime = falgTime - dialog_zfile_audio_bar.progress
-                    dialog_zfile_audio_nowTime.base = beginTime
-                    dialog_zfile_audio_nowTime.start()
+                    beginTime = falgTime - binding?.dialogZfileAudioBar?.progress!!
+                    binding?.dialogZfileAudioNowTime?.base = beginTime
+                    binding?.dialogZfileAudioNowTime?.start()
                 }
                 PLAY -> {
                     if (mediaPlayer?.isPlaying == true) {
                         mediaPlayer?.pause()
                         playerState = PAUSE
-                        dialog_zfile_audio_nowTime.stop()
+                        binding?.dialogZfileAudioNowTime?.stop()
                         pauseTime = SystemClock.elapsedRealtime()
-                        dialog_zfile_audio_play.setImageResource(R.drawable.zfile_play)
+                        binding?.dialogZfileAudioPlay?.setImageResource(R.drawable.zfile_play)
                     }
                 }
                 else -> {
@@ -64,8 +73,8 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
                 }
             }
         }
-        dialog_zfile_audio_bar.setOnSeekBarChangeListener(this)
-        dialog_zfile_audio_name.text = arguments?.getString("filePath")?.let {
+        binding?.dialogZfileAudioBar?.setOnSeekBarChangeListener(this)
+        binding?.dialogZfileAudioName?.text = arguments?.getString("filePath")?.let {
             it.substring(it.lastIndexOf("/") + 1, it.length)
         }
     }
@@ -80,25 +89,25 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
         mediaPlayer?.setDataSource(arguments?.getString("filePath"))
         mediaPlayer?.prepareAsync()
         mediaPlayer?.setOnPreparedListener { play ->
-            dialog_zfile_audio_bar.max = play.duration
+            binding?.dialogZfileAudioBar?.max = play.duration
             audioHandler?.post(this)
-            dialog_zfile_audio_countTime.text = ZFileOtherUtil.secToTime(play.duration / 1000)
+            binding?.dialogZfileAudioCountTime?.text = ZFileOtherUtil.secToTime(play.duration / 1000)
 
             // 设置运动时间
             falgTime = SystemClock.elapsedRealtime()
             pauseTime = 0
-            dialog_zfile_audio_nowTime.base = falgTime
-            dialog_zfile_audio_nowTime.start()
+            binding?.dialogZfileAudioNowTime?.base = falgTime
+            binding?.dialogZfileAudioNowTime?.start()
 
             startPlay()
         }
         mediaPlayer?.setOnCompletionListener {
             stopPlay()
-            dialog_zfile_audio_bar.isEnabled = false
-            dialog_zfile_audio_bar.progress = 0
-            dialog_zfile_audio_nowTime.base = SystemClock.elapsedRealtime()
-            dialog_zfile_audio_nowTime.start()
-            dialog_zfile_audio_nowTime.stop()
+            binding?.dialogZfileAudioBar?.isEnabled = false
+            binding?.dialogZfileAudioBar?.progress = 0
+            binding?.dialogZfileAudioNowTime?.base = SystemClock.elapsedRealtime()
+            binding?.dialogZfileAudioNowTime?.start()
+            binding?.dialogZfileAudioNowTime?.stop()
         }
     }
 
@@ -106,13 +115,13 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
     private fun startPlay() {
         mediaPlayer?.start()
         playerState = PLAY
-        dialog_zfile_audio_play.setImageResource(R.drawable.zfile_pause)
-        dialog_zfile_audio_bar.isEnabled = true
+        binding?.dialogZfileAudioPlay?.setImageResource(R.drawable.zfile_pause)
+        binding?.dialogZfileAudioBar?.isEnabled = true
     }
 
     // 停止播放
     private fun stopPlay() {
-        dialog_zfile_audio_play.setImageResource(R.drawable.zfile_play)
+        binding?.dialogZfileAudioPlay?.setImageResource(R.drawable.zfile_play)
         mediaPlayer?.release()
         mediaPlayer = null
         playerState = UNIT
@@ -123,8 +132,8 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
             mediaPlayer?.seekTo(progress)
             falgTime = SystemClock.elapsedRealtime()
             beginTime = falgTime - seekBar.progress
-            dialog_zfile_audio_nowTime.base = beginTime
-            dialog_zfile_audio_nowTime.start()
+            binding?.dialogZfileAudioNowTime?.base = beginTime
+            binding?.dialogZfileAudioNowTime?.start()
         }
     }
 
@@ -157,7 +166,7 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(R.layout.dialog_zfile_au
         }
 
         override fun handleMessage(msg: Message) {
-            week.get()?.dialog_zfile_audio_bar?.progress = week.get()?.mediaPlayer?.currentPosition ?: 0
+            week.get()?.binding?.dialogZfileAudioBar?.progress = week.get()?.mediaPlayer?.currentPosition ?: 0
         }
     }
 

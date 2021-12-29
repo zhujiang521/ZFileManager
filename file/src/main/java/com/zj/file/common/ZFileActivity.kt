@@ -1,6 +1,7 @@
 package com.zj.file.common
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 internal abstract class ZFileActivity : AppCompatActivity() {
@@ -11,7 +12,8 @@ internal abstract class ZFileActivity : AppCompatActivity() {
         init(savedInstanceState)
     }
 
-    abstract fun getContentView(): Int
+    abstract fun getContentView(): View
+
     abstract fun init(savedInstanceState: Bundle?)
 
 

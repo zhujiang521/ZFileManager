@@ -1,16 +1,18 @@
 package com.zj.file.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zj.file.R
 import com.zj.file.async.ZFileQWAsync
 import com.zj.file.common.ZFileFragment
 import com.zj.file.content.*
+import com.zj.file.databinding.FragmentZfileQwBinding
 import com.zj.file.ui.adapter.ZFileListAdapter
 import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
-import kotlinx.android.synthetic.main.fragment_zfile_qw.*
 
 internal class ZFileQWFragment : ZFileFragment(R.layout.fragment_zfile_qw) {
 
@@ -20,6 +22,7 @@ internal class ZFileQWFragment : ZFileFragment(R.layout.fragment_zfile_qw) {
     private var qwManage = false
 
     private var qwAdapter: ZFileListAdapter? = null
+    private var binding: FragmentZfileQwBinding? = null
 
     companion object {
         fun newInstance(qwFileType: String, type: Int, isManager: Boolean) = ZFileQWFragment().apply {
@@ -38,24 +41,29 @@ internal class ZFileQWFragment : ZFileFragment(R.layout.fragment_zfile_qw) {
         initRecyclerView()
     }
 
+    override fun getCreateView(inflater: LayoutInflater, container: ViewGroup?): View? {
+        binding = FragmentZfileQwBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
+
     private fun initRecyclerView() {
         initAdapter()
-        zfile_qw_recyclerView.apply {
+        binding?.zfileQwRecyclerView?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = qwAdapter
         }
-        zfile_qw_bar.visibility = View.VISIBLE
+        binding?.zfileQwBar?.visibility = View.VISIBLE
 
         val qwFileLoadListener = getZFileHelp().getQWFileLoadListener()
         val filterArray = qwFileLoadListener?.getFilterArray(type) ?: ZFileQWUtil.getQWFilterMap()[type]!!
         ZFileQWAsync(qwFileType, type, requireContext()) {
-            zfile_qw_bar.visibility = View.GONE
+            binding?.zfileQwBar?.visibility = View.GONE
             if (isNullOrEmpty()) {
                 qwAdapter?.clear()
-                zfile_qw_emptyLayout.visibility = View.VISIBLE
+                binding?.zfileQwEmptyLayout?.visibility = View.VISIBLE
             } else {
                 qwAdapter?.setDatas(this)
-                zfile_qw_emptyLayout.visibility = View.GONE
+                binding?.zfileQwEmptyLayout?.visibility = View.GONE
             }
         }.start(filterArray)
     }

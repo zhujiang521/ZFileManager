@@ -3,16 +3,21 @@ package com.zj.file.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.View
 import com.zj.file.R
 import com.zj.file.common.ZFileActivity
 import com.zj.file.content.*
-import com.zj.file.content.FILE_START_PATH_KEY
-import com.zj.file.content.ZFILE_FRAGMENT_TAG
+import com.zj.file.databinding.ActivityZfileList2Binding
 import com.zj.file.listener.ZFragmentListener
 
 internal class ZFileListActivity : ZFileActivity() {
 
-    override fun getContentView() = R.layout.activity_zfile_list2
+    private lateinit var binding: ActivityZfileList2Binding
+
+    override fun getContentView(): View {
+        binding = ActivityZfileList2Binding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun init(savedInstanceState: Bundle?) {
         getZFileConfig().apply {
