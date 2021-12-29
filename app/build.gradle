@@ -10,8 +10,8 @@ android {
         applicationId "com.zj.file_manager"
         minSdkVersion 24
         targetSdkVersion 31 // 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "1.2.3"
         // 去除多语言
         resConfigs "zh", "zh-rCN", "zh-rHK", "zh-rTW"
     }

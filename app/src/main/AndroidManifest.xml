@@ -23,8 +23,6 @@
                 android:resource="@xml/file_manage_paths" />
         </provider>
 
-        <activity android:name=".MainActivity" />
-
         <activity
             android:name=".fm.FragmentSampleActivity2"
             android:theme="@style/ZFile_BaseTheme" />

@@ -2,15 +2,12 @@ package com.zj.file.ui
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.os.Parcelable
 import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.collection.ArrayMap
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -22,13 +19,9 @@ import com.zj.file.content.*
 import com.zj.file.ui.viewmodel.ZFileQWViewModel
 import com.zj.file.util.ZFilePermissionUtil
 import com.zj.file.util.ZFileUtil
+import com.zj.file.util.callStoragePermission
 import com.zj.file.util.showToast
 import kotlinx.android.synthetic.main.activity_zfile_qw.*
-import kotlin.collections.ArrayList
-import kotlin.collections.contains
-import kotlin.collections.forEach
-import kotlin.collections.indices
-import kotlin.collections.isNullOrEmpty
 import kotlin.collections.set
 
 internal class ZFileQWActivity : ZFileActivity() {
@@ -166,40 +159,14 @@ internal class ZFileQWActivity : ZFileActivity() {
     }
 
     private fun callPermission() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
-            checkHasPermission()
-        } else {
-            val builder = AlertDialog.Builder(this)
-                .setTitle(R.string.zfile_11_title)
-                .setMessage(R.string.zfile_11_content)
-                .setCancelable(false)
-                .setPositiveButton(R.string.zfile_down) { d, _ ->
-                    toManagerPermissionPage = true
-                    val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
-                    startActivity(intent)
-                    d.dismiss()
-                }
-                .setNegativeButton(R.string.zfile_cancel) { d, _ ->
-                    showToast(getStringById(R.string.zfile_11_bad))
-                    d.dismiss()
-                    finish()
-                }
-            builder.show()
-        }
-    }
-
-    private fun checkHasPermission() {
-        val hasPermission =
-            ZFilePermissionUtil.hasPermission(this, ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE)
-        if (hasPermission) {
-            ZFilePermissionUtil.requestPermission(
-                this,
-                ZFilePermissionUtil.WRITE_EXTERNAL_CODE,
-                ZFilePermissionUtil.WRITE_EXTERNAL_STORAGE
-            )
-        } else {
-            initAll()
-        }
+        callStoragePermission(
+            hasPermissionListener = {
+                initAll()
+            }, noPermissionListener = {
+                toManagerPermissionPage = true
+            }, cancelPermissionListener = {
+                finish()
+            })
     }
 
     override fun onRequestPermissionsResult(
