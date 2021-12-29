@@ -1,9 +1,11 @@
 package com.zj.file.ui
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.os.Parcelable
 import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
@@ -11,31 +13,36 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.collection.ArrayMap
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.zj.file.R
 import com.zj.file.common.ZFileActivity
 import com.zj.file.content.*
 import com.zj.file.ui.viewmodel.ZFileQWViewModel
 import com.zj.file.util.ZFilePermissionUtil
-import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
 import com.zj.file.util.showToast
 import kotlinx.android.synthetic.main.activity_zfile_qw.*
+import kotlin.collections.ArrayList
+import kotlin.collections.contains
+import kotlin.collections.forEach
+import kotlin.collections.indices
+import kotlin.collections.isNullOrEmpty
+import kotlin.collections.set
 
-internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener {
+internal class ZFileQWActivity : ZFileActivity() {
 
     private val mViewModel by viewModels<ZFileQWViewModel>()
 
     private var toManagerPermissionPage = false
+    private val list = ArrayList<Fragment>()
+    private lateinit var adapter: FragmentStateAdapter
 
     private val selectArray by lazy {
         ArrayMap<String, ZFileBean>()
     }
 
-    private lateinit var vpAdapter: ZFileQWAdapter
     private var isManage = false
 
     override fun getContentView() = R.layout.activity_zfile_qw
@@ -59,15 +66,37 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
             setOnMenuItemClickListener { menu -> menuItemClick(menu) }
             setNavigationOnClickListener { onBackPressed() }
         }
-        zfile_qw_viewPager.addOnPageChangeListener(this)
-        zfile_qw_tabLayout.setupWithViewPager(zfile_qw_viewPager)
-        vpAdapter = ZFileQWAdapter(
-            mViewModel.type ?: ZFileConfiguration.QQ,
-            isManage,
-            this,
-            supportFragmentManager
+
+        zfile_qw_viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                getVPFragment(position)?.setManager(isManage)
+            }
+        })
+        val type = mViewModel.type ?: ZFileConfiguration.QQ
+        if (list.isNullOrEmpty()) {
+            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_PIC, isManage))
+            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_MEDIA, isManage))
+            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_DOCUMENT, isManage))
+            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_OTHER, isManage))
+        }
+        adapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int = list.size
+
+            override fun createFragment(position: Int): Fragment = list[position]
+        }
+        val textArray = arrayOf(
+            R.string.zfile_pic,
+            R.string.zfile_video,
+            R.string.zfile_txt,
+            R.string.zfile_other
         )
-        zfile_qw_viewPager.adapter = vpAdapter
+        zfile_qw_viewPager.adapter = adapter
+        TabLayoutMediator(
+            zfile_qw_tabLayout, zfile_qw_viewPager, true, true
+        ) { tab, position ->
+            tab.setText(textArray[position])
+        }.attach()
     }
 
     fun observer(bean: ZFileQWBean) {
@@ -96,14 +125,18 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
         when (menu?.itemId) {
             R.id.menu_zfile_qw_down -> {
                 if (selectArray.isNullOrEmpty()) {
-                    vpAdapter.list.indices.forEach {
+                    list.indices.forEach {
                         getVPFragment(it)?.apply {
                             resetAll()
                         }
                     }
                     isManage = false
                     getMenu().isVisible = false
-                    setBarTitle(if (getZFileConfig().filePath!! == ZFileConfiguration.QQ) "QQ文件" else "微信文件")
+                    setBarTitle(
+                        if (getZFileConfig().filePath!! == ZFileConfiguration.QQ) getString(
+                            R.string.zfile_qq_title
+                        ) else getString(R.string.zfile_we_chart_title)
+                    )
                 } else {
                     setResult(ZFILE_RESULT_CODE, Intent().apply {
                         putParcelableArrayListExtra(
@@ -119,17 +152,9 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
     }
 
     private fun getVPFragment(currentItem: Int): ZFileQWFragment? {
-        val fragmentId = vpAdapter.getItemId(currentItem)
+        val fragmentId = adapter.getItemId(currentItem)
         val tag = "android:switcher:${zfile_qw_viewPager.id}:$fragmentId"
         return supportFragmentManager.findFragmentByTag(tag) as? ZFileQWFragment
-    }
-
-    override fun onPageScrollStateChanged(state: Int) = Unit
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) =
-        Unit
-
-    override fun onPageSelected(position: Int) {
-        getVPFragment(position)?.setManager(isManage)
     }
 
     override fun onResume() {
@@ -211,41 +236,6 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
         isManage = false
         selectArray.clear()
         ZFileUtil.resetAll()
-    }
-
-    private class ZFileQWAdapter(
-        type: String,
-        isManger: Boolean,
-        context: Context,
-        fragmentManager: FragmentManager
-    ) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-
-        var list = ArrayList<Fragment>()
-        private val titles by lazy {
-            ZFileQWUtil.getQWTitle(context)
-        }
-
-        init {
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_PIC, isManger))
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_MEDIA, isManger))
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_DOCUMENT, isManger))
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_OTHER, isManger))
-        }
-
-        override fun getItem(position: Int) = list[position]
-
-        override fun getCount() = list.size
-
-        override fun getItemPosition(any: Any) = PagerAdapter.POSITION_NONE
-
-        override fun getPageTitle(position: Int): String {
-            val list = getZFileHelp().getQWFileLoadListener()?.getTitles() ?: titles
-            if (list.size != QW_SIZE) {
-                throw ZFileException("ZQWFileLoadListener.getTitles() size must be $QW_SIZE")
-            } else {
-                return list[position]
-            }
-        }
     }
 
 }
