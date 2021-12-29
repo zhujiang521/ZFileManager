@@ -9,10 +9,10 @@
         style="@style/Base.DialogWindowTitle.AppCompat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="15dp"
         android:paddingLeft="20dp"
+        android:paddingTop="10dp"
         android:paddingRight="20dp"
-        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
         android:text="@string/zfile_info_title" />
 
     <LinearLayout
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="7dp">
+        android:paddingTop="7dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             android:id="@+id/zfile_dialog_info_fileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/zfile_black"
+            android:textColor="@color/zfile_file_title"
             tools:text="aaa.mp3" />
 
     </LinearLayout>
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="7dp">
+        android:paddingTop="7dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             android:id="@+id/zfile_dialog_info_fileType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/zfile_black"
+            android:textColor="@color/zfile_file_title"
             tools:text="aaa.mp3" />
 
     </LinearLayout>
@@ -64,8 +64,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="7dp">
+        android:paddingTop="7dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
             android:id="@+id/zfile_dialog_info_fileSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/zfile_black"
+            android:textColor="@color/zfile_file_title"
             tools:text="aaa.mp3" />
 
     </LinearLayout>
@@ -86,8 +86,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="7dp">
+        android:paddingTop="7dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
             android:id="@+id/zfile_dialog_info_fileDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/zfile_black"
+            android:textColor="@color/zfile_file_title"
             tools:text="aaa.mp3" />
 
     </LinearLayout>
@@ -108,8 +108,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="7dp">
+        android:paddingTop="7dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
             android:id="@+id/zfile_dialog_info_filePath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/zfile_black"
+            android:textColor="@color/zfile_file_title"
             tools:text="aaa.mp3" />
 
 
@@ -131,8 +131,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
         android:text="@string/zfile_info_more"
         android:visibility="gone" />
 
@@ -150,8 +150,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="7dp">
+            android:paddingTop="7dp"
+            android:paddingRight="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/zfile_info_loadding"
-                android:textColor="@color/zfile_black"
+                android:textColor="@color/zfile_file_title"
                 tools:text="aaa.mp3" />
 
         </LinearLayout>
@@ -174,8 +174,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="7dp">
+            android:paddingTop="7dp"
+            android:paddingRight="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -187,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/zfile_info_duration"
-                android:textColor="@color/zfile_black"
+                android:textColor="@color/zfile_file_title"
                 tools:text="aaa.mp3" />
 
         </LinearLayout>
@@ -197,8 +197,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="7dp">
+            android:paddingTop="7dp"
+            android:paddingRight="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -209,7 +209,7 @@
                 android:id="@+id/zfile_dialog_info_fileOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/zfile_black"
+                android:textColor="@color/zfile_file_title"
                 tools:text="aaa.mp3" />
 
         </LinearLayout>
@@ -218,19 +218,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/zfile_md_bottom_margin"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_height="45dp"
+        android:layout_marginVertical="10dp">
 
         <Button
             android:id="@+id/zfile_dialog_info_down"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:background="#00000000"
             android:text="@string/zfile_down"
-            android:textColor="@color/zfile_base_color" />
+            android:textColor="@color/permission_btn_back" />
 
         <!--<Button
             android:id="@+id/zfile_dialog_info_copy"
