@@ -19,11 +19,11 @@ import com.zj.file.ui.ZFileListFragment
 import com.zj.file.util.showToast
 import com.zj.manager.databinding.ActivityFragmentSample2Binding
 
-class FragmentSampleActivity2 : AppCompatActivity() {
+class FragmentSampleActivity : AppCompatActivity() {
 
     companion object {
         fun jump(context: Context) {
-            context.startActivity(Intent(context, FragmentSampleActivity2::class.java))
+            context.startActivity(Intent(context, FragmentSampleActivity::class.java))
         }
     }
 
@@ -60,15 +60,7 @@ class FragmentSampleActivity2 : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        when (val fragment =
-            supportFragmentManager.findFragmentByTag(getZFileConfig().fragmentTag)) {
-            is ZFileListFragment -> {
-                fragment.onBackPressed()
-            }
-            else -> {
-                super.onBackPressed()
-            }
-        }
+        (supportFragmentManager.findFragmentByTag(getZFileConfig().fragmentTag) as? ZFileListFragment)?.onBackPressed()
     }
 
     override fun onResume() {

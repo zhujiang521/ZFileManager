@@ -19,7 +19,7 @@ import com.zj.manager.content.Content.QQ_MAP
 import com.zj.manager.databinding.ActivitySuperBinding
 import com.zj.manager.diy.SunActivity
 import com.zj.manager.dsl.DslActivity
-import com.zj.manager.fm.FragmentSampleActivity2
+import com.zj.manager.fm.FragmentSampleActivity
 
 class SuperActivity : AppCompatActivity() {
 
@@ -67,7 +67,7 @@ class SuperActivity : AppCompatActivity() {
             }
 
             superFragment.onSafeClick {
-                FragmentSampleActivity2.jump(this@SuperActivity)
+                FragmentSampleActivity.jump(this@SuperActivity)
             }
 
             superJava.onSafeClick {

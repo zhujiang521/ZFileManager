@@ -22,7 +22,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:textColor">@color/zfile_title_text</item>
+        <item name="android:textColor">@color/zfile_file_title</item>
     </style>
 
     <style name="Zfile_Select_Folder_Dialog" parent="ZFile_Common_Dialog">
