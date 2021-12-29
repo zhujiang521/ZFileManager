@@ -25,12 +25,11 @@ fun Context.commonDialog(
         permissionBtnCancel.setText(cancel)
         permissionBtnFinish.setText(finish)
         permissionBtnCancel.setOnClickListener {
-            if (cancelListener != null) {
-                cancelListener()
-            }
             show.dismiss()
+            cancelListener?.invoke()
         }
         permissionBtnFinish.setOnClickListener {
+            show.dismiss()
             finishListener()
         }
     }
