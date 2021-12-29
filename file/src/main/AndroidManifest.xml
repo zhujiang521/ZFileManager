@@ -12,23 +12,23 @@
     <application>
         <activity
             android:name=".ui.SearchActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation|uiMode"
+            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFileQWActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation|uiMode"
+            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFileListActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation|uiMode"
+            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFilePicActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation|uiMode"
+            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFileVideoPlayActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation|uiMode"
+            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
     </application>
 
