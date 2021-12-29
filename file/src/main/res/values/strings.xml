@@ -55,4 +55,7 @@
     <string name="zfile_we_chart_title">WeChart File</string>
     <string name="zfile_selected_title">Selected %d Files</string>
 
+    <string name="zfile_dialog_delete_content">Are you sure you want to delete it？</string>
+    <string name="zfile_dialog_delete">Delete</string>
+
 </resources>

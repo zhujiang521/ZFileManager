@@ -31,4 +31,6 @@
     <color name="title_tv_cancel_text_color_pressed">#66191919</color>
     <color name="title_tv_cancel_text_color_enabled">#191919</color>
 
+    <color name="permission_btn_back">#3580BA</color>
+
 </resources>

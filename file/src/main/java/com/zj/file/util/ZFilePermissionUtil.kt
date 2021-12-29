@@ -9,11 +9,11 @@ import android.os.Build
 import android.os.Environment
 import android.provider.Settings
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.zj.file.R
+
 
 internal object ZFilePermissionUtil {
 
@@ -97,22 +97,18 @@ private fun Context.noStoragePermissionDialog(
     noPermissionListener: () -> Unit,
     cancelPermissionListener: () -> Unit
 ) {
-    val builder = AlertDialog.Builder(this)
-        .setTitle(R.string.zfile_11_title)
-        .setMessage(R.string.zfile_11_content)
-        .setCancelable(false)
-        .setPositiveButton(R.string.zfile_down) { d, _ ->
+    commonDialog(
+        title = R.string.zfile_11_title,
+        content = R.string.zfile_11_content,
+        cancelListener = {
+            cancelPermissionListener()
+            showToast(R.string.zfile_11_bad)
+        },
+        finishListener = {
             noPermissionListener()
             val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
             startActivity(intent)
-            d.dismiss()
-        }
-        .setNegativeButton(R.string.zfile_cancel) { d, _ ->
-            cancelPermissionListener()
-            showToast(R.string.zfile_11_bad)
-            d.dismiss()
-        }
-    builder.show()
+        })
 }
 
 /**

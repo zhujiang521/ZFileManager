@@ -57,4 +57,7 @@
     <string name="zfile_we_chart_title">微信文件</string>
     <string name="zfile_selected_title">已選中%d個文件</string>
 
+    <string name="zfile_dialog_delete_content">您確定要刪除嗎？</string>
+    <string name="zfile_dialog_delete">刪除</string>
+
 </resources>

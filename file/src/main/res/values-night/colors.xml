@@ -3,6 +3,7 @@
     <!-- 可重写该属性达到主题颜色自定义 -->
     <color name="zfile_title_text">#e0e0f0</color>
 
+    <color name="zfile_white">#ff222433</color>
     <color name="zfile_base_color">#000000</color>
 
     <color name="zfile_gray">#66E0E0F0</color>

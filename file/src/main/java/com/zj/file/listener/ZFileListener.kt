@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.zj.file.R
-import com.zj.file.common.ZFileCommonDialog
 import com.zj.file.common.ZFileType
 import com.zj.file.content.*
 import com.zj.file.type.*
@@ -138,7 +137,11 @@ abstract class ZQWFileLoadListener {
      * @param qwFilePathArray MutableList<String>   QQ 或 WeChat 文件路径集合
      * @param filterArray Array<String>             过滤规则
      */
-    abstract fun getQWFileDatas(fileType: Int, qwFilePathArray: MutableList<String>, filterArray: Array<String>): MutableList<ZFileBean>
+    abstract fun getQWFileDatas(
+        fileType: Int,
+        qwFilePathArray: MutableList<String>,
+        filterArray: Array<String>
+    ): MutableList<ZFileBean>
 
 }
 
@@ -184,10 +187,14 @@ open class ZFileOpenListener {
      */
     open fun openImage(filePath: String, view: View) {
         val pic = view.findViewById<ImageView>(R.id.item_zfile_list_file_pic)
-        pic.context.startActivity(Intent(pic.context, ZFilePicActivity::class.java).apply {
-            putExtra("picFilePath", filePath)
-        }, ActivityOptions.makeSceneTransitionAnimation(pic.context as Activity, pic,
-            pic.context getStringById R.string.zfile_sharedElement_pic).toBundle())
+        pic.context.startActivity(
+            Intent(pic.context, ZFilePicActivity::class.java).apply {
+                putExtra("picFilePath", filePath)
+            }, ActivityOptions.makeSceneTransitionAnimation(
+                pic.context as Activity, pic,
+                pic.context getStringById R.string.zfile_sharedElement_pic
+            ).toBundle()
+        )
     }
 
     /**
@@ -198,8 +205,11 @@ open class ZFileOpenListener {
         pic.context.startActivity(
             Intent(pic.context, ZFileVideoPlayActivity::class.java).apply {
                 putExtra("videoFilePath", filePath)
-            }, ActivityOptions.makeSceneTransitionAnimation(pic.context as Activity, pic,
-                pic.context getStringById R.string.zfile_sharedElement_video).toBundle())
+            }, ActivityOptions.makeSceneTransitionAnimation(
+                pic.context as Activity, pic,
+                pic.context getStringById R.string.zfile_sharedElement_video
+            ).toBundle()
+        )
     }
 
     /**
@@ -237,7 +247,8 @@ open class ZFileOpenListener {
                 getZFileHelp().getFileOperateListener().zipFile(filePath, this, activity) {
                     ZFileLog.i(if (this) "解压成功" else "解压失败")
                     val fragment = activity.supportFragmentManager.findFragmentByTag(
-                        getZFileConfig().fragmentTag)
+                        getZFileConfig().fragmentTag
+                    )
                     if (fragment is ZFileListFragment) {
                         fragment.observer(this)
                     } else {
@@ -354,9 +365,13 @@ open class ZFileOperateListener {
      * @param filePath String   源文件地址
      */
     open fun deleteFile(filePath: String, context: Context, block: Boolean.() -> Unit) {
-        ZFileCommonDialog(context).showDialog2({
-            ZFileUtil.deleteFile(filePath, context, block)
-        }, {}, "您确定要删除吗？", "删除", "取消")
+        context.commonDialog(
+            title = R.string.zfile_11_title,
+            content = R.string.zfile_dialog_delete_content,
+            finish = R.string.zfile_dialog_delete,
+            finishListener = {
+                ZFileUtil.deleteFile(filePath, context, block)
+            })
     }
 
     /**

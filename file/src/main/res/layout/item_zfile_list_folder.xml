@@ -45,7 +45,7 @@
                 tools:text="99"
                 android:visibility="gone"
                 android:textSize="11sp"
-                android:textColor="@color/zfile_white"
+                android:textColor="@color/zfile_title_text"
                 android:layout_gravity="center|end"
                 android:background="@drawable/zfile_count"
                 tools:ignore="SmallSp" />

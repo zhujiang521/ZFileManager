@@ -5,6 +5,6 @@
     android:text="ZFileManager\n 左滑右滑试试"
     android:gravity="center"
     android:textSize="18sp"
-    android:textColor="@color/zfile_white"
+    android:textColor="@color/zfile_title_text"
     android:background="@color/zfile_base_color"
     android:orientation="vertical" />

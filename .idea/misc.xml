@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/activity_sun.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/activity_super.xml" value="0.2838541666666667" />
         <entry key="app/src/main/res/layout/dialog_super.xml" value="0.30434782608695654" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.29438405797101447" />
         <entry key="app/src/main/res/layout/fragment_dsl.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/item_dialog_super.xml" value="0.30434782608695654" />
         <entry key="app/src/main/res/layout/layout_result_txt.xml" value="0.3138586956521739" />
@@ -42,6 +43,7 @@
         <entry key="file/src/main/res/layout/activity_zfile_pic.xml" value="0.3229166666666667" />
         <entry key="file/src/main/res/layout/activity_zfile_qw.xml" value="0.329935125115848" />
         <entry key="file/src/main/res/layout/activity_zfile_video_play.xml" value="0.3138586956521739" />
+        <entry key="file/src/main/res/layout/dialog_permission.xml" value="0.29438405797101447" />
         <entry key="file/src/main/res/layout/dialog_zfile_audio_play.xml" value="0.18125" />
         <entry key="file/src/main/res/layout/dialog_zfile_select_folder.xml" value="0.3183876811594203" />
         <entry key="file/src/main/res/layout/dialog_zfile_sort.xml" value="0.3138586956521739" />
