@@ -1,5 +1,5 @@
-[![Travis](https://img.shields.io/badge/ZFile-1.3.3-yellowgreen)](https://github.com/zippo88888888/ZFileManager)
-[![Travis](https://img.shields.io/badge/API-21%2B-green)](https://github.com/zippo88888888/ZFileManager)
+[![Travis](https://img.shields.io/badge/ZFile-1.3.3-yellowgreen)](https://github.com/zhujiang521/ZFileManager)
+[![Travis](https://img.shields.io/badge/API-21%2B-green)](https://github.com/zhujiang521/ZFileManager)
 [![Travis](https://img.shields.io/badge/Apache-2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # 特点
@@ -11,7 +11,7 @@
 ### 5. 支持QQ、微信文件选择（支持自定义获取）
 ### 6. 高度可定制化，支持Android 10++、AndroidX、DSL，兼容Java
 
-## 基本使用 （[Java使用](https://github.com/zippo88888888/ZFileManager/blob/master/app/src/main/java/com/zp/zfile_manager/JavaSampleActivity.java)）
+## 基本使用 （[Java使用](https://github.com/zhujiang521/ZFileManager/blob/master/app/src/main/java/com/zp/zfile_manager/JavaSampleActivity.java)）
 
 > ##### 温馨提示： targetSdkVersion >= 29 清单文件中加上 android:requestLegacyExternalStorage="true"
 > ##### 温馨提示： targetSdkVersion >= 29 清单文件中加上 android:requestLegacyExternalStorage="true"
@@ -20,7 +20,7 @@
 
 #### Step 0. 添加依赖
 
-#### [最新版本](https://github.com/zippo88888888/ZFileManager/wiki/%E7%89%88%E6%9C%AC)
+#### [最新版本](https://github.com/zhujiang521/ZFileManager/wiki/%E7%89%88%E6%9C%AC)
 
 #### Step 1. 实现ZFileImageListener，并在调用前或Application中初始化 
 ```Kotlin
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
 ```
 
 ## 高级用法   
-> ###### ZFileManager提供了对外的帮助类 [ZFileHelp](https://github.com/zippo88888888/ZFileManager/blob/master/z_file/src/main/java/com/zp/z_file/util/ZFileHelp.kt)
+> ###### ZFileManager提供了对外的帮助类 [ZFileHelp](https://github.com/zhujiang521/ZFileManager/blob/master/z_file/src/main/java/com/zp/z_file/util/ZFileHelp.kt)
 
 ### 文件类型拓展
 
@@ -142,7 +142,7 @@ getZFileHelp().setFileTypeListener(MyFileTypeListener())
 ### QQ或微信文件选择
 
 > QQ、微信默认根据时间倒序排序，不显示隐藏文件，过滤规则默认，只显示文件，不支持长按操作
-其他配置与文件管理保持一致！具体可查看[这里](https://github.com/zippo88888888/ZFileManager/blob/master/app/src/main/java/com/zp/zfile_manager/super_/SuperActivity.kt)
+其他配置与文件管理保持一致！具体可查看[这里](https://github.com/zhujiang521/ZFileManager/blob/master/app/src/main/java/com/zp/zfile_manager/super_/SuperActivity.kt)
 ，参考 [腾讯文件](https://imtt.dd.qq.com/16891/apk/24CB038F3A67CDBE10C5A0D9B2AD10E9.apk?fsname=com.tencent.FileManager_5.0.4.0001_5040001.apk&csr=1bbd)
 ```kotlin
 
@@ -276,7 +276,7 @@ getZFileHelp().setFileLoadListener(MyFileLoadListener())
 
 #### 自定义QQ、微信文件获取
 
-> ##### 通过简单配置 即可实现 绝大部分 的需求，推荐下面的方式！如果此方式依旧无法符合你的需求！请自定义实现，[点击查看](https://github.com/zippo88888888/ZFileManager/blob/master/app/src/main/java/com/zp/zfile_manager/diy/MyQWFileListener.kt)
+> ##### 通过简单配置 即可实现 绝大部分 的需求，推荐下面的方式！如果此方式依旧无法符合你的需求！请自定义实现，[点击查看](https://github.com/zhujiang521/ZFileManager/blob/master/app/src/main/java/com/zp/zfile_manager/diy/MyQWFileListener.kt)
 
 ```kotlin
 
@@ -338,7 +338,7 @@ getZFileHelp().setFileLoadListener(MyFileLoadListener())
 
 ```
 
-#### UI 或操作自定义 更多可查看 [ZFileConfiguration](https://github.com/zippo88888888/ZFileManager/blob/master/z_file/src/main/java/com/zp/z_file/content/ZFileConfiguration.kt) 或 [values](https://github.com/zippo88888888/ZFileManager/tree/master/z_file/src/main/res/values)
+#### UI 或操作自定义 更多可查看 [ZFileConfiguration](https://github.com/zhujiang521/ZFileManager/blob/master/z_file/src/main/java/com/zp/z_file/content/ZFileConfiguration.kt) 或 [values](https://github.com/zhujiang521/ZFileManager/tree/master/z_file/src/main/res/values)
  
 ```kotlin
 
@@ -523,15 +523,11 @@ class MyFileOperateListener : ZFileOperateListener() {
 getZFileHelp().setFileOperateListener(MyFileOperateListener())
 
 ```
- 
-##### 更多操作请查看demo， ^_^ 如果觉得可以 star 一下哦！
-###### 源自 [FileManager](https://github.com/zippo88888888/FileManager)  [点这里页面加载速度应该会快一点](https://blog.csdn.net/qq_28322987/article/details/81384886)
- 
 
 > ##### 还是不行，emmmm 源码给你 想怎么弄就怎么弄  溜了溜了
 
-[![Travis](https://img.shields.io/badge/ZFile-1.3.3-yellowgreen)](https://github.com/zippo88888888/ZFileManager)
-[![Travis](https://img.shields.io/badge/API-21%2B-green)](https://github.com/zippo88888888/ZFileManager)
+[![Travis](https://img.shields.io/badge/ZFile-1.3.3-yellowgreen)](https://github.com/zhujiang521/ZFileManager)
+[![Travis](https://img.shields.io/badge/API-21%2B-green)](https://github.com/zhujiang521/ZFileManager)
 [![Travis](https://img.shields.io/badge/Apache-2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 
