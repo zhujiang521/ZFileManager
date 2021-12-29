@@ -15,9 +15,6 @@ import com.zj.file.util.ZFileUtil
 
 internal class ZFileQWFragment : ZFileFragment() {
 
-    private var qwFileType = ZFileConfiguration.QQ
-    // 文件类型
-    private var type = ZFILE_QW_PIC
     private var qwManage = false
 
     private var qwAdapter: ZFileListAdapter? = null
@@ -35,8 +32,6 @@ internal class ZFileQWFragment : ZFileFragment() {
     }
 
     override fun initAll() {
-        qwFileType = arguments?.getString(QW_FILE_TYPE_KEY) ?: ZFileConfiguration.QQ
-        type = arguments?.getInt("type") ?: ZFILE_QW_PIC
         initRecyclerView()
     }
 
