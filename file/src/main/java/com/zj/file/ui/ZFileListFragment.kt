@@ -377,8 +377,8 @@ class ZFileListFragment : Fragment() {
         return true
     }
 
-    private val TAG by lazy {
-        ZFileListFragment::class.java.simpleName
+    private val FRAGMENT_TAG by lazy {
+        ZFileSelectFolderDialog::class.java.simpleName
     }
 
     private fun jumpByWhich(item: ZFileBean, which: Int, index: Int) {
@@ -401,12 +401,12 @@ class ZFileListFragment : Fragment() {
                     }
             }
             ZFileConfiguration.COPY, ZFileConfiguration.MOVE -> {
-                mActivity.checkFragmentByTag(TAG)
+                mActivity.checkFragmentByTag(FRAGMENT_TAG)
                 ZFileSelectFolderDialog.newInstance(titleArray!![which]).apply {
                     selectFolder = {
                         doSth(item, this, titleArray!![which], index)
                     }
-                }.show(mActivity.supportFragmentManager, TAG)
+                }.show(mActivity.supportFragmentManager, FRAGMENT_TAG)
             }
             ZFileConfiguration.DELETE -> getZFileHelp().getFileOperateListener().deleteFile(
                 item.filePath,
