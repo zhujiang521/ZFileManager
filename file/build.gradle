@@ -5,13 +5,23 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31 // 29  30
+
+    signingConfigs {
+        fileManager {
+            storeFile file(sign.file)
+            storePassword sign.storePassword
+            keyAlias sign.keyAlias
+            keyPassword sign.keyPassword
+        }
+    }
+
+    compileSdkVersion cfgs.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 24
-        targetSdkVersion 31  // 29 30
-        versionCode 5
-        versionName "1.2.3"
+        minSdkVersion cfgs.minSdkVersion
+        targetSdkVersion cfgs.targetSdkVersion
+        versionCode cfgs.versionCode
+        versionName cfgs.versionName
 
         // 去除多语言
         resConfigs "zh", "zh-rCN", "zh-rHK", "zh-rTW"
@@ -42,16 +52,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation des.kotlinVersion
+    implementation des.coreKtx
+    implementation des.appcompat
+    implementation des.material
+    implementation des.activity_ktx
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.airbnb.android:lottie:4.2.2'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    def activity_version = "1.4.0"
-    implementation "androidx.activity:activity-ktx:$activity_version"
-    def fragment_version = "1.3.6"
-    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 }

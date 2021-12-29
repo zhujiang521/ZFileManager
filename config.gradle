@@ -1,0 +1,29 @@
+ext {
+    cfgs = [
+            compileSdkVersion        : 31,
+            buildToolsVersion        : "31.0.3",
+            minSdkVersion            : 24,
+            targetSdkVersion         : 31,
+            versionCode              : 5,
+            versionName              : "1.2.4",
+            testInstrumentationRunner: "androidx.test.runner.AndroidJUnitRunner",
+            consumerProguardFiles    : 'consumer-rules.pro',
+    ]
+
+    des = [
+            kotlinVersion: "org.jetbrains.kotlin:kotlin-stdlib:1.6.10",
+            coreKtx      : 'androidx.core:core-ktx:1.7.0',
+            appcompat    : 'androidx.appcompat:appcompat:1.3.1',
+            material     : 'com.google.android.material:material:1.4.0',
+            activity_ktx    : 'androidx.activity:activity-ktx:1.4.0',
+            fragment_ktx    : 'androidx.fragment:fragment-ktx:1.3.6',
+    ]
+
+    sign = [
+            file         : '/Users/zhujiang/AndroidSoft/FileManager',
+            storePassword: '123456',
+            keyAlias     : 'FileManager',
+            keyPassword  : '123456'
+    ]
+
+}

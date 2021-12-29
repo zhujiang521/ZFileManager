@@ -33,10 +33,10 @@ class FragmentSampleActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFragmentSample2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        init2()
+        init()
     }
 
-    private fun init2() {
+    private fun init() {
         binding.fs2.visibility = View.GONE
         binding.fs2Vp.visibility = View.VISIBLE
         val list = arrayListOf<Fragment>()
@@ -60,7 +60,15 @@ class FragmentSampleActivity2 : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        (supportFragmentManager.findFragmentByTag(getZFileConfig().fragmentTag) as? ZFileListFragment)?.onBackPressed()
+        when (val fragment =
+            supportFragmentManager.findFragmentByTag(getZFileConfig().fragmentTag)) {
+            is ZFileListFragment -> {
+                fragment.onBackPressed()
+            }
+            else -> {
+                super.onBackPressed()
+            }
+        }
     }
 
     override fun onResume() {
