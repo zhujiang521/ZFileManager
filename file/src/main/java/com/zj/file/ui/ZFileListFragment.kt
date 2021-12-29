@@ -157,11 +157,11 @@ class ZFileListFragment : Fragment() {
 
     private fun setMenuState() {
         binding?.zfileListToolBar?.menu?.apply {
-                findItem(R.id.menu_zfile_down).isVisible = barShow
-                findItem(R.id.menu_zfile_px).isVisible = !barShow
-                findItem(R.id.menu_zfile_show).isVisible = !barShow
-                findItem(R.id.menu_zfile_hidden).isVisible = !barShow
-            }
+            findItem(R.id.menu_zfile_down).isVisible = barShow
+            findItem(R.id.menu_zfile_px).isVisible = !barShow
+            findItem(R.id.menu_zfile_show).isVisible = !barShow
+            findItem(R.id.menu_zfile_hidden).isVisible = !barShow
+        }
     }
 
     private fun menuItemClick(menu: MenuItem?): Boolean {
@@ -365,13 +365,13 @@ class ZFileListFragment : Fragment() {
     }
 
     private fun showSelectDialog(index: Int, item: ZFileBean): Boolean {
-        AlertDialog.Builder(mActivity).apply {
+        AlertDialog.Builder(mActivity, R.style.ZFile_Common_Dialog).apply {
             setTitle("请选择")
             setItems(titleArray) { dialog, which ->
                 jumpByWhich(item, which, index)
                 dialog.dismiss()
             }
-            setPositiveButton("取消") { dialog, _ -> dialog.dismiss() }
+            setPositiveButton(R.string.zfile_cancel) { dialog, _ -> dialog.dismiss() }
             show()
         }
         return true

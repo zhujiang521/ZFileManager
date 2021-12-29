@@ -134,6 +134,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
         android:text="@string/zfile_info_more"
+        android:textColor="@color/zfile_file_title"
         android:visibility="gone" />
 
     <LinearLayout
@@ -216,10 +217,15 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/zfile_line_color" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginVertical="10dp">
+        android:layout_height="45dp">
 
         <Button
             android:id="@+id/zfile_dialog_info_down"
@@ -229,16 +235,6 @@
             android:background="#00000000"
             android:text="@string/zfile_down"
             android:textColor="@color/permission_btn_back" />
-
-        <!--<Button
-            android:id="@+id/zfile_dialog_info_copy"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/dialog_info_down"
-            android:text="复制所有信息"
-            android:textColor="@color/zfile_base_color"
-            android:visibility="gone" />-->
 
     </RelativeLayout>
 

@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:paddingTop="15dp"
+        android:paddingTop="10dp"
         android:paddingRight="20dp"
-        android:paddingBottom="15dp"
+        android:paddingBottom="10dp"
         android:text="@string/zifle_rename_title"
         android:textColor="@color/zfile_file_title" />
 
@@ -22,6 +22,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:hint="@string/zfile_info_rename"
         android:imeOptions="actionDone"
         android:inputType="text"
@@ -38,22 +39,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="@dimen/zfile_md_bottom_margin"
         android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/zfile_dialog_rename_down"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:text="@string/zfile_down"
-            android:textColor="@color/permission_btn_back" />
-
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@color/zfile_line_color" />
 
         <Button
             android:id="@+id/zfile_dialog_rename_cancel"
@@ -62,6 +48,20 @@
             android:layout_weight="1"
             android:background="#00000000"
             android:text="@string/zfile_cancel"
+            android:textColor="@color/permission_btn_back" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/zfile_line_color" />
+
+        <Button
+            android:id="@+id/zfile_dialog_rename_down"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="@string/zfile_down"
             android:textColor="@color/permission_btn_back" />
 
     </LinearLayout>

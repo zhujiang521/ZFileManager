@@ -8,10 +8,8 @@
         style="@style/Base.DialogWindowTitle.AppCompat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingTop="15dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
         android:text="@string/zfile_sort_title"
         android:textColor="@color/zfile_file_title" />
 
@@ -99,31 +97,40 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/zfile_md_bottom_margin"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/zfile_line_color" />
 
-        <Button
-            android:id="@+id/zfile_dialog_sort_down"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="@string/zfile_down"
-            android:textColor="@color/permission_btn_back" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
 
         <TextView
             android:id="@+id/zfile_dialog_sort_cancel"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/zfile_dialog_sort_down"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="@string/zfile_cancel"
             android:textColor="@color/permission_btn_back" />
 
-    </RelativeLayout>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/zfile_line_color" />
+
+        <Button
+            android:id="@+id/zfile_dialog_sort_down"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="@string/zfile_down"
+            android:textColor="@color/permission_btn_back" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -14,7 +14,7 @@ fun Context.commonDialog(
     cancelListener: (() -> Unit)? = null,
     finishListener: () -> Unit
 ) {
-    val builder = AlertDialog.Builder(this, R.style.ZFile_Common_Dialog)
+    val builder = AlertDialog.Builder(this)
     val binding: DialogPermissionBinding =
         DialogPermissionBinding.inflate(LayoutInflater.from(this))
     builder.setView(binding.root)
