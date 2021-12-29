@@ -85,7 +85,7 @@ internal class ZFileQWActivity : ZFileActivity(), ViewPager.OnPageChangeListener
                 selectArray.remove(item.filePath)
             }
         }
-        setBarTitle("已选中${selectArray.size}个文件")
+        setBarTitle(getString(R.string.zfile_selected_title, selectArray.size))
         isManage = true
         getMenu().isVisible = true
     }

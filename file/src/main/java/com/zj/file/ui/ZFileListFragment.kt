@@ -208,7 +208,8 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
         backList.add(rootPath)
         nowPath = rootPath
         zfile_list_toolBar.apply {
-            if (getZFileConfig().showBackIcon) setNavigationIcon(R.drawable.zfile_back) else navigationIcon = null
+            if (getZFileConfig().showBackIcon) setNavigationIcon(R.drawable.zfile_back) else navigationIcon =
+                null
             inflateMenu(R.menu.zfile_list_menu)
             setOnMenuItemClickListener { menu -> menuItemClick(menu) }
             setNavigationOnClickListener { back() }
@@ -232,25 +233,26 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
     }
 
     private fun initPathRecyclerView() {
-        filePathAdapter = object : ZFileAdapter<ZFilePathBean>(mActivity, R.layout.item_zfile_path) {
-            override fun bindView(holder: ZFileViewHolder, item: ZFilePathBean, position: Int) {
-                holder.setText(R.id.item_zfile_path_title, item.fileName)
-            }
+        filePathAdapter =
+            object : ZFileAdapter<ZFilePathBean>(mActivity, R.layout.item_zfile_path) {
+                override fun bindView(holder: ZFileViewHolder, item: ZFilePathBean, position: Int) {
+                    holder.setText(R.id.item_zfile_path_title, item.fileName)
+                }
 
-            override fun addItem(position: Int, t: ZFilePathBean) {
-                var hasData = false
-                getDatas().forEach forEach@{
-                    if (it.filePath == t.filePath) {
-                        hasData = true
-                        return@forEach
+                override fun addItem(position: Int, t: ZFilePathBean) {
+                    var hasData = false
+                    getDatas().forEach forEach@{
+                        if (it.filePath == t.filePath) {
+                            hasData = true
+                            return@forEach
+                        }
+                    }
+                    if (!(hasData || t.filePath == SD_ROOT)) {
+                        super.addItem(position, t)
                     }
                 }
-                if (!(hasData || t.filePath == SD_ROOT)) {
-                    super.addItem(position, t)
-                }
-            }
 
-        }
+            }
         zfile_list_pathRecyclerView.apply {
             layoutManager = LinearLayoutManager(activity).run {
                 orientation = LinearLayoutManager.HORIZONTAL
@@ -267,7 +269,12 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
         if (filePath.isNullOrEmpty() || filePath == SD_ROOT) {
             pathList.add(ZFilePathBean(mActivity getStringById R.string.zfile_root_path, "root"))
         } else {
-            pathList.add(ZFilePathBean("${mActivity getStringById R.string.zfile_path}${filePath.getFileName()}", filePath))
+            pathList.add(
+                ZFilePathBean(
+                    "${mActivity getStringById R.string.zfile_path}${filePath.getFileName()}",
+                    filePath
+                )
+            )
         }
         filePathAdapter.addAll(pathList)
     }
@@ -305,10 +312,10 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
             changeListener = { isManage, size ->
                 if (isManage) {
                     if (barShow) {
-                        setBarTitle("已选中${size}个文件")
+                        setBarTitle(getString(R.string.zfile_selected_title, size))
                     } else {
                         barShow = true
-                        setBarTitle("已选中0个文件")
+                        setBarTitle(getString(R.string.zfile_selected_title, 0))
                         setMenuState()
                     }
                 }
@@ -320,7 +327,7 @@ class ZFileListFragment : Fragment(R.layout.activity_zfile_list) {
             adapter = fileListAdapter
         }
         getData(getZFileConfig().filePath)
-        index ++
+        index++
     }
 
     private fun getData(filePath: String?) {

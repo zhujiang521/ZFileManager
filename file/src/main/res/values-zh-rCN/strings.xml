@@ -53,5 +53,6 @@
 
     <string name="zfile_qq_title">QQ文件</string>
     <string name="zfile_we_chart_title">微信文件</string>
+    <string name="zfile_selected_title">已选中%d个文件</string>
 
 </resources>

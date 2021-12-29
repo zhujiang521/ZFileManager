@@ -53,5 +53,6 @@
 
     <string name="zfile_qq_title">QQ File</string>
     <string name="zfile_we_chart_title">WeChart File</string>
+    <string name="zfile_selected_title">Selected %d Files</string>
 
 </resources>
