@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 
-internal abstract class ZFileFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
+internal abstract class ZFileFragment : Fragment() {
 
     abstract fun initAll()
 

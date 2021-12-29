@@ -16,5 +16,4 @@ internal abstract class ZFileActivity : AppCompatActivity() {
 
     abstract fun init(savedInstanceState: Bundle?)
 
-
 }

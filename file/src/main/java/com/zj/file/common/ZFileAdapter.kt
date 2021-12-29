@@ -76,7 +76,7 @@ internal abstract class ZFileAdapter<T>(protected var context: Context) : Recycl
         if (layoutRes > 0) {
             val view = LayoutInflater.from(context).inflate(layoutRes, parent, false)
             val holder = ZFileViewHolder(view)
-            bindViewClickListener(holder, viewType)
+            bindViewClickListener(holder)
             return holder
         } else {
             throw ZFileException("adapter layoutId is not null")
@@ -96,10 +96,10 @@ internal abstract class ZFileAdapter<T>(protected var context: Context) : Recycl
     protected abstract fun bindView(holder: ZFileViewHolder, item: T, position: Int)
 
     // 参考 BRVAH
-    private fun bindViewClickListener(holder: ZFileViewHolder, viewType: Int) {
+    private fun bindViewClickListener(holder: ZFileViewHolder) {
 
         holder.setOnItemClickListener {
-            val position = holder.adapterPosition
+            val position = holder.absoluteAdapterPosition
             if (position == RecyclerView.NO_POSITION) {
                 showLog()
                 return@setOnItemClickListener
@@ -108,7 +108,7 @@ internal abstract class ZFileAdapter<T>(protected var context: Context) : Recycl
         }
 
         holder.setOnItemLongClickListener {
-            val position = holder.adapterPosition
+            val position = holder.absoluteAdapterPosition
             if (position == RecyclerView.NO_POSITION) {
                 showLog()
                 return@setOnItemLongClickListener false
@@ -119,7 +119,7 @@ internal abstract class ZFileAdapter<T>(protected var context: Context) : Recycl
 
         for (id in childClickViewIds) {
             holder.setOnViewClickListener(id) {
-                val position = holder.adapterPosition
+                val position = holder.absoluteAdapterPosition
                 if (position == RecyclerView.NO_POSITION) {
                     showLog()
                     return@setOnViewClickListener

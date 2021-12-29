@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.zj.file.R
 import com.zj.file.async.ZFileQWAsync
 import com.zj.file.common.ZFileFragment
 import com.zj.file.content.*
@@ -14,7 +13,7 @@ import com.zj.file.ui.adapter.ZFileListAdapter
 import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
 
-internal class ZFileQWFragment : ZFileFragment(R.layout.fragment_zfile_qw) {
+internal class ZFileQWFragment : ZFileFragment() {
 
     private var qwFileType = ZFileConfiguration.QQ
     // 文件类型
