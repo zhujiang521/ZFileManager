@@ -18,20 +18,21 @@ fun Context.commonDialog(
     val binding: DialogPermissionBinding =
         DialogPermissionBinding.inflate(LayoutInflater.from(this))
     builder.setView(binding.root)
-    val show = builder.show()
+    val dialog = builder.create()
     binding.apply {
         permissionTvTitle.setText(title)
         permissionTvContent.setText(content)
         permissionBtnCancel.setText(cancel)
         permissionBtnFinish.setText(finish)
         permissionBtnCancel.setOnClickListener {
-            show.dismiss()
+            dialog.dismiss()
             cancelListener?.invoke()
         }
         permissionBtnFinish.setOnClickListener {
-            show.dismiss()
+            dialog.dismiss()
             finishListener()
         }
     }
+    dialog.show()
 
 }
