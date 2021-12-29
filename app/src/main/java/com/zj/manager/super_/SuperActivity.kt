@@ -67,7 +67,7 @@ class SuperActivity : AppCompatActivity() {
             }
 
             superFragment.onSafeClick {
-                FragmentSampleActivity2.jump(this@SuperActivity, 2)
+                FragmentSampleActivity2.jump(this@SuperActivity)
             }
 
             superJava.onSafeClick {
