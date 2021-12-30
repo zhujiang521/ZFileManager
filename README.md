@@ -3,7 +3,10 @@
 [![Travis](https://img.shields.io/badge/Apache-2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # 原作者地址
-[https://github.com/zippo88888888/ZFileManager](https://github.com/zippo88888888/ZFileManager)
+#### [https://github.com/zippo88888888/ZFileManager](https://github.com/zippo88888888/ZFileManager)
+#### 在项目基础上进行了魔改，增加了多语言、深色模式、横屏适配等；
+#### 整个项目使用ViewBinding，完全去除kotlin-android-extensions；
+#### 将ViewPager改为ViewPager2
 
 # 特点
 
@@ -14,7 +17,7 @@
 ### 5. 支持QQ、微信文件选择（支持自定义获取）
 ### 6. 高度可定制化，支持Android 10++、AndroidX、DSL，兼容Java
 ### 7. 在项目基础上进行了魔改，增加了多语言、深色模式、横屏适配等
-### 8. 整个项目使用ViewBinding，完全去除kotlin-android-extensions
+### 8. 
 
 [![Travis](https://img.shields.io/badge/ZFile-1.2.7-yellowgreen)](https://github.com/zhujiang521/ZFileManager)
 [![Travis](https://img.shields.io/badge/API-21%2B-green)](https://github.com/zhujiang521/ZFileManager)
