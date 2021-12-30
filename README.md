@@ -17,7 +17,6 @@
 ### 5. 支持QQ、微信文件选择（支持自定义获取）
 ### 6. 高度可定制化，支持Android 10++、AndroidX、DSL，兼容Java
 ### 7. 在项目基础上进行了魔改，增加了多语言、深色模式、横屏适配等
-### 8. 
 
 [![Travis](https://img.shields.io/badge/ZFile-1.2.7-yellowgreen)](https://github.com/zhujiang521/ZFileManager)
 [![Travis](https://img.shields.io/badge/API-21%2B-green)](https://github.com/zhujiang521/ZFileManager)
