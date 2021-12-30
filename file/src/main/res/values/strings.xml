@@ -58,4 +58,11 @@
     <string name="zfile_dialog_delete_content">Are you sure you want to delete it？</string>
     <string name="zfile_dialog_delete">Delete</string>
 
+    <string name="zfile_menu_rename">Rename</string>
+    <string name="zfile_menu_copy">Copy</string>
+    <string name="zfile_menu_move">Move</string>
+    <string name="zfile_menu_delete">Delete</string>
+    <string name="zfile_menu_detail">File detail</string>
+    <string name="zfile_menu_unzip">Unzip</string>
+
 </resources>

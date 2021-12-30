@@ -54,7 +54,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
         }
 
     override fun init(savedInstanceState: Bundle?) {
-        tipStr = arguments?.getString("type") ?: ZFileConfiguration.COPY
+        tipStr = arguments?.getString("type") ?: getString(R.string.zfile_menu_copy)
         // 先保存之前用户配置的数据
         filePath = getZFileConfig().filePath
         isOnlyFile = getZFileConfig().isOnlyFile

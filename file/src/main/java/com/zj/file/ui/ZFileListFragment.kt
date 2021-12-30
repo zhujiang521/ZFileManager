@@ -72,11 +72,11 @@ class ZFileListFragment : Fragment() {
     private val titleArray by lazy {
         if (getZFileConfig().longClickOperateTitles.isNullOrEmpty()) {
             arrayOf(
-                ZFileConfiguration.RENAME,
-                ZFileConfiguration.COPY,
-                ZFileConfiguration.MOVE,
-                ZFileConfiguration.DELETE,
-                ZFileConfiguration.INFO
+                getString(R.string.zfile_menu_rename),
+                getString(R.string.zfile_menu_copy),
+                getString(R.string.zfile_menu_move),
+                getString(R.string.zfile_menu_delete),
+                getString(R.string.zfile_menu_detail),
             )
         } else getZFileConfig().longClickOperateTitles
     }
@@ -383,7 +383,7 @@ class ZFileListFragment : Fragment() {
 
     private fun jumpByWhich(item: ZFileBean, which: Int, index: Int) {
         when (titleArray!![which]) {
-            ZFileConfiguration.RENAME -> {
+            getString(R.string.zfile_menu_rename) -> {
                 getZFileHelp().getFileOperateListener()
                     .renameFile(item.filePath, mActivity) { isSuccess, newName ->
                         if (isSuccess) {
@@ -400,7 +400,7 @@ class ZFileListFragment : Fragment() {
                         }
                     }
             }
-            ZFileConfiguration.COPY, ZFileConfiguration.MOVE -> {
+            getString(R.string.zfile_menu_copy), getString(R.string.zfile_menu_move) -> {
                 mActivity.checkFragmentByTag(FRAGMENT_TAG)
                 ZFileSelectFolderDialog.newInstance(titleArray!![which]).apply {
                     selectFolder = {
@@ -408,7 +408,7 @@ class ZFileListFragment : Fragment() {
                     }
                 }.show(mActivity.supportFragmentManager, FRAGMENT_TAG)
             }
-            ZFileConfiguration.DELETE -> getZFileHelp().getFileOperateListener().deleteFile(
+            getString(R.string.zfile_menu_delete) -> getZFileHelp().getFileOperateListener().deleteFile(
                 item.filePath,
                 mActivity
             ) {
@@ -419,13 +419,13 @@ class ZFileListFragment : Fragment() {
                     ZFileLog.i("文件删除失败")
                 }
             }
-            ZFileConfiguration.INFO -> ZFileUtil.infoFile(item, mActivity)
+            getString(R.string.zfile_menu_detail) -> ZFileUtil.infoFile(item, mActivity)
             else -> throwError("longClickOperateTitles")
         }
     }
 
     private fun doSth(item: ZFileBean, targetPath: String, type: String, position: Int) {
-        if (type == ZFileConfiguration.COPY) { // 复制文件
+        if (type == getString(R.string.zfile_menu_copy)) { // 复制文件
             getZFileHelp().getFileOperateListener().copyFile(item.filePath, targetPath, mActivity) {
                 if (this) {
                     ZFileLog.i("文件复制成功")

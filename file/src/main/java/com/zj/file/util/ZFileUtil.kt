@@ -56,7 +56,10 @@ internal object ZFileUtil {
         block: (Boolean, String) -> Unit
     ) {
         val activity = context as Activity
-        val dialog = ZFileLoadingDialog(activity, "重命名中...").run {
+        val dialog = ZFileLoadingDialog(
+            activity,
+            "${context.getString(R.string.zfile_menu_rename)}..."
+        ).run {
             setCancelable(false)
             show()
             this
@@ -123,13 +126,13 @@ internal object ZFileUtil {
         block: Boolean.() -> Unit
     ) {
         val msg = when (type) {
-            COPY_TYPE -> ZFileConfiguration.COPY
-            CUT_TYPE -> ZFileConfiguration.MOVE
-            DELTE_TYPE -> ZFileConfiguration.DELETE
-            else -> "解压"
+            COPY_TYPE -> context.getString(R.string.zfile_menu_copy)
+            CUT_TYPE -> context.getString(R.string.zfile_menu_move)
+            DELTE_TYPE -> context.getString(R.string.zfile_menu_delete)
+            else -> context.getString(R.string.zfile_menu_unzip)
         }
         val activity = context as Activity
-        val dialog = ZFileLoadingDialog(activity, "${msg}中...").run {
+        val dialog = ZFileLoadingDialog(activity, "${msg}...").run {
             setCanceledOnTouchOutside(false)
             show()
             this

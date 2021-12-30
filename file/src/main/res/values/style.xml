@@ -13,7 +13,7 @@
         <item name="android:colorBackground">@color/colorBackground</item>
     </style>
 
-    <style name="ZFile_Common_Dialog">
+    <style name="ZFile_Common_Dialog" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@drawable/zfile_dialog_shape</item>
@@ -23,6 +23,7 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:textColor">@color/zfile_file_title</item>
+        <item name="actionMenuTextColor">@color/zfile_file_title</item>
     </style>
 
     <style name="Zfile_Select_Folder_Dialog" parent="ZFile_Common_Dialog">

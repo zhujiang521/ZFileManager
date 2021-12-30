@@ -60,4 +60,11 @@
     <string name="zfile_dialog_delete_content">您確定要刪除嗎？</string>
     <string name="zfile_dialog_delete">刪除</string>
 
+    <string name="zfile_menu_rename">重命名</string>
+    <string name="zfile_menu_copy">復製</string>
+    <string name="zfile_menu_move">移動</string>
+    <string name="zfile_menu_delete">刪除</string>
+    <string name="zfile_menu_detail">查看詳情</string>
+    <string name="zfile_menu_unzip">解壓</string>
+
 </resources>

@@ -62,12 +62,6 @@ class ZFileConfiguration : Serializable {
         /** 样式二 */
         const val STYLE2 = 2
 
-        const val RENAME = "重命名"
-        const val COPY = "复制"
-        const val MOVE = "移动"
-        const val DELETE = "删除"
-        const val INFO = "查看详情"
-
         /** 标题居左 */
         const val TITLE_LEFT = 0
         /** 标题居中 */
@@ -150,7 +144,7 @@ class ZFileConfiguration : Serializable {
     var isOnlyFileHasLongClick = true
 
     /**
-     * 长按后需要显示的操作类型 see [RENAME] [COPY] [MOVE] [DELETE] [INFO]
+     * 长按后需要显示的操作类型 RENAME COPY MOVE DELETE INFO
      * 空默认为 arrayOf(RENAME, COPY, MOVE, DELETE, INFO)
      * 目前只可以是这几种类型，个数、顺序可以自定义，文字不支持自定义
      */
