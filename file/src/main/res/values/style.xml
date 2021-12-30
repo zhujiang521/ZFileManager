@@ -40,8 +40,9 @@
         <item name="android:textColorPrimary">@color/zfile_title_text</item>
     </style>
 
-    <style name="ZFile_ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+    <style name="ZFile_ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.DayNight">
         <item name="actionOverflowMenuStyle">@style/ZFile_OverflowMenuStyle</item>
+        <item name="android:colorBackground">@color/zfile_white</item>
     </style>
 
     <style name="ZFile_OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
