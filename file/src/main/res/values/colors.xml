@@ -7,7 +7,6 @@
     <color name="zfile_title_selected">#131313</color>
     <color name="zfile_white">#ffffff</color>
     <color name="zfile_green">#2c832e</color>
-    <color name="zfile_red">#e01d07</color>
     <color name="zfile_bbbbb9">#bbbbb9</color>
     <color name="zfile_line_color">#f2f2f2</color>
     <color name="zfile_bgcolor">#f7f7f7</color>
@@ -19,7 +18,6 @@
     <color name="zfile_file_back">#ffffff</color>
     <color name="zfile_file_title">#000000</color>
     <color name="colorBackground">#f7f7f7</color>
-    <color name="zfile_path_back">#E1E1E1</color>
 
     <color name="title_icon_normal">#ffffff</color>
     <color name="title_icon_pressed">#999999</color>
