@@ -18,7 +18,7 @@ import java.io.File
 internal object ZFileQWUtil {
 
     /**
-     * 显示的标题
+     * 显示的标题 [getQWTitle]
      */
     fun getQWTitle(context: Context): Array<String> {
         val titles = getZFileConfig().qwData.titles
@@ -62,7 +62,8 @@ internal object ZFileQWUtil {
         val qqMap = getZFileConfig().qwData.qqFilePathArrayMap
         if (qqMap.isNullOrEmpty()) {
             val map = ArrayMap<Int, MutableList<String>>()
-            map[ZFILE_QW_PIC] = arrayListOf(QQ_PIC, QQ_PIC_MOVIE)
+            map[ZFILE_QW_PIC] =
+                arrayListOf(QQ_PIC, QQ_PIC_MOVIE, QQ_DOWLOAD1, QQ_DOWLOAD2, QQ_DOWLOAD3)
             map[ZFILE_QW_MEDIA] = arrayListOf(QQ_PIC_MOVIE)
             map[ZFILE_QW_DOCUMENT] = arrayListOf(QQ_DOWLOAD1, QQ_DOWLOAD2, QQ_DOWLOAD3)
             map[ZFILE_QW_OTHER] = arrayListOf(QQ_DOWLOAD1, QQ_DOWLOAD2, QQ_DOWLOAD3)
@@ -79,7 +80,12 @@ internal object ZFileQWUtil {
         if (wechatMap.isNullOrEmpty()) {
             val map = ArrayMap<Int, MutableList<String>>()
             map[ZFILE_QW_PIC] =
-                arrayListOf(WECHAT_FILE_PATH + WECHAT_PHOTO_VIDEO, WECHAT_NEW_PHOTO_VIDEO)
+                arrayListOf(
+                    WECHAT_FILE_PATH + WECHAT_PHOTO_VIDEO,
+                    WECHAT_NEW_PHOTO_VIDEO,
+                    WECHAT_FILE_PATH + WECHAT_DOWLOAD,
+                    WECHAT_NEW_DOWLOAD
+                )
             map[ZFILE_QW_MEDIA] =
                 arrayListOf(WECHAT_FILE_PATH + WECHAT_PHOTO_VIDEO, WECHAT_NEW_PHOTO_VIDEO)
             map[ZFILE_QW_DOCUMENT] =
@@ -92,7 +98,6 @@ internal object ZFileQWUtil {
 
     /**
      * 获取QQ、Wechat文件
-     * @param type              文件类型
      * @param filePathArray     路径
      * @param filterArray       过滤规则
      */

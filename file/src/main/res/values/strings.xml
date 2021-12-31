@@ -68,4 +68,6 @@
     <string name="zfile_rename_success">Rename success</string>
     <string name="zfile_rename_fail">Rename fail</string>
 
+    <string name="zfile_open_file_fail">The file type may not match or the program to open the file type could not be found, and the opening failed</string>
+
 </resources>

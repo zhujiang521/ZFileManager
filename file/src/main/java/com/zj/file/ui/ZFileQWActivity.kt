@@ -17,10 +17,10 @@ import com.zj.file.common.ZFileActivity
 import com.zj.file.content.*
 import com.zj.file.databinding.ActivityZfileQwBinding
 import com.zj.file.ui.viewmodel.ZFileQWViewModel
+import com.zj.file.util.*
 import com.zj.file.util.ZFilePermissionUtil
+import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
-import com.zj.file.util.callStoragePermission
-import com.zj.file.util.showToast
 import kotlin.collections.set
 
 internal class ZFileQWActivity : ZFileActivity() {
@@ -81,17 +81,12 @@ internal class ZFileQWActivity : ZFileActivity() {
 
             override fun createFragment(position: Int): Fragment = list[position]
         }
-        val textArray = arrayOf(
-            R.string.zfile_pic,
-            R.string.zfile_video,
-            R.string.zfile_txt,
-            R.string.zfile_other
-        )
+        val textArray = ZFileQWUtil.getQWTitle(this)
         binding.zfileQwViewPager.adapter = adapter
         TabLayoutMediator(
             binding.zfileQwTabLayout, binding.zfileQwViewPager, true, true
         ) { tab, position ->
-            tab.setText(textArray[position])
+            tab.text = textArray[position]
         }.attach()
     }
 

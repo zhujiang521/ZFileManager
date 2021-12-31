@@ -70,4 +70,6 @@
     <string name="zfile_rename_success">重命名成功</string>
     <string name="zfile_rename_fail">重命名失敗</string>
 
+    <string name="zfile_open_file_fail">文件類型可能不匹配或找不到打開該文件類型的程序，打開失敗</string>
+
 </resources>
