@@ -4,9 +4,9 @@
     <style name="ZFile_BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorAccent">@color/zfile_base_color</item>
-        <item name="colorPrimaryDark">@color/zfile_base_color</item>
-        <item name="colorPrimary">@color/zfile_base_color</item>
+        <item name="colorAccent">@color/zfile_title_bar_color</item>
+        <item name="colorPrimaryDark">@color/zfile_title_bar_color</item>
+        <item name="colorPrimary">@color/zfile_title_bar_color</item>
         <item name="android:windowBackground">@color/zfile_bgcolor</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentTransitions">true</item>

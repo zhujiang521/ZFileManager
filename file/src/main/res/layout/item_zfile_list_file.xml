@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
@@ -31,7 +32,8 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_zfile_quan" />
+                android:src="@drawable/ic_zfile_quan"
+                app:tint="@color/zfile_file_title" />
 
             <CheckBox
                 android:id="@+id/item_zfile_list_file_box1"

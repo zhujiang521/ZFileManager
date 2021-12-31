@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/zfile_base_color">
+        android:background="@color/zfile_title_bar_color">
 
         <ImageView
             android:id="@+id/super_cacelPic"

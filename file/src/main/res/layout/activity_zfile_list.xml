@@ -11,7 +11,7 @@
         android:id="@+id/zfile_list_toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/zfile_base_color"
+        android:background="@color/zfile_title_bar_color"
         app:popupTheme="@style/ZFile_ToolbarPopupTheme"
         app:theme="@style/ZFile_ToolbarTheme"
         app:titleTextAppearance="@style/ZFile_ToolbarTitleTextStyle"

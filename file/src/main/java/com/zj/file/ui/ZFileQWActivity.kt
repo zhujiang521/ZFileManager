@@ -129,7 +129,7 @@ internal class ZFileQWActivity : ZFileActivity() {
                     isManage = false
                     getMenu().isVisible = false
                     setBarTitle(
-                        if (getZFileConfig().filePath!! == ZFileConfiguration.QQ) getString(
+                        if (getZFileConfig().filePath == ZFileConfiguration.QQ) getString(
                             R.string.zfile_qq_title
                         ) else getString(R.string.zfile_we_chart_title)
                     )

@@ -4,7 +4,8 @@
     <color name="zfile_title_text">#e0e0f0</color>
 
     <color name="zfile_white">#ff222433</color>
-    <color name="zfile_base_color">#000000</color>
+    <color name="zfile_base_color">#0386C1</color>
+    <color name="zfile_title_bar_color">#000000</color>
 
     <color name="zfile_gray">#66E0E0F0</color>
     <color name="zfile_title_selected">#CCE0E0F0</color>
