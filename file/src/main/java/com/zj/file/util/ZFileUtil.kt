@@ -77,7 +77,7 @@ internal object ZFileUtil {
             }
             activity.runOnUiThread {
                 dialog.dismiss()
-                activity.showToast(if (isSuccess) "重命名成功" else "重命名失败")
+                activity.showToast(if (isSuccess) R.string.zfile_rename_success else R.string.zfile_rename_fail)
                 block.invoke(isSuccess, newName)
             }
         }

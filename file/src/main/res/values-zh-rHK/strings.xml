@@ -67,4 +67,7 @@
     <string name="zfile_menu_detail">查看詳情</string>
     <string name="zfile_menu_unzip">解壓</string>
 
+    <string name="zfile_rename_success">重命名成功</string>
+    <string name="zfile_rename_fail">重命名失敗</string>
+
 </resources>

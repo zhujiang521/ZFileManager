@@ -65,4 +65,7 @@
     <string name="zfile_menu_detail">File detail</string>
     <string name="zfile_menu_unzip">Unzip</string>
 
+    <string name="zfile_rename_success">Rename success</string>
+    <string name="zfile_rename_fail">Rename fail</string>
+
 </resources>
