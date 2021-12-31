@@ -6,5 +6,5 @@
     android:gravity="center"
     android:textSize="18sp"
     android:textColor="@color/zfile_title_text"
-    android:background="@color/zfile_base_color"
+    android:background="@color/zfile_title_bar_color"
     android:orientation="vertical" />

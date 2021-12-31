@@ -28,6 +28,7 @@ class FragmentSampleActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityFragmentSample2Binding
+    private val list = arrayListOf<Fragment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +40,11 @@ class FragmentSampleActivity : AppCompatActivity() {
     private fun init() {
         binding.fs2.visibility = View.GONE
         binding.fs2Vp.visibility = View.VISIBLE
-        val list = arrayListOf<Fragment>()
-        list.add(BlankFragment())
-        list.add(getZFragment())
-        list.add(BlankFragment())
+        if (list.isNullOrEmpty()) {
+            list.add(BlankFragment())
+            list.add(getZFragment())
+            list.add(BlankFragment())
+        }
         val adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int = list.size
 
@@ -60,12 +62,19 @@ class FragmentSampleActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        (supportFragmentManager.findFragmentByTag(getZFileConfig().fragmentTag) as? ZFileListFragment)?.onBackPressed()
+        if (binding.fs2Vp.currentItem == 1) {
+            val fragment = list[1]
+            (fragment as? ZFileListFragment)?.onBackPressed()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        (supportFragmentManager.findFragmentByTag(getZFileConfig().fragmentTag) as? ZFileListFragment)?.showPermissionDialog()
+        if (binding.fs2Vp.currentItem == 1) {
+            (supportFragmentManager.findFragmentByTag(getZFileConfig().fragmentTag) as? ZFileListFragment)?.showPermissionDialog()
+        }
     }
 
     override fun onDestroy() {
