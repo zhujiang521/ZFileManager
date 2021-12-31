@@ -16,7 +16,7 @@ class App : Application() {
         getZFileHelp()
             .init(MyFileImageListener())
             .setFileTypeListener(MyFileTypeListener())
-        //initQbSdk()
+        initQbSdk()
     }
 
     private fun initQbSdk() {
