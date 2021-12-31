@@ -19,9 +19,9 @@ object Content {
     val FILTER: ArrayMap<Int, Array<String>>
         get() {
             val map = ArrayMap<Int, Array<String>>()
-            map[ZFILE_QW_PIC] = arrayOf(PNG, JPEG, JPG, GIF)
+            map[ZFILE_QW_PIC] = arrayOf(PNG, JPEG, JPG, SVG, GIF)
             map[ZFILE_QW_MEDIA] = arrayOf(MP4, _3GP, "rmvb", "mp3", "aac")
-            map[ZFILE_QW_DOCUMENT] = arrayOf(TXT, JSON, XML, DOC,  XLS,  PPT,  PDF)
+            map[ZFILE_QW_DOCUMENT] = arrayOf(TXT, JSON, XML, DOC, XLS, PPT, PDF)
             map[ZFILE_QW_OTHER] = arrayOf("") // 空表示 其他文件类型
             return map
         }

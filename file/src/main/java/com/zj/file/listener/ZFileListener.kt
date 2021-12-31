@@ -152,7 +152,7 @@ open class ZFileTypeListener {
 
     open fun getFileType(filePath: String): ZFileType {
         return when (ZFileHelp.getFileTypeBySuffix(filePath)) {
-            PNG, JPG, JPEG, GIF -> ImageType()
+            PNG, JPG, JPEG, SVG, GIF -> ImageType()
             MP3, AAC, WAV, M4A -> AudioType()
             MP4, _3GP -> VideoType()
             TXT, XML, JSON -> TxtType()

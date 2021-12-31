@@ -27,6 +27,7 @@ import kotlin.collections.ArrayList
 const val PNG = "png"
 const val JPG = "jpg"
 const val JPEG = "jpeg"
+const val SVG = "svg"
 const val GIF = "gif"
 const val MP3 = "mp3"
 const val AAC = "aac"

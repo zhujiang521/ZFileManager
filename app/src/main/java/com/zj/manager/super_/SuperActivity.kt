@@ -43,7 +43,7 @@ class SuperActivity : AppCompatActivity() {
     private fun initClick() {
         binding.apply {
             superPicTxt.onSafeClick {
-                showDialog(arrayOf(PNG, JPEG, JPG, GIF))
+                showDialog(arrayOf(PNG, JPEG, JPG, SVG, GIF))
             }
 
             superVideoTxt.onSafeClick {

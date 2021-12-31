@@ -43,7 +43,7 @@ internal object ZFileQWUtil {
         val filterMap = getZFileConfig().qwData.filterArrayMap
         if (filterMap.isNullOrEmpty()) {
             val map = ArrayMap<Int, Array<String>>()
-            map[ZFILE_QW_PIC] = arrayOf(PNG, JPEG, JPG, GIF)
+            map[ZFILE_QW_PIC] = arrayOf(PNG, JPEG, JPG, SVG, GIF)
             map[ZFILE_QW_MEDIA] = arrayOf(MP4, _3GP)
             map[ZFILE_QW_DOCUMENT] = arrayOf(TXT, JSON, XML, DOC, DOCX, XLS, XLSX, PPT, PPTX, PDF)
             map[ZFILE_QW_OTHER] = arrayOf("")
@@ -96,7 +96,10 @@ internal object ZFileQWUtil {
      * @param filePathArray     路径
      * @param filterArray       过滤规则
      */
-    fun getQWFileData(filePathArray: MutableList<String>, filterArray: Array<String>): MutableList<ZFileBean> {
+    fun getQWFileData(
+        filePathArray: MutableList<String>,
+        filterArray: Array<String>
+    ): MutableList<ZFileBean> {
         val listArrayList = arrayListOf<File>()
         filePathArray.forEach {
             val file = it.toFile()

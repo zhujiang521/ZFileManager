@@ -24,7 +24,8 @@ internal class ZFileQWFilter(private var filterArray: Array<String>) :
 
     // 匹配其他文件类型
     private fun acceptOther(name: String): Boolean {
-        val isImage = name accept PNG || name accept JPG || name accept JPEG || name accept GIF
+        val isImage =
+            name accept PNG || name accept JPG || name accept JPEG || name accept SVG || name accept GIF
         val isVideo = name accept MP4 || name accept _3GP
         val isAudio = name accept MP3 || name accept AAC || name accept WAV || name accept M4A
         val isTxt = name accept TXT || name accept XML || name accept JSON
