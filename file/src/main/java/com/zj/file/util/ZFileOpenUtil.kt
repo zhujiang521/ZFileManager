@@ -55,35 +55,23 @@ internal object ZFileOpenUtil {
     }
 
     private fun open(filePath: String, type: String, context: Context) {
-        openOtherFile(context, filePath) {
-            // 腾讯TBS打开失败的话尝试调用本地应用
-            try {
-                context.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                    addCategory("android.intent.category.DEFAULT")
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    val contentUri = FileProvider.getUriForFile(
-                        context,
-                        getZFileConfig().authority, File(filePath)
-                    )
-                    setDataAndType(contentUri, type)
-                })
-            } catch (e: Exception) {
-                e.printStackTrace()
-                ZFileLog.e("ZFileConfiguration.authority 未设置？？？")
-                context.showToast(R.string.zfile_open_file_fail)
-            }
-        }
-    }
-
-    fun openOtherFile(context: Context, path: String, failedListener: () -> Unit) {
-        QbSdk.canOpenFile(context, path) { canOpenFile ->
-            if (canOpenFile) {
-                ZFileLog.e("APPApplication", "openOtherFile: canOpenFile:$canOpenFile")
-                openFile(context, path)
-            } else {
-                failedListener()
-            }
+        // 腾讯TBS打开失败的话尝试调用本地应用
+        try {
+            context.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                addCategory("android.intent.category.DEFAULT")
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                val contentUri = FileProvider.getUriForFile(
+                    context,
+                    getZFileConfig().authority, File(filePath)
+                )
+                setDataAndType(contentUri, type)
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ZFileLog.e("ZFileConfiguration.authority 未设置？？？")
+            context.showToast(R.string.zfile_open_file_fail)
+            openFile(context, filePath)
         }
     }
 
