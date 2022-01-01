@@ -10,7 +10,7 @@ import com.zj.file.type.TxtType
 class MyTxtType : TxtType() {
 
     override fun loadingFile(filePath: String, pic: ImageView) {
-        pic.setImageResource(R.drawable.ic_my_txt)
+        pic.setImageResource(R.drawable.ic_zfile_xml)
     }
 
 }

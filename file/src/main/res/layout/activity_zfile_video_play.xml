@@ -8,20 +8,20 @@
         android:id="@+id/video_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:transitionName="@string/zfile_sharedElement_video"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:transitionName="@string/zfile_sharedElement_video" />
 
     <ImageView
         android:id="@+id/video_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:transitionName="@string/zfile_sharedElement_video"/>
+        android:transitionName="@string/zfile_sharedElement_video" />
 
     <ImageView
         android:id="@+id/videoPlayer_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_zfile_audio_play" />
+        android:src="@drawable/zfile_play" />
 
 </FrameLayout>

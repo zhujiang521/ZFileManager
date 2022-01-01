@@ -32,8 +32,7 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_zfile_quan"
-                app:tint="@color/zfile_file_title" />
+                android:src="@drawable/ic_zfile_quan" />
 
             <CheckBox
                 android:id="@+id/item_zfile_list_file_box1"
