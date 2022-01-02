@@ -9,10 +9,6 @@ import com.zj.file.R
 import com.zj.file.content.getFileType
 import com.zj.file.content.getZFileConfig
 import java.io.File
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-
-import androidx.core.content.ContextCompat.startActivity
 
 
 /**
@@ -34,9 +30,6 @@ internal object ZFileOpenUtil {
 
     // pdf
     private const val PDF = "application/pdf"
-
-    // other
-    private const val OTHER = "?"
 
     fun openTXT(filePath: String, view: View) {
         open(filePath, TXT, view.context)
@@ -66,7 +59,12 @@ internal object ZFileOpenUtil {
         // 腾讯TBS打开失败的话尝试调用本地应用
         try {
             context.commonDialog(R.string.zfile_dialog_preview, R.string.zfile_dialog_preview_tip) {
-                openDefaultApp(context, filePath, type)
+                try {
+                    openDefaultApp(context, filePath, type)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    openAppStore(filePath, context)
+                }
             }
         } catch (e: Exception) {
             e.printStackTrace()
