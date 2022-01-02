@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/item_zfile_list_folderPic"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             tools:src="@drawable/ic_zfile_folder" />
 
         <TextView

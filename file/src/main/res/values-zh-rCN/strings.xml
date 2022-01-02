@@ -68,11 +68,12 @@
     <string name="zfile_rename_success">重命名成功</string>
     <string name="zfile_rename_fail">重命名失败</string>
 
-    <string name="zfile_open_file_fail">文件类型可能不匹配或找不到打开该文件类型的程序，打开失败</string>
-
     <string name="zfile_menu_open">打开</string>
     <string name="zfile_menu_selected">请选择</string>
 
-    <string name="zfile_not_support">暂不支持预览该文件</string>
+    <string name="zfile_dialog_preview">文件预览</string>
+    <string name="zfile_dialog_preview_tip">此文件需要打开三方应用进行预览，是否打开默认应用？</string>
+    <string name="zfile_dialog_open_preview_tip">此文件需要打开三方应用进行预览，本地找不到打开该文件类型的程序，是否打开应用商店？</string>
+    <string name="zfile_dialog_no_store">您的手机当前没有安装应用商店</string>
 
 </resources>

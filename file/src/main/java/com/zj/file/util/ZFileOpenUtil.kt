@@ -2,13 +2,18 @@ package com.zj.file.util
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.View
 import androidx.core.content.FileProvider
-import com.tencent.smtt.sdk.QbSdk
 import com.zj.file.R
+import com.zj.file.content.getFileType
 import com.zj.file.content.getZFileConfig
-import com.zj.file.content.isDarkMode
 import java.io.File
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+
+import androidx.core.content.ContextCompat.startActivity
+
 
 /**
  * 文件打开帮助类
@@ -29,6 +34,9 @@ internal object ZFileOpenUtil {
 
     // pdf
     private const val PDF = "application/pdf"
+
+    // other
+    private const val OTHER = "?"
 
     fun openTXT(filePath: String, view: View) {
         open(filePath, TXT, view.context)
@@ -57,39 +65,48 @@ internal object ZFileOpenUtil {
     private fun open(filePath: String, type: String, context: Context) {
         // 腾讯TBS打开失败的话尝试调用本地应用
         try {
-            context.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                addCategory("android.intent.category.DEFAULT")
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                val contentUri = FileProvider.getUriForFile(
-                    context,
-                    getZFileConfig().authority, File(filePath)
-                )
-                setDataAndType(contentUri, type)
-            })
+            context.commonDialog(R.string.zfile_dialog_preview, R.string.zfile_dialog_preview_tip) {
+                openDefaultApp(context, filePath, type)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
             ZFileLog.e("ZFileConfiguration.authority 未设置？？？")
-            context.showToast(R.string.zfile_open_file_fail)
-            openFile(context, filePath)
+            openAppStore(filePath, context)
         }
     }
 
-    private fun openFile(context: Context, path: String) {
-        val params: HashMap<String, String> = HashMap()
-        //“0”表示文件查看器使用默认的UI 样式。“1”表示文件查看器使用微信的UI 样式。不设置此key或设置错误值，则为默认UI 样式。
-        params["style"] = "1"
-        //“true”表示是进入文件查看器，如果不设置或设置为“false”，则进入miniqb 浏览器模式。不是必须设置项
-        params["local"] = "true"
-        //定制文件查看器的顶部栏背景色。格式为“#xxxxxx”，例“#2CFC47”;不设置此key 或设置错误值，则为默认UI 样式。
-        if (context.isDarkMode()) {
-            // 深色模式
-            params["topBarBgColor"] = "#000000"
-        } else {
-            // 浅色模式
-            params["topBarBgColor"] = "#03A9F4"
+    fun openAppStore(filePath: String, context: Context) {
+        context.commonDialog(
+            R.string.zfile_dialog_preview,
+            R.string.zfile_dialog_open_preview_tip
+        ) {
+            val fileType = filePath.getFileType()
+            try {
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse("market://search?q=$fileType")
+                context.startActivity(i)
+            } catch (e: Exception) {
+                context.showToast(R.string.zfile_dialog_no_store)
+                e.printStackTrace()
+            }
         }
-        QbSdk.openFileReader(context, path, params) { }
+    }
+
+    private fun openDefaultApp(
+        context: Context,
+        filePath: String,
+        type: String
+    ) {
+        context.startActivity(Intent(Intent.ACTION_VIEW).apply {
+            addCategory("android.intent.category.DEFAULT")
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            val contentUri = FileProvider.getUriForFile(
+                context,
+                getZFileConfig().authority, File(filePath)
+            )
+            setDataAndType(contentUri, type)
+        })
     }
 
 }

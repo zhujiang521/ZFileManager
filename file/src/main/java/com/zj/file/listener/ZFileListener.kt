@@ -297,7 +297,7 @@ open class ZFileOpenListener {
 
     open fun openOther(filePath: String, view: View) {
         ZFileLog.e("【${filePath.getFileType()}】不支持预览该文件 ---> $filePath")
-        view.showToast(R.string.zfile_not_support)
+        ZFileOpenUtil.openAppStore(filePath, view.context)
     }
 }
 
