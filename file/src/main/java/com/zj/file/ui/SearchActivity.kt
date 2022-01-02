@@ -38,13 +38,9 @@ internal class SearchActivity : ZFileActivity(), View.OnClickListener {
         binding.searchClear.setOnClickListener(this)
         binding.searchCancel.setOnClickListener(this)
         binding.searchEditView.addTextChangedListener(object :TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("Not yet implemented")
-            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(text: Editable?) {
                 if (text == null) return
