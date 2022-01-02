@@ -26,6 +26,6 @@ class ApkType : ZFileType() {
      * @param pic      文件展示的图片
      */
     override fun loadingFile(filePath: String, pic: ImageView) {
-        pic.setImageResource(R.mipmap.ic_launcher_round)
+        pic.setImageResource(R.drawable.ic_zfile_apk)
     }
 }
