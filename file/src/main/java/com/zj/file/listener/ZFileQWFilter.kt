@@ -9,7 +9,7 @@ internal class ZFileQWFilter(private var filterArray: Array<String>) :
 
     override fun accept(file: File): Boolean {
         filterArray.forEach {
-            if (it.isNull()) {
+            if (it.isEmpty()) {
                 if (acceptOther(file.name)) {
                     return true
                 }
@@ -33,7 +33,6 @@ internal class ZFileQWFilter(private var filterArray: Array<String>) :
         val isXLS = name accept XLS || name accept XLSX
         val isPPT = name accept PPT || name accept PPTX
         val isPDF = name accept PDF
-        val isZIP = name accept ZIP
-        return !isImage && !isVideo && !isAudio && !isTxt && !isDOC && !isXLS && !isPPT && !isPDF && !isZIP
+        return !isImage && !isVideo && !isAudio && !isTxt && !isDOC && !isXLS && !isPPT && !isPDF
     }
 }

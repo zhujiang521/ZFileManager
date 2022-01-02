@@ -223,9 +223,15 @@ open class ZFileOpenListener {
      * 打开zip
      */
     open fun openZIP(filePath: String, view: View) {
-        AlertDialog.Builder(view.context).apply {
-            setTitle("请选择")
-            setItems(arrayOf("打开", "解压")) { dialog, which ->
+        val context = view.context
+        AlertDialog.Builder(context, R.style.ZFile_Common_Dialog).apply {
+            setTitle(context.getString(R.string.zfile_menu_selected))
+            setItems(
+                arrayOf(
+                    context.getString(R.string.zfile_menu_open),
+                    context.getString(R.string.zfile_menu_unzip)
+                )
+            ) { dialog, which ->
                 if (which == 0) {
                     ZFileOpenUtil.openZIP(filePath, view)
                 } else {
@@ -233,7 +239,7 @@ open class ZFileOpenListener {
                 }
                 dialog.dismiss()
             }
-            setPositiveButton("取消") { dialog, _ -> dialog.dismiss() }
+            setPositiveButton(R.string.zfile_cancel) { dialog, _ -> dialog.dismiss() }
             show()
         }
     }
@@ -242,7 +248,8 @@ open class ZFileOpenListener {
         val activity = view.context
         if (activity is AppCompatActivity) {
             activity.checkFragmentByTag("ZFileSelectFolderDialog")
-            val dialog = ZFileSelectFolderDialog.newInstance("解压")
+            val dialog =
+                ZFileSelectFolderDialog.newInstance(activity.getString(R.string.zfile_menu_unzip))
             dialog.selectFolder = {
                 getZFileHelp().getFileOperateListener().zipFile(filePath, this, activity) {
                     ZFileLog.i(if (this) "解压成功" else "解压失败")
@@ -290,7 +297,7 @@ open class ZFileOpenListener {
 
     open fun openOther(filePath: String, view: View) {
         ZFileLog.e("【${filePath.getFileType()}】不支持预览该文件 ---> $filePath")
-        view.showToast("暂不支持预览该文件")
+        view.showToast(R.string.zfile_not_support)
     }
 }
 

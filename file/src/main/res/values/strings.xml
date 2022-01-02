@@ -70,4 +70,9 @@
 
     <string name="zfile_open_file_fail">The file type may not match or the program to open the file type could not be found, and the opening failed</string>
 
+    <string name="zfile_menu_open">Open</string>
+    <string name="zfile_menu_selected">Selected</string>
+
+    <string name="zfile_not_support">Previewing the file is not currently supported</string>
+
 </resources>

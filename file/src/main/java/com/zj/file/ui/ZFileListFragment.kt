@@ -366,7 +366,7 @@ class ZFileListFragment : Fragment() {
 
     private fun showSelectDialog(index: Int, item: ZFileBean): Boolean {
         AlertDialog.Builder(mActivity, R.style.ZFile_Common_Dialog).apply {
-            setTitle("请选择")
+            setTitle(getString(R.string.zfile_menu_selected))
             setItems(titleArray) { dialog, which ->
                 jumpByWhich(item, which, index)
                 dialog.dismiss()
@@ -408,17 +408,18 @@ class ZFileListFragment : Fragment() {
                     }
                 }.show(mActivity.supportFragmentManager, FRAGMENT_TAG)
             }
-            getString(R.string.zfile_menu_delete) -> getZFileHelp().getFileOperateListener().deleteFile(
-                item.filePath,
-                mActivity
-            ) {
-                if (this) {
-                    fileListAdapter?.remove(index)
-                    ZFileLog.i("文件删除成功")
-                } else {
-                    ZFileLog.i("文件删除失败")
+            getString(R.string.zfile_menu_delete) -> getZFileHelp().getFileOperateListener()
+                .deleteFile(
+                    item.filePath,
+                    mActivity
+                ) {
+                    if (this) {
+                        fileListAdapter?.remove(index)
+                        ZFileLog.i("文件删除成功")
+                    } else {
+                        ZFileLog.i("文件删除失败")
+                    }
                 }
-            }
             getString(R.string.zfile_menu_detail) -> ZFileUtil.infoFile(item, mActivity)
             else -> throwError("longClickOperateTitles")
         }

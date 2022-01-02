@@ -70,4 +70,9 @@
 
     <string name="zfile_open_file_fail">文件类型可能不匹配或找不到打开该文件类型的程序，打开失败</string>
 
+    <string name="zfile_menu_open">打开</string>
+    <string name="zfile_menu_selected">请选择</string>
+
+    <string name="zfile_not_support">暂不支持预览该文件</string>
+
 </resources>
