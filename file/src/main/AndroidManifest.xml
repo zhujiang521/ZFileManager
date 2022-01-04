@@ -5,14 +5,6 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -20,23 +12,18 @@
     <application>
         <activity
             android:name=".ui.SearchActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFileQWActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFileListActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFilePicActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
         <activity
             android:name=".ui.ZFileVideoPlayActivity"
-            android:configChanges="locale|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/ZFile_BaseTheme" />
     </application>
 
