@@ -2,7 +2,6 @@ package com.zj.file.ui
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -524,26 +523,6 @@ class ZFileListFragment : Fragment() {
                     zFragmentListener?.onExternalStorageManagerFiled(mActivity)
                 }
             })
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == ZFilePermissionUtil.WRITE_EXTERNAL_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) initRV()
-            else {
-                binding?.zfileListErrorLayout?.visibility = View.VISIBLE
-                if (zFragmentListener == null) {
-                    mActivity.showToast(mActivity getStringById R.string.zfile_permission_bad)
-                    mActivity.finish()
-                } else {
-                    zFragmentListener?.onSDPermissionsFiled(mActivity)
-                }
-            }
-        }
     }
 
     private fun setSortSelectId() {

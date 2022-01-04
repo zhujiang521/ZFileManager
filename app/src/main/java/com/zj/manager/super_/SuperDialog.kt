@@ -1,6 +1,5 @@
 package com.zj.manager.super_
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,10 +26,6 @@ class SuperDialog : BottomSheetDialogFragment() {
 
     private var binding: DialogSuperBinding? = null
     private var superAdapter: SuperAdapter? = null
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return FixHeightBottomSheetDialog(requireContext())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

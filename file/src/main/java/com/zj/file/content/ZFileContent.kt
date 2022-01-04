@@ -8,7 +8,6 @@ import android.os.Environment
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.collection.ArrayMap
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -16,7 +15,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.zj.file.R
-import com.zj.file.async.ZFileStipulateAsync
 import com.zj.file.common.ZFileManageDialog
 import com.zj.file.common.ZFileManageHelp
 import com.zj.file.util.ZFileLog
@@ -59,8 +57,7 @@ const val ZFILE_QW_DOCUMENT = 2
 /** 其他 (过滤规则可以使用 "" 代替) */
 const val ZFILE_QW_OTHER = 3
 
-/** onActivityResult requestCode */
-const val ZFILE_REQUEST_CODE = 0x1000
+
 /** onActivityResult resultCode */
 const val ZFILE_RESULT_CODE = 0x1001
 /**
@@ -71,9 +68,6 @@ const val ZFILE_SELECT_DATA_KEY = "ZFILE_SELECT_RESULT_DATA"
 
 fun getZFileHelp() = ZFileManageHelp.getInstance()
 fun getZFileConfig() = getZFileHelp().getConfiguration()
-
-@Deprecated("请使用ZFileStipulateAsync替代")
-typealias ZFileAsyncImpl = ZFileStipulateAsync
 
 // 下面属性、方法暂不对外开放 =======================================================================
 

@@ -1,7 +1,6 @@
 package com.zj.file.ui
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.MenuItem
@@ -17,10 +16,10 @@ import com.zj.file.common.ZFileActivity
 import com.zj.file.content.*
 import com.zj.file.databinding.ActivityZfileQwBinding
 import com.zj.file.ui.viewmodel.ZFileQWViewModel
-import com.zj.file.util.*
-import com.zj.file.util.ZFilePermissionUtil
 import com.zj.file.util.ZFileQWUtil
 import com.zj.file.util.ZFileUtil
+import com.zj.file.util.callStoragePermission
+import com.zj.file.util.showToast
 import kotlin.collections.set
 
 internal class ZFileQWActivity : ZFileActivity() {
@@ -165,21 +164,6 @@ internal class ZFileQWActivity : ZFileActivity() {
             }, cancelPermissionListener = {
                 finish()
             })
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == ZFilePermissionUtil.WRITE_EXTERNAL_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) initAll()
-            else {
-                showToast(getStringById(R.string.zfile_permission_bad))
-                finish()
-            }
-        }
     }
 
     private fun setBarTitle(title: String) {

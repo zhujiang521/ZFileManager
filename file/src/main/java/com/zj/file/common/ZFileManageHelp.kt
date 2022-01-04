@@ -106,9 +106,9 @@ class ZFileManageHelp {
     /**
      * 获取返回的数据
      */
-    fun getSelectData(requestCode: Int, resultCode: Int, data: Intent?): MutableList<ZFileBean>? {
+    fun getSelectData(resultCode: Int, data: Intent?): MutableList<ZFileBean>? {
         var list: MutableList<ZFileBean>? = arrayListOf()
-        if (requestCode == ZFILE_REQUEST_CODE && resultCode == ZFILE_RESULT_CODE) {
+        if (resultCode == ZFILE_RESULT_CODE) {
             list = data?.getParcelableArrayListExtra(ZFILE_SELECT_DATA_KEY)
         }
         return list
@@ -224,7 +224,7 @@ class ZFileManageHelp {
             fragment = ZFileProxyFragment()
             fragmentManager.beginTransaction().add(fragment, ZFileProxyFragment.TAG).commitNow()
         }
-        fragment.jump(ZFILE_REQUEST_CODE, Intent(context, clazz).apply {
+        fragment.jump(Intent(context, clazz).apply {
             putExtra(FILE_START_PATH_KEY, path)
         }, resultListener)
     }
