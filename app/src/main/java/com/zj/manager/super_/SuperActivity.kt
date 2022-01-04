@@ -1,6 +1,6 @@
 package com.zj.manager.super_
 
-import android.app.ProgressDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +10,9 @@ import com.zj.file.content.*
 import com.zj.file.dsl.config
 import com.zj.file.dsl.result
 import com.zj.file.dsl.zfile
+import com.zj.file.util.progressDialog
 import com.zj.file.util.showToast
 import com.zj.manager.JavaSampleActivity
-import com.zj.manager.R
 import com.zj.manager.content.Content
 import com.zj.manager.content.Content.FILTER
 import com.zj.manager.content.Content.QQ_MAP
@@ -24,7 +24,7 @@ import com.zj.manager.fm.FragmentSampleActivity
 class SuperActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySuperBinding
-    private var dialog: ProgressDialog? = null
+    private var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +32,7 @@ class SuperActivity : AppCompatActivity() {
         setAndroidNativeLightStatusBar()
         binding = ActivitySuperBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dialog = ProgressDialog(this).run {
-            setMessage(getString(R.string.zfile_qw_loading))
-            setCancelable(false)
-            this
-        }
+        dialog = progressDialog()
         initClick()
     }
 

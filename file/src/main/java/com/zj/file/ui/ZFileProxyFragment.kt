@@ -1,7 +1,6 @@
 package com.zj.file.ui
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.zj.file.content.getZFileHelp
 import com.zj.file.listener.ZFileSelectResultListener
@@ -13,11 +12,6 @@ internal class ZFileProxyFragment : Fragment() {
     }
 
     private var resultListener: ZFileSelectResultListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
 
     fun jump(requestCode: Int, data: Intent, resultListener: ZFileSelectResultListener) {
         this.resultListener = resultListener

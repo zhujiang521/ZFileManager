@@ -1,20 +1,20 @@
 package com.zj.manager.super_
 
 import android.app.Dialog
-import android.content.Context
-import android.graphics.Point
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import androidx.fragment.app.DialogFragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zj.file.content.ZFileBean
 import com.zj.manager.databinding.DialogSuperBinding
 
 /**
  * 数据已经获取到了，具体怎么操作就交给你了！
  */
-class SuperDialog : DialogFragment() {
+class SuperDialog : BottomSheetDialogFragment() {
 
     companion object {
         fun newInstance(list: ArrayList<ZFileBean>) = SuperDialog().apply {
@@ -28,6 +28,10 @@ class SuperDialog : DialogFragment() {
     private var binding: DialogSuperBinding? = null
     private var superAdapter: SuperAdapter? = null
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return FixHeightBottomSheetDialog(requireContext())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,11 +40,6 @@ class SuperDialog : DialogFragment() {
         binding = DialogSuperBinding.inflate(inflater, container, false)
         return binding?.root
     }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?) =
-        Dialog(requireContext(), com.zj.file.R.style.Zfile_Select_Folder_Dialog).apply {
-            window?.setGravity(Gravity.BOTTOM)
-        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.i("ZFileManager", "数据已经获取到了，具体怎么操作就交给你了！")
@@ -56,20 +55,6 @@ class SuperDialog : DialogFragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = superAdapter
         }
-    }
-
-    override fun onStart() {
-        val display = requireContext().getTDisplay()
-        dialog?.window?.setLayout(display[0], display[1])
-        super.onStart()
-    }
-
-    private fun Context.getTDisplay() = IntArray(2).apply {
-        val manager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val point = Point()
-        manager.defaultDisplay.getSize(point)
-        this[0] = point.x
-        this[1] = point.y
     }
 
 }
