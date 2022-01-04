@@ -1,7 +1,8 @@
 package com.zj.manager;
 
+import static com.zj.file.content.ZFileContentKt.ZFILE_DEFAULT;
+
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.zj.file.common.ZFileManageHelp;
 import com.zj.file.content.ZFileBean;
 import com.zj.file.content.ZFileConfiguration;
-import com.zj.file.listener.ZFileSelectResultListener;
 import com.zj.manager.content.Content;
-
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-
-import static com.zj.file.content.ZFileContentKt.ZFILE_DEFAULT;
 
 
 public class JavaSampleActivity extends AppCompatActivity {
@@ -40,26 +34,18 @@ public class JavaSampleActivity extends AppCompatActivity {
                 .build();
         resultTxt = findViewById(R.id.main_resultTxt);
 
-        findViewById(R.id.java_startBtn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ZFileManageHelp.getInstance()
-                        .setConfiguration(configuration)
-                        .start(JavaSampleActivity.this, new ZFileSelectResultListener() {
-                            @Override
-                            public void selectResult(@Nullable List<ZFileBean> selectList) {
-                                if (selectList == null || selectList.size() <= 0) {
-                                    return;
-                                }
-                                StringBuilder sb = new StringBuilder();
-                                for (ZFileBean bean : selectList) {
-                                    sb.append(bean.toString()).append("\n\n");
-                                }
-                                resultTxt.setText(sb.toString());
-                            }
-                        });
-            }
-        });
+        findViewById(R.id.java_startBtn).setOnClickListener(v -> ZFileManageHelp.getInstance()
+                .setConfiguration(configuration)
+                .start(JavaSampleActivity.this, selectList -> {
+                    if (selectList == null || selectList.size() <= 0) {
+                        return;
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    for (ZFileBean bean : selectList) {
+                        sb.append(bean.toString()).append("\n\n");
+                    }
+                    resultTxt.setText(sb.toString());
+                }));
     }
 
 }
