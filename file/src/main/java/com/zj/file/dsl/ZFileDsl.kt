@@ -7,6 +7,7 @@ import com.zj.file.content.ZFileBean
 import com.zj.file.content.ZFileConfiguration
 import com.zj.file.content.getZFileHelp
 import com.zj.file.listener.*
+import com.zj.file.util.ZFileLog
 
 fun FragmentActivity.zfile(block: ZFileDsl.() -> Unit) {
     zfile(this, block)
@@ -75,6 +76,7 @@ fun ZFileDsl.result(block: MutableList<ZFileBean>?.() -> Unit) {
 fun ZFileManageHelp.result(fragmentOrActivity: Any, block: MutableList<ZFileBean>?.() -> Unit) {
     start(fragmentOrActivity, object : ZFileSelectResultListener {
         override fun selectResult(selectList: MutableList<ZFileBean>?) {
+            ZFileLog.e("selectResult：$selectList")
             block.invoke(selectList)
         }
     })

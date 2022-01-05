@@ -15,6 +15,7 @@ import com.zj.file.listener.ZFileDefaultLoadListener
 import com.zj.file.ui.ZFileListActivity
 import com.zj.file.ui.ZFileProxyFragment
 import com.zj.file.ui.ZFileQWActivity
+import com.zj.file.util.ZFileLog
 
 class ZFileManageHelp {
 
@@ -218,9 +219,14 @@ class ZFileManageHelp {
         path: String?,
         resultListener: ZFileSelectResultListener
     ) {
+        ZFileLog.e("addFragment:添加")
         var fragment =
             fragmentManager.findFragmentByTag(ZFileProxyFragment.TAG) as? ZFileProxyFragment
-        if (fragment == null) {
+        if (fragment?.isAdded == true) {
+            ZFileLog.e("addFragment:存在无需添加")
+            return
+        } else {
+            ZFileLog.e("addFragment:没有新添加")
             fragment = ZFileProxyFragment()
             fragmentManager.beginTransaction().add(fragment, ZFileProxyFragment.TAG).commitNow()
         }

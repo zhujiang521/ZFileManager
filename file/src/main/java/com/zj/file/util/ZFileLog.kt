@@ -10,7 +10,7 @@ import com.zj.file.content.getZFileConfig
  *
  * [canLogUserVersion] 是否为user版本
  */
-internal object ZFileLog {
+object ZFileLog {
 
     const val APP_TAG = LOG_TAG
 
