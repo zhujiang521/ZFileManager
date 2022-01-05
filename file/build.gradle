@@ -57,6 +57,7 @@ dependencies {
     implementation des.appcompat
     implementation des.material
     implementation des.activity_ktx
+    implementation des.fragment_ktx
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.airbnb.android:lottie:4.2.2'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'

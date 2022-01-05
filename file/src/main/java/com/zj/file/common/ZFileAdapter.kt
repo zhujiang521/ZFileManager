@@ -10,7 +10,7 @@ import com.zj.file.content.ZFileException
 import com.zj.file.util.ZFileLog
 import java.util.LinkedHashSet
 
-internal abstract class ZFileAdapter<T>(protected var context: Context) : RecyclerView.Adapter<ZFileViewHolder>() {
+abstract class ZFileAdapter<T>(protected var context: Context) : RecyclerView.Adapter<ZFileViewHolder>() {
 
     constructor(context: Context, layoutID: Int) : this(context) {
         this.layoutID = layoutID

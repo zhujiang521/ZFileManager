@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.zj.file.R
@@ -25,6 +26,7 @@ import com.zj.file.listener.ZFragmentListener
 import com.zj.file.ui.adapter.ZFileListAdapter
 import com.zj.file.ui.dialog.ZFileSelectFolderDialog
 import com.zj.file.ui.dialog.ZFileSortDialog
+import com.zj.file.ui.viewmodel.ZFlieListViewModel
 import com.zj.file.util.*
 import java.io.File
 
@@ -40,21 +42,7 @@ import java.io.File
 class ZFileListFragment : Fragment() {
 
     private lateinit var mActivity: FragmentActivity
-
-    private var isFirstLoad = true
-
-    private var toManagerPermissionPage = false
-
-    private var barShow = false
-    private lateinit var filePathAdapter: ZFileAdapter<ZFilePathBean>
-    private var fileListAdapter: ZFileListAdapter? = null
-
-    private var index = 0
-    private var rootPath = "" // 根目录
-    private var specifyPath: String? = "" // 指定目录
-    private var nowPath: String? = "" // 当前目录
-
-    private var hasPermission = false
+    private val mViewModel by viewModels<ZFlieListViewModel>()
 
     var zFragmentListener: ZFragmentListener? = null
     private var binding: ActivityZfileListBinding? = null
@@ -80,15 +68,12 @@ class ZFileListFragment : Fragment() {
         } else getZFileConfig().longClickOperateTitles
     }
 
-    private val backList by lazy {
-        ArrayList<String>()
-    }
-
     private var sortSelectId = R.id.zfile_sort_by_default // 排序方式选中的ID
     private var sequenceSelectId = R.id.zfile_sequence_asc // 顺序选中的ID
 
     /** 返回当前的路径 */
-    private fun getThisFilePath() = if (backList.isEmpty()) null else backList[backList.size - 1]
+    private fun getThisFilePath() =
+        if (mViewModel.backList.isEmpty()) null else mViewModel.backList[mViewModel.backList.size - 1]
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -136,9 +121,9 @@ class ZFileListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (getZFileConfig().needLazy) {
-            if (isFirstLoad) {
+            if (mViewModel.isFirstLoad) {
                 initAll()
-                isFirstLoad = false
+                mViewModel.isFirstLoad = false
             }
         }
     }
@@ -148,18 +133,18 @@ class ZFileListFragment : Fragment() {
      * 请在 Activity 中的 onResume 中调用该方法
      */
     fun showPermissionDialog() {
-        if (toManagerPermissionPage) {
-            toManagerPermissionPage = false
+        if (mViewModel.toManagerPermissionPage) {
+            mViewModel.toManagerPermissionPage = false
             callPermission()
         }
     }
 
     private fun setMenuState() {
         binding?.zfileListToolBar?.menu?.apply {
-            findItem(R.id.menu_zfile_down).isVisible = barShow
-            findItem(R.id.menu_zfile_px).isVisible = !barShow
-            findItem(R.id.menu_zfile_show).isVisible = !barShow
-            findItem(R.id.menu_zfile_hidden).isVisible = !barShow
+            findItem(R.id.menu_zfile_down).isVisible = mViewModel.barShow
+            findItem(R.id.menu_zfile_px).isVisible = !mViewModel.barShow
+            findItem(R.id.menu_zfile_show).isVisible = !mViewModel.barShow
+            findItem(R.id.menu_zfile_hidden).isVisible = !mViewModel.barShow
         }
     }
 
@@ -171,11 +156,11 @@ class ZFileListFragment : Fragment() {
                 activity?.overridePendingTransition(R.anim.search_push_in, R.anim.fake_anim)
             }
             R.id.menu_zfile_down -> {
-                val list = fileListAdapter?.selectData
+                val list = mViewModel.fileListAdapter?.selectData
                 if (list.isNullOrEmpty()) {
                     setBarTitle(mActivity getStringById R.string.zfile_title)
-                    fileListAdapter?.isManage = false
-                    barShow = false
+                    mViewModel.fileListAdapter?.isManage = false
+                    mViewModel.barShow = false
                     setMenuState()
                 } else {
                     if (zFragmentListener == null) {
@@ -195,12 +180,12 @@ class ZFileListFragment : Fragment() {
             R.id.menu_zfile_show -> {
                 menu.isChecked = true
                 getZFileConfig().showHiddenFile = true
-                getData(nowPath)
+                getData(mViewModel.nowPath)
             }
             R.id.menu_zfile_hidden -> {
                 menu.isChecked = true
                 getZFileConfig().showHiddenFile = false
-                getData(nowPath)
+                getData(mViewModel.nowPath)
             }
         }
         return true
@@ -208,11 +193,18 @@ class ZFileListFragment : Fragment() {
 
     private fun initAll() {
         setSortSelectId()
-        specifyPath = arguments?.getString(FILE_START_PATH_KEY)
-        getZFileConfig().filePath = specifyPath
-        rootPath = specifyPath ?: ""
-        backList.add(rootPath)
-        nowPath = rootPath
+        ZFileLog.e("????nowPath:${mViewModel.nowPath}")
+        if (mViewModel.nowPath == "" || mViewModel.nowPath.isNullOrEmpty()) {
+            mViewModel.specifyPath = arguments?.getString(FILE_START_PATH_KEY)
+        } else {
+            mViewModel.specifyPath = mViewModel.nowPath
+        }
+        ZFileLog.e("specifyPath:${mViewModel.specifyPath}")
+        getZFileConfig().filePath = mViewModel.specifyPath
+        mViewModel.rootPath = mViewModel.specifyPath ?: ""
+        mViewModel.backList.add(mViewModel.rootPath)
+        mViewModel.nowPath = mViewModel.rootPath
+        ZFileLog.e("nowPath:${mViewModel.nowPath}")
         binding?.zfileListToolBar?.apply {
             if (getZFileConfig().showBackIcon) setNavigationIcon(R.drawable.zfile_back) else navigationIcon =
                 null
@@ -229,17 +221,17 @@ class ZFileListFragment : Fragment() {
     }
 
     private fun initRV() {
-        hasPermission = true
+        mViewModel.hasPermission = true
         binding?.zfileListErrorLayout?.visibility = View.GONE
         binding?.zfileListRefreshLayout?.property {
-            getData(nowPath)
+            getData(mViewModel.nowPath)
         }
         initPathRecyclerView()
         initListRecyclerView()
     }
 
     private fun initPathRecyclerView() {
-        filePathAdapter =
+        mViewModel.filePathAdapter =
             object : ZFileAdapter<ZFilePathBean>(mActivity, R.layout.item_zfile_path) {
                 override fun bindView(holder: ZFileViewHolder, item: ZFilePathBean, position: Int) {
                     holder.setText(R.id.item_zfile_path_title, item.fileName)
@@ -264,7 +256,7 @@ class ZFileListFragment : Fragment() {
                 orientation = LinearLayoutManager.HORIZONTAL
                 this
             }
-            adapter = filePathAdapter
+            adapter = mViewModel.filePathAdapter
         }
         getPathData()
     }
@@ -282,25 +274,29 @@ class ZFileListFragment : Fragment() {
                 )
             )
         }
-        filePathAdapter.addAll(pathList)
+        mViewModel.filePathAdapter.addAll(pathList)
     }
 
     private fun initListRecyclerView() {
-        fileListAdapter = ZFileListAdapter(mActivity).run {
+        mViewModel.fileListAdapter = ZFileListAdapter(mActivity).run {
             itemClick = { v, _, item ->
                 if (item.isFile) {
                     ZFileUtil.openFile(item.filePath, v)
                 } else {
                     ZFileLog.i("进入 ${item.filePath}")
-                    backList.add(item.filePath)
-                    filePathAdapter.addItem(filePathAdapter.itemCount, item.toPathBean())
-                    binding?.zfileListPathRecyclerView?.scrollToPosition(filePathAdapter.itemCount - 1)
+                    mViewModel.backList.add(item.filePath)
+                    mViewModel.filePathAdapter.addItem(
+                        mViewModel.filePathAdapter.itemCount,
+                        item.toPathBean()
+                    )
+                    binding?.zfileListPathRecyclerView?.scrollToPosition(mViewModel.filePathAdapter.itemCount - 1)
                     getData(item.filePath)
-                    nowPath = item.filePath
+                    mViewModel.nowPath = item.filePath
+                    ZFileLog.e("设置nowPath：${mViewModel.nowPath}")
                 }
             }
             itemLongClick = { _, index, item ->
-                if (fileListAdapter?.isManage == true) {
+                if (mViewModel.fileListAdapter?.isManage == true) {
                     false
                 } else {
                     if (getZFileConfig().needLongClick) {
@@ -317,10 +313,10 @@ class ZFileListFragment : Fragment() {
             }
             changeListener = { isManage, size ->
                 if (isManage) {
-                    if (barShow) {
+                    if (mViewModel.barShow) {
                         setBarTitle(getString(R.string.zfile_selected_title, size))
                     } else {
-                        barShow = true
+                        mViewModel.barShow = true
                         setBarTitle(getString(R.string.zfile_selected_title, 0))
                         setMenuState()
                     }
@@ -330,33 +326,36 @@ class ZFileListFragment : Fragment() {
         }
         binding?.zfileListListRecyclerView?.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = fileListAdapter
+            adapter = mViewModel.fileListAdapter
         }
         getData(getZFileConfig().filePath)
-        index++
+        mViewModel.index++
     }
 
     private fun getData(filePath: String?) {
-        if (!hasPermission) {
+        if (!mViewModel.hasPermission) {
             ZFileLog.e("no permission")
             return
         }
         binding?.zfileListRefreshLayout?.isRefreshing = true
         val key = if (filePath.isNullOrEmpty()) SD_ROOT else filePath
-        if (rootPath.isEmpty()) {
-            rootPath = key
+        if (mViewModel.rootPath.isEmpty()) {
+            mViewModel.rootPath = key
         }
         getZFileConfig().filePath = filePath
-        if (index != 0) {
-            filePathAdapter.addItem(filePathAdapter.itemCount, File(key).toPathBean())
-            binding?.zfileListPathRecyclerView?.scrollToPosition(filePathAdapter.itemCount - 1)
+        if (mViewModel.index != 0) {
+            mViewModel.filePathAdapter.addItem(
+                mViewModel.filePathAdapter.itemCount,
+                File(key).toPathBean()
+            )
+            binding?.zfileListPathRecyclerView?.scrollToPosition(mViewModel.filePathAdapter.itemCount - 1)
         }
         ZFileUtil.getList(mActivity) {
             if (isNullOrEmpty()) {
-                fileListAdapter?.clear()
+                mViewModel.fileListAdapter?.clear()
                 binding?.zfileListEmptyLayout?.visibility = View.VISIBLE
             } else {
-                fileListAdapter?.setDatas(this)
+                mViewModel.fileListAdapter?.setDatas(this)
                 binding?.zfileListEmptyLayout?.visibility = View.GONE
             }
             binding?.zfileListRefreshLayout?.isRefreshing = false
@@ -391,11 +390,11 @@ class ZFileListFragment : Fragment() {
                             val oldPath =
                                 oldFile.path.substring(0, oldFile.path.lastIndexOf("/") + 1)
                             val newFilePath = "$oldPath$newName.$oldFileType"
-                            fileListAdapter?.getItem(index)?.apply {
+                            mViewModel.fileListAdapter?.getItem(index)?.apply {
                                 filePath = newFilePath
                                 fileName = "$newName.$oldFileType"
                             }
-                            fileListAdapter?.notifyItemChanged(index)
+                            mViewModel.fileListAdapter?.notifyItemChanged(index)
                         }
                     }
             }
@@ -413,7 +412,7 @@ class ZFileListFragment : Fragment() {
                     mActivity
                 ) {
                     if (this) {
-                        fileListAdapter?.remove(index)
+                        mViewModel.fileListAdapter?.remove(index)
                         ZFileLog.i("文件删除成功")
                     } else {
                         ZFileLog.i("文件删除失败")
@@ -437,7 +436,7 @@ class ZFileListFragment : Fragment() {
         } else { // 移动文件
             getZFileHelp().getFileOperateListener().moveFile(item.filePath, targetPath, mActivity) {
                 if (this) {
-                    fileListAdapter?.remove(position)
+                    mViewModel.fileListAdapter?.remove(position)
                     ZFileLog.i("文件移动成功")
                 } else {
                     ZFileLog.e("文件移动失败")
@@ -469,7 +468,7 @@ class ZFileListFragment : Fragment() {
                     sortordBy = sortordByWhat
                     this.sortord = sortord
                 }
-                getData(nowPath)
+                getData(mViewModel.nowPath)
             }
         }.show(mActivity.supportFragmentManager, tag)
     }
@@ -484,11 +483,11 @@ class ZFileListFragment : Fragment() {
 
     private fun back() {
         val path = getThisFilePath()
-        if (path == rootPath || path.isNullOrEmpty()) { // 根目录
-            if (barShow) {  // 存在编辑状态
+        if (path == mViewModel.rootPath || path.isNullOrEmpty()) { // 根目录
+            if (mViewModel.barShow) {  // 存在编辑状态
                 setBarTitle(mActivity getStringById R.string.zfile_title)
-                fileListAdapter?.isManage = false
-                barShow = false
+                mViewModel.fileListAdapter?.isManage = false
+                mViewModel.barShow = false
                 setMenuState()
             } else {
                 if (zFragmentListener == null) {
@@ -499,12 +498,13 @@ class ZFileListFragment : Fragment() {
             }
         } else { // 返回上一级
             // 先清除当前一级的数据
-            backList.removeAt(backList.size - 1)
+            mViewModel.backList.removeAt(mViewModel.backList.size - 1)
             val lastPath = getThisFilePath()
             getData(lastPath)
-            nowPath = lastPath
-            filePathAdapter.remove(filePathAdapter.itemCount - 1)
-            binding?.zfileListPathRecyclerView?.scrollToPosition(filePathAdapter.itemCount - 1)
+            mViewModel.nowPath = lastPath
+            ZFileLog.e("!!!!nowPath:${mViewModel.nowPath}")
+            mViewModel.filePathAdapter.remove(mViewModel.filePathAdapter.itemCount - 1)
+            binding?.zfileListPathRecyclerView?.scrollToPosition(mViewModel.filePathAdapter.itemCount - 1)
         }
     }
 
@@ -514,7 +514,7 @@ class ZFileListFragment : Fragment() {
                 initRV()
                 binding?.zfileListErrorLayout?.isVisible = !it
             }, noPermissionListener = {
-                toManagerPermissionPage = true
+                mViewModel.toManagerPermissionPage = true
             }, cancelPermissionListener = {
                 if (zFragmentListener == null) {
                     mActivity.showToast(mActivity getStringById R.string.zfile_11_bad)
@@ -552,7 +552,7 @@ class ZFileListFragment : Fragment() {
     }
 
     fun observer(isSuccess: Boolean) {
-        if (isSuccess) getData(nowPath)
+        if (isSuccess) getData(mViewModel.nowPath)
     }
 
     private fun setBarTitle(title: String) {
@@ -567,14 +567,6 @@ class ZFileListFragment : Fragment() {
                 binding?.zfileListCenterTitle?.text = title
             }
         }
-    }
-
-    override fun onDestroy() {
-        ZFileUtil.resetAll()
-        super.onDestroy()
-        fileListAdapter?.reset()
-        backList.clear()
-        zFragmentListener = null
     }
 
 }

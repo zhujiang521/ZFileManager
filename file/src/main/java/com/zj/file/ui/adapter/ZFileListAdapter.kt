@@ -9,7 +9,7 @@ import com.zj.file.common.ZFileViewHolder
 import com.zj.file.content.*
 import com.zj.file.util.showToast
 
-internal class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(context) {
+class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(context) {
 
     internal constructor(context: Context, isQW: Boolean) : this(context) {
         this.isQW = isQW

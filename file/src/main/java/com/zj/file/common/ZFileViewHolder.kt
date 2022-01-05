@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zj.file.content.getColorById
 
 @Suppress("UNCHECKED_CAST")
-internal class ZFileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ZFileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private var array: SparseArray<View> = SparseArray()
 

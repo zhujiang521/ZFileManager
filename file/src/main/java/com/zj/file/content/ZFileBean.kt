@@ -22,7 +22,7 @@ internal data class ZFileInfoBean(
         var height: String = ""
 )
 
-internal data class ZFilePathBean(
+data class ZFilePathBean(
         var fileName: String = "", // 路径名称
         var filePath: String = "" // 文件路径
 )

@@ -51,7 +51,7 @@ internal class ZFileListActivity : ZFileActivity() {
             setResult(ZFILE_RESULT_CODE, Intent().apply {
                 putParcelableArrayListExtra(
                     ZFILE_SELECT_DATA_KEY,
-                    selectList as java.util.ArrayList<out Parcelable>
+                    selectList as ArrayList<out Parcelable>
                 )
             })
             finish()
