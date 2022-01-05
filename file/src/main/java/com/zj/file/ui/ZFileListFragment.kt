@@ -354,7 +354,7 @@ class ZFileListFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             adapter = mViewModel.fileListAdapter
         }
-        getData(getZFileConfig().filePath)
+        getData(mViewModel.nowPath)
         mViewModel.index++
     }
 
