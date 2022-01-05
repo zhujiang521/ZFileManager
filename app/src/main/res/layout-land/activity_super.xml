@@ -243,12 +243,6 @@
 
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/super_resultTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp" />
-
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

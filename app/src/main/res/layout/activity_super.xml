@@ -258,13 +258,6 @@
 
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/super_resultTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/title_tv_cancel_text_color"
-            android:padding="20dp" />
-
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

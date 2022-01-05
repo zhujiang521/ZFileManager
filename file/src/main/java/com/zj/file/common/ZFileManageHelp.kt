@@ -224,7 +224,6 @@ class ZFileManageHelp {
             fragmentManager.findFragmentByTag(ZFileProxyFragment.TAG) as? ZFileProxyFragment
         if (fragment?.isAdded == true) {
             ZFileLog.e("addFragment:存在无需添加")
-            return
         } else {
             ZFileLog.e("addFragment:没有新添加")
             fragment = ZFileProxyFragment()

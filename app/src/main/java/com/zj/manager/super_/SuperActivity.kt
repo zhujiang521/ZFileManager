@@ -97,7 +97,8 @@ class SuperActivity : AppCompatActivity() {
                             authority = Content.AUTHORITY
                         }
                     }
-                    result { setResultData(this) }
+                    result {
+                        setResultData(this) }
                 }
             }
         }
@@ -169,7 +170,7 @@ class SuperActivity : AppCompatActivity() {
         list?.forEach {
             sb.append(it).append("\n\n")
         }
-        binding.superResultTxt.text = sb.toString()
+        showToast(sb.toString())
     }
 
     override fun onDestroy() {
