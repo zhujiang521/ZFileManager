@@ -26,6 +26,8 @@ class ZFlieListViewModel : ViewModel() {
         ArrayList<String>()
     }
 
+    val pathList = ArrayList<ZFilePathBean>()
+
     init {
         ZFileLog.e("ZFlieListViewModel:onCreate")
     }

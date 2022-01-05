@@ -115,19 +115,18 @@ class ZFileListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        if (!getZFileConfig().needLazy) {
-//            initAll()
-//        }
-        initAll()
+        if (!getZFileConfig().needLazy) {
+            initAll()
+        }
     }
 
     override fun onResume() {
         super.onResume()
         if (getZFileConfig().needLazy) {
-//            if (isFirstLoad) {
-//                initAll()
-//                isFirstLoad = false
-//            }
+            if (isFirstLoad) {
+                initAll()
+                isFirstLoad = false
+            }
         }
     }
 
@@ -269,21 +268,31 @@ class ZFileListFragment : Fragment() {
     }
 
     private fun getPathData() {
+        ZFileLog.e("pathList:${mViewModel.pathList}")
+        if (mViewModel.pathList.size > 0) {
+            ZFileLog.e("进来了，之前有pathList:${mViewModel.pathList}")
+            mViewModel.filePathAdapter.setDatas(mViewModel.pathList)
+            return
+        }
         val filePath = getZFileConfig().filePath
-        val pathList = ArrayList<ZFilePathBean>()
         ZFileLog.e("filePath:$filePath")
-        ZFileLog.e("pathList:$pathList")
+        ZFileLog.e("pathList:${mViewModel.pathList}")
         if (filePath.isNullOrEmpty() || filePath == SD_ROOT) {
-            pathList.add(ZFilePathBean(mActivity getStringById R.string.zfile_root_path, "root"))
+            mViewModel.pathList.add(
+                ZFilePathBean(
+                    mActivity getStringById R.string.zfile_root_path,
+                    "root"
+                )
+            )
         } else {
-            pathList.add(
+            mViewModel.pathList.add(
                 ZFilePathBean(
                     "${mActivity getStringById R.string.zfile_path}${filePath.getFileName()}",
                     filePath
                 )
             )
         }
-        mViewModel.filePathAdapter.addAll(pathList)
+        mViewModel.filePathAdapter.addAll(mViewModel.pathList)
     }
 
     private fun initListRecyclerView() {
@@ -294,6 +303,12 @@ class ZFileListFragment : Fragment() {
                 } else {
                     ZFileLog.i("进入 ${item.filePath}")
                     mViewModel.backList.add(item.filePath)
+                    mViewModel.pathList.add(
+                        ZFilePathBean(
+                            item.filePath.getFileName(),
+                            item.filePath
+                        )
+                    )
                     mViewModel.filePathAdapter.addItem(
                         mViewModel.filePathAdapter.itemCount,
                         item.toPathBean()
@@ -510,6 +525,7 @@ class ZFileListFragment : Fragment() {
         } else { // 返回上一级
             // 先清除当前一级的数据
             mViewModel.backList.removeAt(mViewModel.backList.size - 1)
+            mViewModel.pathList.removeAt(mViewModel.pathList.size - 1)
             val lastPath = getThisFilePath()
             getData(lastPath)
             mViewModel.nowPath = lastPath
