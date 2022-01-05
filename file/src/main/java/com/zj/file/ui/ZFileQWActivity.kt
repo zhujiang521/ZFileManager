@@ -6,7 +6,6 @@ import android.os.Parcelable
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
-import androidx.collection.ArrayMap
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -17,7 +16,6 @@ import com.zj.file.content.*
 import com.zj.file.databinding.ActivityZfileQwBinding
 import com.zj.file.ui.viewmodel.ZFileQWViewModel
 import com.zj.file.util.ZFileQWUtil
-import com.zj.file.util.ZFileUtil
 import com.zj.file.util.callStoragePermission
 import com.zj.file.util.showToast
 import kotlin.collections.set
@@ -26,16 +24,6 @@ internal class ZFileQWActivity : ZFileActivity() {
 
     private lateinit var binding: ActivityZfileQwBinding
     private val mViewModel by viewModels<ZFileQWViewModel>()
-
-    private var toManagerPermissionPage = false
-    private val list = ArrayList<Fragment>()
-    private lateinit var adapter: FragmentStateAdapter
-
-    private val selectArray by lazy {
-        ArrayMap<String, ZFileBean>()
-    }
-
-    private var isManage = false
 
     override fun getContentView(): View {
         binding = ActivityZfileQwBinding.inflate(layoutInflater)
@@ -62,26 +50,51 @@ internal class ZFileQWActivity : ZFileActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        binding.zfileQwViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.zfileQwViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                getVPFragment(position)?.setManager(isManage)
+                getVPFragment(position)?.setManager(mViewModel.isManage)
             }
         })
         val type = mViewModel.type ?: ZFileConfiguration.QQ
-        if (list.isNullOrEmpty()) {
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_PIC, isManage))
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_MEDIA, isManage))
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_DOCUMENT, isManage))
-            list.add(ZFileQWFragment.newInstance(type, ZFILE_QW_OTHER, isManage))
+        if (mViewModel.list.isNullOrEmpty()) {
+            mViewModel.list.add(
+                ZFileQWFragment.newInstance(
+                    type,
+                    ZFILE_QW_PIC,
+                    mViewModel.isManage
+                )
+            )
+            mViewModel.list.add(
+                ZFileQWFragment.newInstance(
+                    type,
+                    ZFILE_QW_MEDIA,
+                    mViewModel.isManage
+                )
+            )
+            mViewModel.list.add(
+                ZFileQWFragment.newInstance(
+                    type,
+                    ZFILE_QW_DOCUMENT,
+                    mViewModel.isManage
+                )
+            )
+            mViewModel.list.add(
+                ZFileQWFragment.newInstance(
+                    type,
+                    ZFILE_QW_OTHER,
+                    mViewModel.isManage
+                )
+            )
         }
-        adapter = object : FragmentStateAdapter(this) {
-            override fun getItemCount(): Int = list.size
+        mViewModel.adapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int = mViewModel.list.size
 
-            override fun createFragment(position: Int): Fragment = list[position]
+            override fun createFragment(position: Int): Fragment = mViewModel.list[position]
         }
         val textArray = ZFileQWUtil.getQWTitle(this)
-        binding.zfileQwViewPager.adapter = adapter
+        binding.zfileQwViewPager.adapter = mViewModel.adapter
         TabLayoutMediator(
             binding.zfileQwTabLayout, binding.zfileQwViewPager, true, true
         ) { tab, position ->
@@ -92,20 +105,20 @@ internal class ZFileQWActivity : ZFileActivity() {
     fun observer(bean: ZFileQWBean) {
         val item = bean.zFileBean!!
         if (bean.isSelected) {
-            val size = selectArray.size
+            val size = mViewModel.selectArray.size
             if (size >= getZFileConfig().maxLength) {
                 showToast(getZFileConfig().maxLengthStr)
                 getVPFragment(binding.zfileQwViewPager.currentItem)?.removeLastSelectData(bean.zFileBean)
             } else {
-                selectArray[item.filePath] = item
+                mViewModel.selectArray[item.filePath] = item
             }
         } else {
-            if (selectArray.contains(item.filePath)) {
-                selectArray.remove(item.filePath)
+            if (mViewModel.selectArray.contains(item.filePath)) {
+                mViewModel.selectArray.remove(item.filePath)
             }
         }
-        setBarTitle(getString(R.string.zfile_selected_title, selectArray.size))
-        isManage = true
+        setBarTitle(getString(R.string.zfile_selected_title, mViewModel.selectArray.size))
+        mViewModel.isManage = true
         getMenu().isVisible = true
     }
 
@@ -114,13 +127,13 @@ internal class ZFileQWActivity : ZFileActivity() {
     private fun menuItemClick(menu: MenuItem?): Boolean {
         when (menu?.itemId) {
             R.id.menu_zfile_qw_down -> {
-                if (selectArray.isNullOrEmpty()) {
-                    list.indices.forEach {
+                if (mViewModel.selectArray.isNullOrEmpty()) {
+                    mViewModel.list.indices.forEach {
                         getVPFragment(it)?.apply {
                             resetAll()
                         }
                     }
-                    isManage = false
+                    mViewModel.isManage = false
                     getMenu().isVisible = false
                     setBarTitle(
                         if (getZFileConfig().filePath == ZFileConfiguration.QQ) getString(
@@ -131,7 +144,7 @@ internal class ZFileQWActivity : ZFileActivity() {
                     setResult(ZFILE_RESULT_CODE, Intent().apply {
                         putParcelableArrayListExtra(
                             ZFILE_SELECT_DATA_KEY,
-                            selectArray.toFileList() as java.util.ArrayList<out Parcelable>
+                            mViewModel.selectArray.toFileList() as java.util.ArrayList<out Parcelable>
                         )
                     })
                     finish()
@@ -142,15 +155,15 @@ internal class ZFileQWActivity : ZFileActivity() {
     }
 
     private fun getVPFragment(currentItem: Int): ZFileQWFragment? {
-        val fragmentId = adapter.getItemId(currentItem)
+        val fragmentId = mViewModel.adapter.getItemId(currentItem)
         val tag = "android:switcher:${binding.zfileQwViewPager.id}:$fragmentId"
         return supportFragmentManager.findFragmentByTag(tag) as? ZFileQWFragment
     }
 
     override fun onResume() {
         super.onResume()
-        if (toManagerPermissionPage) {
-            toManagerPermissionPage = false
+        if (mViewModel.toManagerPermissionPage) {
+            mViewModel.toManagerPermissionPage = false
             callPermission()
         }
     }
@@ -160,7 +173,7 @@ internal class ZFileQWActivity : ZFileActivity() {
             hasPermissionListener = {
                 initAll()
             }, noPermissionListener = {
-                toManagerPermissionPage = true
+                mViewModel.toManagerPermissionPage = true
             }, cancelPermissionListener = {
                 finish()
             })
@@ -178,13 +191,6 @@ internal class ZFileQWActivity : ZFileActivity() {
                 binding.zfileQwCenterTitle.text = title
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        isManage = false
-        selectArray.clear()
-        ZFileUtil.resetAll()
     }
 
 }
