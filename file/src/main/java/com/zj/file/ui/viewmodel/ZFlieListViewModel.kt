@@ -9,8 +9,6 @@ import com.zj.file.util.ZFileUtil
 
 class ZFlieListViewModel : ViewModel() {
 
-    var isFirstLoad = true
-
     var toManagerPermissionPage = false
 
     var barShow = false
@@ -26,6 +24,10 @@ class ZFlieListViewModel : ViewModel() {
 
     val backList by lazy {
         ArrayList<String>()
+    }
+
+    init {
+        ZFileLog.e("ZFlieListViewModel:onCreate")
     }
 
     override fun onCleared() {

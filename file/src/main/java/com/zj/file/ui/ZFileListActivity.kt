@@ -19,21 +19,28 @@ internal class ZFileListActivity : ZFileActivity() {
         return binding.root
     }
 
+    private val fragment: ZFileListFragment by lazy {
+        (supportFragmentManager.findFragmentById(R.id.zfile_2rootLayout) as? ZFileListFragment)
+            ?: buildFragment()
+    }
+
+    private fun buildFragment(): ZFileListFragment {
+        return ZFileListFragment.newInstance(mListener)
+    }
+
     override fun init(savedInstanceState: Bundle?) {
+        // 处理转屏fragment新建逻辑
+        if (fragment.isAdded) return
         getZFileConfig().apply {
             fragmentTag = ZFILE_FRAGMENT_TAG
             filePath = intent.getStringExtra(FILE_START_PATH_KEY)
         }
-        supportFragmentManager
-            .beginTransaction()
-            .add(
-                R.id.zfile_2rootLayout,
-                ZFileListFragment.newInstance().apply {
-                    zFragmentListener = mListener
-                },
-                ZFILE_FRAGMENT_TAG
-            )
-            .commit()
+
+        supportFragmentManager.beginTransaction().add(
+            R.id.zfile_2rootLayout,
+            fragment,
+            ZFILE_FRAGMENT_TAG
+        ).commit()
     }
 
     override fun onBackPressed() {

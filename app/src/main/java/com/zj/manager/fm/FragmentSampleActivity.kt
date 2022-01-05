@@ -116,9 +116,7 @@ class FragmentSampleActivity : AppCompatActivity() {
     }
 
     private fun getZFragment(): ZFileListFragment {
-        val fragment = ZFileListFragment.newInstance()
-        fragment.zFragmentListener = mListener
-        return fragment
+        return ZFileListFragment.newInstance(mListener)
     }
 
     private fun getFragmentTagByVP(vpAdapter: FragmentStateAdapter?, position: Int = 1): String {

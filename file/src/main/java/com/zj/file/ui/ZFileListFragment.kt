@@ -43,8 +43,7 @@ class ZFileListFragment : Fragment() {
 
     private lateinit var mActivity: FragmentActivity
     private val mViewModel by viewModels<ZFlieListViewModel>()
-
-    var zFragmentListener: ZFragmentListener? = null
+    private var isFirstLoad = true
     private var binding: ActivityZfileListBinding? = null
 
     override fun onCreateView(
@@ -86,11 +85,14 @@ class ZFileListFragment : Fragment() {
 
     companion object {
 
+        var zFragmentListener: ZFragmentListener? = null
+
         /**
          * 获取 [ZFileListFragment] 实例
          */
         @JvmStatic
-        fun newInstance(): ZFileListFragment {
+        fun newInstance(zFragmentListener: ZFragmentListener?): ZFileListFragment {
+            this.zFragmentListener = zFragmentListener
             val startPath = getZFileConfig().filePath
             if (startPath == ZFileConfiguration.QQ || startPath == ZFileConfiguration.WECHAT) {
                 throw ZFileException(
@@ -113,18 +115,19 @@ class ZFileListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (!getZFileConfig().needLazy) {
-            initAll()
-        }
+//        if (!getZFileConfig().needLazy) {
+//            initAll()
+//        }
+        initAll()
     }
 
     override fun onResume() {
         super.onResume()
         if (getZFileConfig().needLazy) {
-            if (mViewModel.isFirstLoad) {
-                initAll()
-                mViewModel.isFirstLoad = false
-            }
+//            if (isFirstLoad) {
+//                initAll()
+//                isFirstLoad = false
+//            }
         }
     }
 
@@ -193,18 +196,7 @@ class ZFileListFragment : Fragment() {
 
     private fun initAll() {
         setSortSelectId()
-        ZFileLog.e("????nowPath:${mViewModel.nowPath}")
-        if (mViewModel.nowPath == "" || mViewModel.nowPath.isNullOrEmpty()) {
-            mViewModel.specifyPath = arguments?.getString(FILE_START_PATH_KEY)
-        } else {
-            mViewModel.specifyPath = mViewModel.nowPath
-        }
-        ZFileLog.e("specifyPath:${mViewModel.specifyPath}")
-        getZFileConfig().filePath = mViewModel.specifyPath
-        mViewModel.rootPath = mViewModel.specifyPath ?: ""
-        mViewModel.backList.add(mViewModel.rootPath)
-        mViewModel.nowPath = mViewModel.rootPath
-        ZFileLog.e("nowPath:${mViewModel.nowPath}")
+        initPath()
         binding?.zfileListToolBar?.apply {
             if (getZFileConfig().showBackIcon) setNavigationIcon(R.drawable.zfile_back) else navigationIcon =
                 null
@@ -218,6 +210,21 @@ class ZFileListFragment : Fragment() {
             callPermission()
         }
         callPermission()
+    }
+
+    private fun initPath() {
+        ZFileLog.e("nowPath?:${mViewModel.nowPath}")
+        if (mViewModel.nowPath?.isNotBlank() == true) {
+            return
+        }
+        mViewModel.specifyPath = arguments?.getString(FILE_START_PATH_KEY)
+        ZFileLog.e("specifyPath:${mViewModel.specifyPath}")
+        getZFileConfig().filePath = mViewModel.specifyPath
+        mViewModel.rootPath = mViewModel.specifyPath ?: ""
+        ZFileLog.e("backList:${mViewModel.backList}")
+        mViewModel.backList.add(mViewModel.rootPath)
+        mViewModel.nowPath = mViewModel.rootPath
+        ZFileLog.e("nowPath:${mViewModel.nowPath}")
     }
 
     private fun initRV() {
@@ -264,6 +271,8 @@ class ZFileListFragment : Fragment() {
     private fun getPathData() {
         val filePath = getZFileConfig().filePath
         val pathList = ArrayList<ZFilePathBean>()
+        ZFileLog.e("filePath:$filePath")
+        ZFileLog.e("pathList:$pathList")
         if (filePath.isNullOrEmpty() || filePath == SD_ROOT) {
             pathList.add(ZFilePathBean(mActivity getStringById R.string.zfile_root_path, "root"))
         } else {
@@ -483,6 +492,8 @@ class ZFileListFragment : Fragment() {
 
     private fun back() {
         val path = getThisFilePath()
+        ZFileLog.e("path:$path")
+        ZFileLog.e("path rootPath:${mViewModel.rootPath}")
         if (path == mViewModel.rootPath || path.isNullOrEmpty()) { // 根目录
             if (mViewModel.barShow) {  // 存在编辑状态
                 setBarTitle(mActivity getStringById R.string.zfile_title)
