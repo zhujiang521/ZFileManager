@@ -209,6 +209,7 @@ class ZFileListFragment : Fragment() {
             callPermission()
         }
         callPermission()
+        setMenuState()
     }
 
     private fun initPath() {
@@ -338,6 +339,7 @@ class ZFileListFragment : Fragment() {
             changeListener = { isManage, size ->
                 if (isManage) {
                     if (mViewModel.barShow) {
+                        mViewModel.barShow = false
                         setBarTitle(getString(R.string.zfile_selected_title, size))
                     } else {
                         mViewModel.barShow = true
