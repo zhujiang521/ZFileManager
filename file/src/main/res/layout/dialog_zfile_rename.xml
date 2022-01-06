@@ -7,29 +7,31 @@
 
     <TextView
         android:id="@+id/zfile_dialog_tv_title"
-        style="@style/Base.DialogWindowTitle.AppCompat"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="20dp"
+        android:layout_gravity="center"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
         android:paddingBottom="10dp"
         android:text="@string/zifle_rename_title"
-        android:textColor="@color/zfile_file_title" />
+        android:textColor="@color/zfile_file_title"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/zfile_dialog_renameEdit"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15sp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/dialog_shape_edit"
         android:hint="@string/zfile_info_rename"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:maxLength="30"
+        android:maxLength="15"
         android:maxLines="1"
+        android:paddingHorizontal="8dp"
         android:textColor="@color/zfile_black"
         android:textSize="15sp" />
 

@@ -3,8 +3,10 @@ package com.zj.file.util
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.zj.file.R
+import com.zj.file.content.getZDisplay
 import com.zj.file.databinding.DialogPermissionBinding
 import com.zj.file.databinding.DialogProgressBinding
 
@@ -26,11 +28,12 @@ fun Context.commonDialog(
     cancelListener: (() -> Unit)? = null,
     finishListener: () -> Unit
 ) {
-    val builder = AlertDialog.Builder(this)
+    val builder = AlertDialog.Builder(this, R.style.ZFile_Common_Dialog)
     val binding: DialogPermissionBinding =
         DialogPermissionBinding.inflate(LayoutInflater.from(this))
     builder.setView(binding.root)
     val dialog = builder.create()
+
     binding.apply {
         permissionTvTitle.setText(title)
         permissionTvContent.setText(content)
@@ -46,7 +49,10 @@ fun Context.commonDialog(
         }
     }
     dialog.show()
-
+    val display = getZDisplay()
+    val width =
+        if (display.isEmpty()) ViewGroup.LayoutParams.MATCH_PARENT else (display[0] * 0.88f).toInt()
+    dialog.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
 }
 
 /**
