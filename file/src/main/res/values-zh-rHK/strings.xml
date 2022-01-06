@@ -12,6 +12,7 @@
     <string name="zfile_menu_search">搜索</string>
     <string name="zfile_root_path">根目錄</string>
     <string name="zfile_path">指定目錄</string>
+    <string name="zfile_menu_add_file">新建文件夾</string>
     <string name="zfile_menu_order">排序方式</string>
     <string name="zifle_menu_hidden">不顯示隱藏文件</string>
     <string name="zfile_menu_show">顯示隱藏文件</string>
@@ -85,5 +86,10 @@
     <string name="zfile_item_desc_image">圖片</string>
     <string name="zfile_item_desc_search_icon">搜索圖標</string>
     <string name="zfile_item_desc_delete_icon">刪除</string>
+
+    <string name="zfile_info_no">無</string>
+    <string name="zfile_dialog_rename_hint">請輸入文件名稱</string>
+    <string name="zfile_dialog_add_error">已存在此文件</string>
+    <string name="zfile_dialog_add_success">創建成功</string>
 
 </resources>

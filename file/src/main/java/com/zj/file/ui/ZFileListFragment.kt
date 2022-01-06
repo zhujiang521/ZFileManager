@@ -24,6 +24,7 @@ import com.zj.file.databinding.ActivityZfileListBinding
 import com.zj.file.dsl.ZFileDsl
 import com.zj.file.listener.ZFragmentListener
 import com.zj.file.ui.adapter.ZFileListAdapter
+import com.zj.file.ui.dialog.ZFileNewFileDialog
 import com.zj.file.ui.dialog.ZFileSelectFolderDialog
 import com.zj.file.ui.dialog.ZFileSortDialog
 import com.zj.file.ui.viewmodel.ZFlieListViewModel
@@ -144,6 +145,7 @@ class ZFileListFragment : Fragment() {
     private fun setMenuState() {
         binding?.zfileListToolBar?.menu?.apply {
             findItem(R.id.menu_zfile_down).isVisible = mViewModel.barShow
+            findItem(R.id.menu_zfile_add_file).isVisible = !mViewModel.barShow
             findItem(R.id.menu_zfile_px).isVisible = !mViewModel.barShow
             findItem(R.id.menu_zfile_show).isVisible = !mViewModel.barShow
             findItem(R.id.menu_zfile_hidden).isVisible = !mViewModel.barShow
@@ -178,6 +180,7 @@ class ZFileListFragment : Fragment() {
                     }
                 }
             }
+            R.id.menu_zfile_add_file -> showNewDialog()
             R.id.menu_zfile_px -> showSortDialog()
             R.id.menu_zfile_show -> {
                 menu.isChecked = true
@@ -191,6 +194,18 @@ class ZFileListFragment : Fragment() {
             }
         }
         return true
+    }
+
+    private fun showNewDialog() {
+        val tag = ZFileNewFileDialog::class.java.simpleName
+        mActivity.checkFragmentByTag(tag)
+        ZFileNewFileDialog.newInstance(mViewModel.nowPath)
+            .apply {
+                newFileDown = {
+                    if (this) getData(mViewModel.nowPath)
+                }
+            }
+            .show(mActivity.supportFragmentManager, tag)
     }
 
     private fun initAll() {

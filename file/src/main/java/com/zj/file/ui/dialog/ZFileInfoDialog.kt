@@ -27,8 +27,11 @@ import java.lang.ref.WeakReference
 internal class ZFileInfoDialog : ZFileManageDialog(), Runnable {
 
     companion object {
+
+        private const val FILE_INFO_FILE_BEAN = "fileBean"
+
         fun newInstance(bean: ZFileBean) = ZFileInfoDialog().apply {
-            arguments = Bundle().apply { putParcelable("fileBean", bean) }
+            arguments = Bundle().apply { putParcelable(FILE_INFO_FILE_BEAN, bean) }
         }
     }
 
@@ -43,12 +46,13 @@ internal class ZFileInfoDialog : ZFileManageDialog(), Runnable {
         return binding?.root
     }
 
-    override fun createDialog(savedInstanceState: Bundle?) = Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
-        window?.setGravity(Gravity.CENTER)
-    }
+    override fun createDialog(savedInstanceState: Bundle?) =
+        Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
+            window?.setGravity(Gravity.CENTER)
+        }
 
     override fun init(savedInstanceState: Bundle?) {
-        val bean = arguments?.getParcelable("fileBean") ?: ZFileBean()
+        val bean = arguments?.getParcelable(FILE_INFO_FILE_BEAN) ?: ZFileBean()
         filePath = bean.filePath
         fileType = ZFileTypeManage.getTypeManager().getFileType(bean.filePath)
         handler = InfoHandler(this)
@@ -64,24 +68,25 @@ internal class ZFileInfoDialog : ZFileManageDialog(), Runnable {
         binding?.zfileDialogInfoFilePath?.text = bean.filePath
 
         binding?.zfileDialogInfoMoreBox?.setOnClickListener {
-            binding?.zfileDialogInfoMoreLayout?.isVisible = binding?.zfileDialogInfoMoreBox?.isChecked == true
+            binding?.zfileDialogInfoMoreLayout?.isVisible =
+                binding?.zfileDialogInfoMoreBox?.isChecked == true
         }
         when (fileType) {
             is ImageType -> {
                 binding?.zfileDialogInfoMoreBox?.visibility = View.VISIBLE
                 binding?.zfileDialogInfoFileDurationLayout?.visibility = View.GONE
-                binding?.zfileDialogInfoFileOther?.text = "无"
+                binding?.zfileDialogInfoFileOther?.setText(R.string.zfile_info_no)
                 val wh = ZFileOtherUtil.getImageWH(filePath)
                 binding?.zfileDialogInfoFileFBL?.text = String.format("%d * %d", wh[0], wh[1])
             }
             is AudioType -> {
                 binding?.zfileDialogInfoMoreBox?.visibility = View.VISIBLE
                 binding?.zfileDialogInfoFileFBLLayout?.visibility = View.GONE
-                binding?.zfileDialogInfoFileOther?.text = "无"
+                binding?.zfileDialogInfoFileOther?.setText(R.string.zfile_info_no)
             }
             is VideoType -> {
                 binding?.zfileDialogInfoMoreBox?.visibility = View.VISIBLE
-                binding?.zfileDialogInfoFileOther?.text = "无"
+                binding?.zfileDialogInfoFileOther?.setText(R.string.zfile_info_no)
             }
             else -> {
                 binding?.zfileDialogInfoMoreBox?.visibility = View.GONE

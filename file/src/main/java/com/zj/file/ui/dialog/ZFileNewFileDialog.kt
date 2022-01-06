@@ -9,27 +9,23 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.zj.file.R
 import com.zj.file.common.ZFileManageDialog
-import com.zj.file.content.hideIme
-import com.zj.file.content.isNull
+import com.zj.file.content.*
 import com.zj.file.content.setNeedWH
-import com.zj.file.content.showIme
 import com.zj.file.databinding.DialogZfileRenameBinding
-import com.zj.file.util.ZFileLog
-import com.zj.file.util.showToast
 
-internal class ZFileRenameDialog : ZFileManageDialog() {
+internal class ZFileNewFileDialog : ZFileManageDialog() {
 
     private var binding: DialogZfileRenameBinding? = null
-    var reanameDown: (String.() -> Unit)? = null
-    private var oldName = ""
+    var newFileDown: (Boolean.() -> Unit)? = null
+    private var nowPath = ""
 
     companion object {
 
-        const val OLD_NAME: String = "oldName"
+        private const val NOW_PATH = "nowPath"
 
-        fun newInstance(oldName: String) = ZFileRenameDialog().apply {
+        fun newInstance(nowPath: String?) = ZFileNewFileDialog().apply {
             arguments = Bundle().run {
-                putString(OLD_NAME, oldName)
+                putString(NOW_PATH, nowPath)
                 this
             }
         }
@@ -47,35 +43,30 @@ internal class ZFileRenameDialog : ZFileManageDialog() {
         }
 
     override fun init(savedInstanceState: Bundle?) {
-        oldName = arguments?.getString(OLD_NAME) ?: getString(R.string.zfile_dialog_rename_hint)
+        nowPath = arguments?.getString(NOW_PATH) ?: ""
+        binding?.zfileDialogTvTitle?.setText(R.string.zfile_menu_add_file)
         binding?.zfileDialogRenameEdit?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
-                rename()
+                newFile()
             }
             true
         }
-        binding?.zfileDialogRenameEdit?.hint = oldName
+        binding?.zfileDialogRenameEdit?.setHint(R.string.zfile_dialog_rename_hint)
         binding?.zfileDialogRenameDown?.setOnClickListener {
-            rename()
+            newFile()
+            dismiss()
         }
         binding?.zfileDialogRenameCancel?.setOnClickListener {
             dismiss()
         }
     }
 
-    private fun rename() {
-        val newName = binding?.zfileDialogRenameEdit?.text.toString()
-        if (newName.isNull()) {
-            context?.showToast(R.string.zfile_dialog_rename_hint)
-        } else {
-            if (oldName == newName) {
-                ZFileLog.e("相同名字，不执行重命名操作")
-                dismiss()
-            } else {
-                reanameDown?.invoke(newName)
-                dismiss()
-            }
-        }
+    private fun newFile() {
+        getZFileHelp().getFileOperateListener()
+            .newFile(
+                nowPath, binding?.zfileDialogRenameEdit?.text?.toString() ?: "",
+                requireContext(), newFileDown
+            )
     }
 
     override fun onStart() {

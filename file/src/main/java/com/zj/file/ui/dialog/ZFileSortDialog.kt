@@ -15,10 +15,14 @@ import com.zj.file.databinding.DialogZfileSortBinding
 internal class ZFileSortDialog : ZFileManageDialog(), RadioGroup.OnCheckedChangeListener {
 
     companion object {
+
+        private const val SORT_SELECT_ID = "sortSelectId"
+        private const val SEQUENCE_SELECT_ID = "sequenceSelectId"
+
         fun newInstance(sortSelectId: Int, sequenceSelectId: Int) = ZFileSortDialog().apply {
             arguments = Bundle().run {
-                putInt("sortSelectId", sortSelectId)
-                putInt("sequenceSelectId", sequenceSelectId)
+                putInt(SORT_SELECT_ID, sortSelectId)
+                putInt(SEQUENCE_SELECT_ID, sequenceSelectId)
                 this
             }
         }
@@ -40,8 +44,8 @@ internal class ZFileSortDialog : ZFileManageDialog(), RadioGroup.OnCheckedChange
         }
 
     override fun init(savedInstanceState: Bundle?) {
-        sortSelectId = arguments?.getInt("sortSelectId", 0) ?: 0
-        sequenceSelectId = arguments?.getInt("sequenceSelectId", 0) ?: 0
+        sortSelectId = arguments?.getInt(SORT_SELECT_ID, 0) ?: 0
+        sequenceSelectId = arguments?.getInt(SEQUENCE_SELECT_ID, 0) ?: 0
         check()
         when (sortSelectId) {
             R.id.zfile_sort_by_default -> binding?.zfileSortByDefault?.isChecked = true

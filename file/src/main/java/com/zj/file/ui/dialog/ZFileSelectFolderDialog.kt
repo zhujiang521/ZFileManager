@@ -19,9 +19,12 @@ import com.zj.file.util.ZFileUtil
 internal class ZFileSelectFolderDialog : ZFileManageDialog() {
 
     companion object {
+
+        private const val SELECT_FOLDER_TYPE = "type"
+
         fun newInstance(type: String) = ZFileSelectFolderDialog().apply {
             arguments = Bundle().run {
-                putString("type", type)
+                putString(SELECT_FOLDER_TYPE, type)
                 this
             }
         }
@@ -54,7 +57,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
         }
 
     override fun init(savedInstanceState: Bundle?) {
-        tipStr = arguments?.getString("type") ?: getString(R.string.zfile_menu_copy)
+        tipStr = arguments?.getString(SELECT_FOLDER_TYPE) ?: getString(R.string.zfile_menu_copy)
         // 先保存之前用户配置的数据
         filePath = getZFileConfig().filePath
         isOnlyFile = getZFileConfig().isOnlyFile
@@ -72,16 +75,17 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
     }
 
     private fun initRecyclerView() {
-        folderAdapter = object : ZFileAdapter<ZFileBean>(requireContext(), R.layout.item_zfile_list_folder) {
-            override fun bindView(holder: ZFileViewHolder, item: ZFileBean, position: Int) {
-                holder.apply {
-                    setText(R.id.item_zfile_list_folderNameTxt, item.fileName)
-                    setImageRes(R.id.item_zfile_list_folderPic, folderRes)
-                    setBgColor(R.id.item_zfile_list_folder_line, lineColor)
-                    setVisibility(R.id.item_zfile_list_folder_line, position < itemCount - 1)
+        folderAdapter =
+            object : ZFileAdapter<ZFileBean>(requireContext(), R.layout.item_zfile_list_folder) {
+                override fun bindView(holder: ZFileViewHolder, item: ZFileBean, position: Int) {
+                    holder.apply {
+                        setText(R.id.item_zfile_list_folderNameTxt, item.fileName)
+                        setImageRes(R.id.item_zfile_list_folderPic, folderRes)
+                        setBgColor(R.id.item_zfile_list_folder_line, lineColor)
+                        setVisibility(R.id.item_zfile_list_folder_line, position < itemCount - 1)
+                    }
                 }
             }
-        }
         folderAdapter?.itemClick = { _, _, item ->
             getZFileConfig().filePath = item.filePath
             backList.add(item.filePath)
@@ -109,7 +113,8 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
         if (filePath.isNullOrEmpty() || filePath == SD_ROOT) {
             binding?.zfileSelectFolderTitle?.text = String.format("%s到根目录", tipStr)
         } else {
-            binding?.zfileSelectFolderTitle?.text = String.format("%s到%s", tipStr, filePath.toFile().name)
+            binding?.zfileSelectFolderTitle?.text =
+                String.format("%s到%s", tipStr, filePath.toFile().name)
         }
         ZFileUtil.getList(requireContext()) {
             if (isNullOrEmpty()) {

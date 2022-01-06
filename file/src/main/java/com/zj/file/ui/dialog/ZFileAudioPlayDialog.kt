@@ -16,11 +16,15 @@ import com.zj.file.databinding.DialogZfileAudioPlayBinding
 import com.zj.file.util.ZFileOtherUtil
 import java.lang.ref.WeakReference
 
-internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChangeListener, Runnable {
+internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChangeListener,
+    Runnable {
 
     companion object {
+
+        private const val AUDIO_FILE_PATH = "filePath"
+
         fun getInstance(filePath: String) = ZFileAudioPlayDialog().apply {
-            arguments = Bundle().apply { putString("filePath", filePath) }
+            arguments = Bundle().apply { putString(AUDIO_FILE_PATH, filePath) }
         }
     }
 
@@ -43,9 +47,10 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChan
         return binding?.root
     }
 
-    override fun createDialog(savedInstanceState: Bundle?) = Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
-        window?.setGravity(Gravity.CENTER)
-    }
+    override fun createDialog(savedInstanceState: Bundle?) =
+        Dialog(requireContext(), R.style.ZFile_Common_Dialog).apply {
+            window?.setGravity(Gravity.CENTER)
+        }
 
     override fun init(savedInstanceState: Bundle?) {
         audioHandler = AudioHandler(this)
@@ -74,7 +79,7 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChan
             }
         }
         binding?.dialogZfileAudioBar?.setOnSeekBarChangeListener(this)
-        binding?.dialogZfileAudioName?.text = arguments?.getString("filePath")?.let {
+        binding?.dialogZfileAudioName?.text = arguments?.getString(AUDIO_FILE_PATH)?.let {
             it.substring(it.lastIndexOf("/") + 1, it.length)
         }
     }
@@ -86,12 +91,13 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChan
 
     private fun initPlayer() {
         mediaPlayer = MediaPlayer()
-        mediaPlayer?.setDataSource(arguments?.getString("filePath"))
+        mediaPlayer?.setDataSource(arguments?.getString(AUDIO_FILE_PATH))
         mediaPlayer?.prepareAsync()
         mediaPlayer?.setOnPreparedListener { play ->
             binding?.dialogZfileAudioBar?.max = play.duration
             audioHandler?.post(this)
-            binding?.dialogZfileAudioCountTime?.text = ZFileOtherUtil.secToTime(play.duration / 1000)
+            binding?.dialogZfileAudioCountTime?.text =
+                ZFileOtherUtil.secToTime(play.duration / 1000)
 
             // 设置运动时间
             falgTime = SystemClock.elapsedRealtime()
@@ -166,7 +172,8 @@ internal class ZFileAudioPlayDialog : ZFileManageDialog(), SeekBar.OnSeekBarChan
         }
 
         override fun handleMessage(msg: Message) {
-            week.get()?.binding?.dialogZfileAudioBar?.progress = week.get()?.mediaPlayer?.currentPosition ?: 0
+            week.get()?.binding?.dialogZfileAudioBar?.progress =
+                week.get()?.mediaPlayer?.currentPosition ?: 0
         }
     }
 

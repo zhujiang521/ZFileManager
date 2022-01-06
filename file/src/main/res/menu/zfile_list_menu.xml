@@ -15,6 +15,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/menu_zfile_add_file"
+        android:title="@string/zfile_menu_add_file"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_zfile_px"
         android:title="@string/zfile_menu_order"
         app:showAsAction="never" />

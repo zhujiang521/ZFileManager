@@ -344,6 +344,18 @@ open class ZFileOperateListener {
     ) = ZFileUtil.renameFile(filePath, fileNewName, context, block)
 
     /**
+     * 新建文件
+     * @param nowPath String       文件路径
+     * @param name String    新文件名字
+     * @param context Context       Context
+     * @param block Function2<Boolean> Boolean：成功或失败
+     */
+    open fun newFile(
+        nowPath: String, name: String, context: Context,
+        block: ((Boolean) -> Unit)?
+    ) = ZFileUtil.newFile(nowPath, name, context, block)
+
+    /**
      * 复制文件
      * @param sourceFile String     源文件地址
      * @param targetFile String     目标文件地址

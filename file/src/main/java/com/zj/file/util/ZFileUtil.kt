@@ -47,6 +47,28 @@ internal object ZFileUtil {
     }
 
     /**
+     * 新建文件夹
+     */
+    fun newFile(nowPath: String, name: String, context: Context, block: ((Boolean) -> Unit)?) {
+        val file = File(nowPath, name) // 创建文件
+        if (file.exists()) {
+            block?.invoke(false)
+            context.showToast(R.string.zfile_dialog_add_error)
+            return
+        }
+        // 文件存在返回false
+        try {
+            val createNewFile = file.mkdir() //创建文件
+            block?.invoke(createNewFile)
+            context.showToast(R.string.zfile_dialog_add_success)
+        } catch (e: IOException) {
+            context.showToast(R.string.zfile_dialog_add_error)
+            block?.invoke(false)
+            e.printStackTrace()
+        }
+    }
+
+    /**
      * 重命名文件
      */
     fun renameFile(

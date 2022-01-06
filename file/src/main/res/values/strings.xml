@@ -10,6 +10,7 @@
     <string name="zfile_menu_search">Search</string>
     <string name="zfile_root_path">Root directory</string>
     <string name="zfile_path">Specify the directory</string>
+    <string name="zfile_menu_add_file">New folder</string>
     <string name="zfile_menu_order">Sort by</string>
     <string name="zifle_menu_hidden">Do not show hidden files</string>
     <string name="zfile_menu_show">Show hidden files</string>
@@ -83,5 +84,10 @@
     <string name="zfile_item_desc_image">Image</string>
     <string name="zfile_item_desc_search_icon">Search icon</string>
     <string name="zfile_item_desc_delete_icon">Delete</string>
+
+    <string name="zfile_info_no">None</string>
+    <string name="zfile_dialog_rename_hint">Please enter the file name</string>
+    <string name="zfile_dialog_add_error">This file already exists</string>
+    <string name="zfile_dialog_add_success">Created successfully</string>
 
 </resources>
