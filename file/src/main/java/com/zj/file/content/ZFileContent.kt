@@ -259,11 +259,6 @@ internal val SD_ROOT: String
     get() {
         return Environment.getExternalStorageDirectory().path
     }
-internal val folderRes: Int
-    get() {
-        return if (getZFileConfig().resources.folderRes == ZFILE_DEFAULT) R.drawable.ic_zfile_folder
-        else getZFileConfig().resources.folderRes
-    }
 internal val lineColor: Int
     get() {
         return if (getZFileConfig().resources.lineColor == ZFILE_DEFAULT) R.color.zfile_line_color

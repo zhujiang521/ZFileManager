@@ -190,7 +190,7 @@ class ZFileListAdapter(context: Context) : ZFileAdapter<ZFileBean>(context) {
     private fun setFolderData(holder: ZFileViewHolder, item: ZFileBean, position: Int) {
         holder.apply {
             setText(R.id.item_zfile_list_folderNameTxt, item.fileName)
-            setImageRes(R.id.item_zfile_list_folderPic, folderRes)
+            setImageRes(R.id.item_zfile_list_folderPic, R.drawable.ic_zfile_folder)
             setBgColor(R.id.item_zfile_list_folder_line, lineColor)
             setVisibility(R.id.item_zfile_list_folder_line, position < itemCount - 1)
             if (config.showSelectedCountHint) {
