@@ -70,7 +70,7 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
             recoverData()
             dismiss()
         }
-        binding?.zfileSelectFolderTitle?.text = String.format("%s到根目录", tipStr)
+        binding?.zfileSelectFolderTitle?.text = getString(R.string.zfile_dialog_to_root, tipStr)
         initRecyclerView()
     }
 
@@ -111,10 +111,11 @@ internal class ZFileSelectFolderDialog : ZFileManageDialog() {
     private fun getData() {
         val filePath = getZFileConfig().filePath
         if (filePath.isNullOrEmpty() || filePath == SD_ROOT) {
-            binding?.zfileSelectFolderTitle?.text = String.format("%s到根目录", tipStr)
+            binding?.zfileSelectFolderTitle?.text = getString(R.string.zfile_dialog_to_root, tipStr)
         } else {
+
             binding?.zfileSelectFolderTitle?.text =
-                String.format("%s到%s", tipStr, filePath.toFile().name)
+                getString(R.string.zfile_dialog_to_path, tipStr, filePath.toFile().name)
         }
         ZFileUtil.getList(requireContext()) {
             if (isNullOrEmpty()) {

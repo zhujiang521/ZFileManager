@@ -90,4 +90,7 @@
     <string name="zfile_dialog_add_error">This file already exists</string>
     <string name="zfile_dialog_add_success">Created successfully</string>
 
+    <string name="zfile_dialog_to_root">%s to the root directory</string>
+    <string name="zfile_dialog_to_path">%s to %s</string>
+
 </resources>
