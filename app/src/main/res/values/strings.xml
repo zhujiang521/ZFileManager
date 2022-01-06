@@ -15,5 +15,21 @@
     <string name="file_qq">QQ</string>
     <string name="file_we_chat">WeChat</string>
     <string name="file_dialog_title">Specific operation</string>
+    <string name="d_s_l">d s l</string>
+    <string name="start">start</string>
+    <string name="fragment">fragment</string>
+    <string name="sun_login">Login</string>
+    <string name="sun_qq">QQ</string>
+    <string name="sun_wechart">WeChart</string>
+    <string name="sun_alipay">Alipay</string>
+    <string name="sun_back">Back</string>
+    <string name="sun_tip">Account password login</string>
+    <string name="sun_other_login">Other login methods</string>
+    <string name="sun_86">+ 86</string>
+    <string name="sun_phone">Please enter phone number</string>
+    <string name="sun_policy">Log in to agree to the "User Agreement" and "Privacy Policy"</string>
+    <string name="sun_title">More exciting after login</string>
+    <string name="sun_title_tip">To present this sinful crown of blood and tears for the birth of my king</string>
+    <string name="sun_et_tip">Complete registration after unregistered mobile phone verification</string>
 
 </resources>

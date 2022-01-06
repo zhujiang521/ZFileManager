@@ -21,11 +21,15 @@ internal class ZFileQWFragment : ZFileFragment() {
     private var binding: FragmentZfileQwBinding? = null
 
     companion object {
+
+        const val FILE_TYPE = "type"
+        const val FILE_IS_MANAGER = "isManager"
+
         fun newInstance(qwFileType: String, type: Int, isManager: Boolean) = ZFileQWFragment().apply {
             arguments = Bundle().run {
                 putString(QW_FILE_TYPE_KEY, qwFileType)
-                putInt("type", type)
-                putBoolean("isManager", isManager)
+                putInt(FILE_TYPE, type)
+                putBoolean(FILE_IS_MANAGER, isManager)
                 this
             }
         }

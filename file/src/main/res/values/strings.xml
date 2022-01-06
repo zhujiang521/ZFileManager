@@ -76,4 +76,12 @@
     <string name="zfile_dialog_open_preview_tip">This file needs to be previewed by a third-party application, and there is no program to open the file type locally. Do you want to open the application store?</string>
     <string name="zfile_dialog_no_store">Your phone currently does not have an app store installed</string>
 
+    <string name="zfile_item_desc_icon">File icon</string>
+    <string name="zfile_item_desc_selected">Selected</string>
+    <string name="zfile_item_desc_path_icon">Path</string>
+    <string name="zfile_item_desc_play">Play</string>
+    <string name="zfile_item_desc_image">Image</string>
+    <string name="zfile_item_desc_search_icon">Search icon</string>
+    <string name="zfile_item_desc_delete_icon">Delete</string>
+
 </resources>

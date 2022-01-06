@@ -16,4 +16,20 @@
     <string name="file_qq">QQ</string>
     <string name="file_we_chat">微信</string>
     <string name="file_dialog_title">具体操作</string>
+    <string name="d_s_l">d s l</string>
+    <string name="start">start</string>
+    <string name="fragment">fragment</string>
+    <string name="sun_login">登录</string>
+    <string name="sun_tip">账号密码登录</string>
+    <string name="sun_other_login">其他登录方式</string>
+    <string name="sun_qq">QQ</string>
+    <string name="sun_wechart">微信</string>
+    <string name="sun_alipay">支付宝</string>
+    <string name="sun_back">返回</string>
+    <string name="sun_86">+ 86</string>
+    <string name="sun_phone">请输入手机号</string>
+    <string name="sun_policy">登录即同意《用户协议》和《隐私政策》</string>
+    <string name="sun_title">登录后更加精彩</string>
+    <string name="sun_title_tip">为吾王的诞生献上这血与泪编制的罪恶王冠</string>
+    <string name="sun_et_tip">未注册手机验证后完成注册</string>
 </resources>

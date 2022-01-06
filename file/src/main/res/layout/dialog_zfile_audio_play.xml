@@ -11,7 +11,8 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:paddingStart="5dp"
-        android:paddingEnd="5dp">
+        android:paddingEnd="5dp"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/dialog_zfile_audio_play"
@@ -19,6 +20,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center|start"
             android:background="@drawable/zfile_ripple_music_bg"
+            android:contentDescription="@string/zfile_item_desc_play"
             android:padding="5dp"
             android:src="@drawable/zfile_play" />
 

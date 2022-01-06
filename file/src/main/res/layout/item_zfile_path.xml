@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="25dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables">
 
     <TextView
         android:id="@+id/item_zfile_path_title"
@@ -11,14 +12,15 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginEnd="3dp"
-        android:textColor="@color/zfile_file_title"
         android:gravity="center"
+        android:textColor="@color/zfile_file_title"
         tools:text="根目录" />
 
     <ImageView
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_gravity="center"
+        android:contentDescription="@string/zfile_item_desc_path_icon"
         android:padding="1dp"
         android:src="@drawable/ic_zfile_right_back" />
 

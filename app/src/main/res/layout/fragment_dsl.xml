@@ -14,7 +14,7 @@
             android:id="@+id/dsl_fragmentStartBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="start"/>
+            android:text="@string/start"/>
 
         <include
             android:id="@+id/dsl_frag_include"

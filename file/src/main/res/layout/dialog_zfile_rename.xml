@@ -25,6 +25,7 @@
         android:layout_marginBottom="10dp"
         android:hint="@string/zfile_info_rename"
         android:imeOptions="actionDone"
+        android:importantForAutofill="no"
         android:inputType="text"
         android:maxLength="30"
         android:maxLines="1"

@@ -24,6 +24,8 @@
             android:gravity="start|center_vertical"
             android:hint="@string/zfile_menu_search"
             android:imeOptions="actionSearch"
+            android:importantForAutofill="no"
+            android:inputType="text"
             android:maxLength="20"
             android:paddingStart="38dp"
             android:paddingTop="6dp"
@@ -42,6 +44,7 @@
             android:layout_alignStart="@id/search_edit_view"
             android:layout_centerVertical="true"
             android:layout_marginStart="9dp"
+            android:contentDescription="@string/zfile_item_desc_search_icon"
             android:src="@drawable/icon_edit_text_search" />
 
         <ImageView
@@ -50,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/search_edit_view"
             android:layout_centerVertical="true"
+            android:contentDescription="@string/zfile_item_desc_delete_icon"
             android:padding="8dp"
             android:src="@drawable/btn_search_clear"
             android:visibility="gone" />

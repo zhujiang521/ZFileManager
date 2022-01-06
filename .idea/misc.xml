@@ -20,7 +20,9 @@
         <entry key="app/src/main/res/drawable/shape_sun_phone_edit.xml" value="0.3194444444444444" />
         <entry key="app/src/main/res/layout-land/activity_super.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_dsl.xml" value="0.2838541666666667" />
+        <entry key="app/src/main/res/layout/activity_dsl_fragment.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/activity_fragment_sample2.xml" value="0.2838541666666667" />
+        <entry key="app/src/main/res/layout/activity_java_sample.xml" value="0.24427083333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.327445652173913" />
         <entry key="app/src/main/res/layout/activity_sun.xml" value="0.2572463768115942" />
         <entry key="app/src/main/res/layout/activity_super.xml" value="0.2838541666666667" />

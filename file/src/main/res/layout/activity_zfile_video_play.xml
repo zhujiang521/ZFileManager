@@ -15,6 +15,7 @@
         android:id="@+id/video_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/zfile_item_desc_play"
         android:transitionName="@string/zfile_sharedElement_video" />
 
     <ImageView
@@ -22,6 +23,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
+        android:contentDescription="@string/zfile_item_desc_play"
         android:src="@drawable/zfile_play" />
 
 </FrameLayout>

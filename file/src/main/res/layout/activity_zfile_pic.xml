@@ -9,6 +9,7 @@
         android:id="@+id/zfile_pic_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/zfile_item_desc_image"
         android:transitionName="@string/zfile_sharedElement_pic" />
 
 </FrameLayout>

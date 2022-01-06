@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
@@ -21,6 +22,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
+        android:contentDescription="@string/sun_back"
         android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="登录后更加精彩"
+            android:text="@string/sun_title"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold" />
@@ -49,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="为吾王的诞生献上这血与泪编制的罪恶王冠"
+            android:text="@string/sun_title_tip"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -60,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
-        android:text="未注册手机验证后完成注册"
+        android:text="@string/sun_et_tip"
         android:textColor="#B5B5C3"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/sun_titleLayout"
@@ -85,22 +87,24 @@
             android:gravity="center"
             android:paddingStart="10dp"
             android:paddingEnd="5dp"
-            android:text="+ 86"
+            android:text="@string/sun_86"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/ic_sjx" />
+            android:src="@drawable/ic_sjx"
+            tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/sun_phoneEdit1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:hint="请输入手机号"
+            android:hint="@string/sun_phone"
             android:imeOptions="actionNext"
+            android:importantForAutofill="no"
             android:inputType="number"
             android:maxLength="11"
             android:maxLines="1"
@@ -108,7 +112,8 @@
             android:paddingEnd="13dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="TextFields" />
 
     </LinearLayout>
 
@@ -120,7 +125,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_sun_login_btn"
         android:gravity="center"
-        android:text="登录"
+        android:text="@string/sun_login"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/sun_titleLayout"
@@ -132,7 +137,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="账号密码登录"
+        android:text="@string/sun_tip"
         android:textColor="#FFFFFF"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/sun_titleLayout"
@@ -142,7 +147,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="其他登录方式"
+        android:text="@string/sun_other_login"
         android:textColor="#FFFFFF"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/sun_other"
@@ -162,18 +167,21 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:contentDescription="@string/sun_qq"
             android:src="@drawable/ic_qq" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/sun_wechart"
             android:src="@drawable/ic_we_chat" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="30dp"
+            android:contentDescription="@string/sun_alipay"
             android:src="@drawable/ic_alipay" />
 
     </LinearLayout>
@@ -183,7 +191,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="登录即同意《用户协议》和《隐私政策》"
+        android:text="@string/sun_policy"
         android:textColor="#FFFFFF"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"

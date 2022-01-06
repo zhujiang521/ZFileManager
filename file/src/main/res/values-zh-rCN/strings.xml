@@ -76,4 +76,12 @@
     <string name="zfile_dialog_open_preview_tip">此文件需要打开三方应用进行预览，本地找不到打开该文件类型的程序，是否打开应用商店？</string>
     <string name="zfile_dialog_no_store">您的手机当前没有安装应用商店</string>
 
+    <string name="zfile_item_desc_icon">文件图标</string>
+    <string name="zfile_item_desc_selected">选中</string>
+    <string name="zfile_item_desc_path_icon">路径</string>
+    <string name="zfile_item_desc_play">播放</string>
+    <string name="zfile_item_desc_image">图片</string>
+    <string name="zfile_item_desc_search_icon">搜索图标</string>
+    <string name="zfile_item_desc_delete_icon">删除</string>
+
 </resources>

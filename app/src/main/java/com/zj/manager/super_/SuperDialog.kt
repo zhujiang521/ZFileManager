@@ -16,9 +16,12 @@ import com.zj.manager.databinding.DialogSuperBinding
 class SuperDialog : BottomSheetDialogFragment() {
 
     companion object {
+
+        const val FILE_BEAN_LIST = "list"
+
         fun newInstance(list: ArrayList<ZFileBean>) = SuperDialog().apply {
             arguments = Bundle().run {
-                putSerializable("list", list)
+                putParcelableArrayList(FILE_BEAN_LIST, list)
                 this
             }
         }
@@ -44,7 +47,7 @@ class SuperDialog : BottomSheetDialogFragment() {
         binding?.superCacelPic?.setOnClickListener {
             dismiss()
         }
-        val list = arguments?.getSerializable("list") as ArrayList<ZFileBean>
+        val list = arguments?.getParcelableArrayList<ZFileBean>(FILE_BEAN_LIST) ?: arrayListOf()
         superAdapter = SuperAdapter(list)
         binding?.superRecyclerView?.apply {
             layoutManager = LinearLayoutManager(context)

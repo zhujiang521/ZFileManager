@@ -10,6 +10,10 @@ import com.zj.file.databinding.ActivityZfileVideoPlayBinding
 
 internal class ZFileVideoPlayActivity : ZFileActivity() {
 
+    companion object{
+        const val VIDEO_FILE_PATH = "videoFilePath"
+    }
+
     private lateinit var binding: ActivityZfileVideoPlayBinding
 
     override fun getContentView(): View {
@@ -19,7 +23,7 @@ internal class ZFileVideoPlayActivity : ZFileActivity() {
 
     override fun init(savedInstanceState: Bundle?) {
         setStatusBarTransparent()
-        val videoPath = intent.getStringExtra("videoFilePath") ?: ""
+        val videoPath = intent.getStringExtra(VIDEO_FILE_PATH) ?: ""
         getZFileHelp().getImageLoadListener().loadImage(binding.videoImg, videoPath.toFile())
         binding.videoPlayerButton.setOnClickListener { v ->
             binding.videoPlayer.videoPath = videoPath

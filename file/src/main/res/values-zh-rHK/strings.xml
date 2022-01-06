@@ -78,4 +78,12 @@
     <string name="zfile_dialog_open_preview_tip">此文件需要打開三方應用進行預覽，本地找不到打開該文件類型的程序，是否打開應用商店？</string>
     <string name="zfile_dialog_no_store">您的手機當前沒有安裝應用商店</string>
 
+    <string name="zfile_item_desc_icon">文件圖標</string>
+    <string name="zfile_item_desc_selected">選中</string>
+    <string name="zfile_item_desc_path_icon">路徑</string>
+    <string name="zfile_item_desc_play">播放</string>
+    <string name="zfile_item_desc_image">圖片</string>
+    <string name="zfile_item_desc_search_icon">搜索圖標</string>
+    <string name="zfile_item_desc_delete_icon">刪除</string>
+
 </resources>

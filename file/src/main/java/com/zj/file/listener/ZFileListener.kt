@@ -17,7 +17,9 @@ import com.zj.file.content.*
 import com.zj.file.type.*
 import com.zj.file.ui.ZFileListFragment
 import com.zj.file.ui.ZFilePicActivity
+import com.zj.file.ui.ZFilePicActivity.Companion.PIC_FILE_PATH
 import com.zj.file.ui.ZFileVideoPlayActivity
+import com.zj.file.ui.ZFileVideoPlayActivity.Companion.VIDEO_FILE_PATH
 import com.zj.file.ui.dialog.ZFileAudioPlayDialog
 import com.zj.file.ui.dialog.ZFileInfoDialog
 import com.zj.file.ui.dialog.ZFileRenameDialog
@@ -189,7 +191,7 @@ open class ZFileOpenListener {
         val pic = view.findViewById<ImageView>(R.id.item_zfile_list_file_pic)
         pic.context.startActivity(
             Intent(pic.context, ZFilePicActivity::class.java).apply {
-                putExtra("picFilePath", filePath)
+                putExtra(PIC_FILE_PATH, filePath)
             }, ActivityOptions.makeSceneTransitionAnimation(
                 pic.context as Activity, pic,
                 pic.context getStringById R.string.zfile_sharedElement_pic
@@ -204,7 +206,7 @@ open class ZFileOpenListener {
         val pic = view.findViewById<ImageView>(R.id.item_zfile_list_file_pic)
         pic.context.startActivity(
             Intent(pic.context, ZFileVideoPlayActivity::class.java).apply {
-                putExtra("videoFilePath", filePath)
+                putExtra(VIDEO_FILE_PATH, filePath)
             }, ActivityOptions.makeSceneTransitionAnimation(
                 pic.context as Activity, pic,
                 pic.context getStringById R.string.zfile_sharedElement_video

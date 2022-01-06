@@ -5,8 +5,8 @@
 
     <TextView
         android:id="@+id/main_resultTxt"
-        android:padding="13dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="13dp" />
 
 </androidx.core.widget.NestedScrollView>

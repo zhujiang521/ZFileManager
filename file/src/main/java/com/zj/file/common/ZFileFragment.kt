@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.zj.file.content.QW_FILE_TYPE_KEY
 import com.zj.file.content.ZFILE_QW_PIC
 import com.zj.file.content.ZFileConfiguration
+import com.zj.file.ui.ZFileQWFragment.Companion.FILE_TYPE
 
 internal abstract class ZFileFragment : Fragment() {
 
@@ -29,7 +29,7 @@ internal abstract class ZFileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        type = arguments?.getInt("type") ?: ZFILE_QW_PIC
+        type = arguments?.getInt(FILE_TYPE) ?: ZFILE_QW_PIC
         qwFileType = arguments?.getString(QW_FILE_TYPE_KEY) ?: ZFileConfiguration.QQ
     }
 
@@ -37,7 +37,7 @@ internal abstract class ZFileFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (type == arguments?.getInt("type") ?: ZFILE_QW_PIC && !isFirstLoad) {
+        if (type == arguments?.getInt(FILE_TYPE) ?: ZFILE_QW_PIC && !isFirstLoad) {
             return
         }
         initAll()
