@@ -10,11 +10,11 @@ internal class ZFileQWFilter(private var filterArray: Array<String>) :
     override fun accept(file: File): Boolean {
         filterArray.forEach {
             if (it.isEmpty()) {
-                if (acceptOther(file.name)) {
+                if (acceptOther(file.name) && file.isFile) {
                     return true
                 }
             } else {
-                if (file.name accept it) {
+                if (file.name accept it && file.isFile) {
                     return true
                 }
             }
